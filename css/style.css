@@ -338,3 +338,10 @@ div#line2 .text{
         transform: rotateZ(20deg);
     }
 }
+
+.desc_text span{
+    display: inline-block;
+    opacity: 0;
+    /* transform: rotate(20deg); */
+    transform: translateY(10px);
+}
