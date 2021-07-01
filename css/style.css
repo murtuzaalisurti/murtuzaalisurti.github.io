@@ -374,14 +374,14 @@ div#line2 .text{
     transform: translateY(10px);
 }
 
-#about, #skills, #projects{
+#about, #skills, #projects, #contact{
     margin-top: 2.5rem;
     margin-bottom: 5rem;
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.about-box, .skills-box, .projects-box{
+.about-box, .skills-box, .projects-box, .contact-box{
     width: 85%;
     border: 1px solid transparent;
     border-radius: 1.2rem;
