@@ -535,3 +535,39 @@ div#line2 .text{
 .project a:hover{
     cursor: pointer;
 }
+a{
+    color: black;
+}
+.contact-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    height: 5rem;
+    padding-bottom: 5rem;
+}
+footer{
+    margin: 15rem 0rem 2rem 0rem;
+}
+.text1, .text2, .social{
+    font-size: 2rem;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+}
+.text2{
+    font-size: 1.2rem;
+}
+.text1 i{
+    color: red;
+}
+.social{
+    margin-bottom: 5rem;
+}
+.social a:nth-child(2){
+    margin: 0 0.8rem;
+}
+.text1 a{
+    text-decoration: none;
+    font-weight: bold;
+}
