@@ -457,12 +457,12 @@ div#line2 .text{
 .skill-title{
     font-family: 'Ubuntu', sans-serif;
     font-weight: 700;
-    font-size: 2.1rem;
+    font-size: 2rem;
 }
 .skill-desc{
     height: 40%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 .project-list{
@@ -570,4 +570,154 @@ footer{
 .text1 a{
     text-decoration: none;
     font-weight: bold;
+}
+
+
+
+/*new*/
+
+.skill-cards{
+    height: 42rem;
+    width: 100%;
+    background-color: var(--primary-color);    
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+.cards-contain{
+    height: 85%;
+    width: 90%;
+    background-color: var(--primary-color);
+    border: 1px transparent;
+    /* border: 2px solid black; */
+    box-shadow: 0.2rem 0px 5rem 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1); */
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.cards{
+    width: 100%;
+    height: 70%;
+    position: relative;
+}
+.card{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 20rem;
+    background-color: white;
+    /* box-shadow: 0.2rem 0px 3rem 0px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0.2rem 0px 5rem 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1); */
+    border: 1px transparent;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-1-pos{
+    left: -10%;
+    transition: all 0.5s ease-out;
+    z-index: 0;
+}
+.card-2-pos{
+    left: 50%;
+    transform: translate(-50%) scale(1.2);
+    transition: all 0.5s ease-out;
+    z-index: 2;
+}
+.card-3-pos{
+    left: 80%;
+    transition: all 0.5s ease-out;
+    z-index: 0;
+}
+
+@keyframes card-1-3 {
+    0%{
+        opacity: 1;
+        left: -10%;
+    }
+    50%{
+        opacity: 0.3;
+        left: 50%;
+    }
+    100%{
+        opacity: 1;
+        left: 80%;
+    }
+}
+
+.card .content{
+    height: 95%;
+    width: 90%;
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.card .heading, .card .text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card .heading{
+    height: 30%;
+    font-size: 2rem;
+    font-family: 'Merriweather', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+.card .text{
+    height: 50%;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0 0.5rem;
+}
+
+.control{
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    bottom: 40%;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+.btn{
+    height: 4rem;
+    width: 4rem;
+    margin: 0 1rem;
+    border: 1px transparent;
+    background-color: transparent;
+    color: transparent;
+    transform: translateX(-20%);
+    transition: color 0.3s ease-out, background-color 0.3s ease-out, transform 0.4s ease-out;
+    border-radius: 50%;
+    font-size: 2.5rem;
+    cursor: pointer;
+    pointer-events: all;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn i {
+    width: 100%;
+}
+.btn:hover{
+    background-color: rgb(216, 216, 216);
+    transform: translateX(0);
+    color: rgb(75, 75, 75);
+}
+.btn-hover{
+    transform: translateX(0);
+    color: rgb(75, 75, 75);
 }
