@@ -69,7 +69,6 @@ nav ul div:hover::before{
 }
 main{
     margin: 3rem 5rem 0rem 5rem;
-    /* height: 30rem; */
     width: 98.7rem;
 }
 section#landing{
