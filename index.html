@@ -24,16 +24,16 @@
         <header id="header">
             <nav id="navbar">
                 <ul>
-                    <div>
+                    <div role="button" aria-label="about">
                         <li>About</li>
                     </div>
-                    <div>
+                    <div role="button" aria-label="skills">
                         <li>Skills</li>
                     </div>
-                    <div>
+                    <div role="button" aria-label="projects">
                         <li>Projects</li>
                     </div>
-                    <div>
+                    <div role="button" aria-label="contact">
                         <li>Contact</li>
                     </div>
                 </ul>
@@ -42,7 +42,7 @@
     </div>
 
     <main>
-        <section id="landing">
+        <section id="landing" aria-label="landing section">
             <div class="code_like_text_contain">
                 <div id="code_editor_containing_name">
                     <div class="code_editor_style">
@@ -99,7 +99,7 @@
             </div>
         </section>
 
-        <section id="about">
+        <section id="about" aria-label="about section">
             <div class="about-box">
                 <div class="section-name">About</div>
                 <div class="aboutdesc">
@@ -114,7 +114,7 @@
             </div>
         </section>
 
-        <section id="skills">
+        <section id="skills" aria-label="skills section">
             <div class="skills-box">
                 <div class="section-name">Skills</div>
                 <div class="skill-cards">
@@ -155,11 +155,11 @@
             </div>
         </section>
 
-        <section id="projects">
+        <section id="projects" aria-label="projects section">
             <div class="projects-box">
                 <div class="section-name">Projects</div>
                 <div class="project-list">
-                    <div class="dev-projects-title" aria-label="button">
+                    <div class="dev-projects-title" aria-label="drop down button" role="button">
                         <div class="text">Development Projects</div>
                         <div class="drop"><i class="fas fa-chevron-down"></i></div>
                     </div>
@@ -167,59 +167,59 @@
                         <div class="block" id="project-1">
                             <div class="project-title">Matrices</div>
                             <div class="project-desc">A matrix calculator to perform different operations on matrices</div>
-                            <a target="_blank" href="https://murtuzaalisurti.github.io/matrices/">
+                            <a role="link" target="_blank" href="https://murtuzaalisurti.github.io/matrices/">
                                 <div class="project-view">View Project</div>
                             </a>
                         </div>
                         <div class="block" id="project-2">
                             <div class="project-title">Brainstormer</div>
                             <div class="project-desc">Throw up your ideas</div>
-                            <a target="_blank" href="https://murtuzaalisurti.github.io/brainstormer/">
+                            <a role="link" target="_blank" href="https://murtuzaalisurti.github.io/brainstormer/">
                                 <div class="project-view">View Project</div>
                             </a>
                         </div>
                         <div class="block" id="project-3">
                             <div class="project-title">Breke Timer</div>
                             <div class="project-desc">A timer which allows you to take breaks</div>
-                            <a target="_blank" href="https://murtuzaalisurti.github.io/breke_timer/">
+                            <a role="link" target="_blank" href="https://murtuzaalisurti.github.io/breke_timer/">
                                 <div class="project-view">View Project</div>
                             </a>
                         </div>
                         <div class="block" id="project-4">
                             <div class="project-title">Toggle Animation</div>
                             <div class="project-desc">A dark mode toggle button animation</div>
-                            <a target="_blank" href="https://github.com/murtuzaalisurti/toggle_animation">
+                            <a role="link" target="_blank" href="https://github.com/murtuzaalisurti/toggle_animation">
                                 <div class="project-view">View Project</div>
                             </a>
                         </div>
                         <div class="block" id="project-5">
                             <div class="project-title">Spotlight Effect</div>
                             <div class="project-desc">Transitions and Animations in CSS</div>
-                            <a target="_blank" href="https://github.com/murtuzaalisurti/spotlight">
+                            <a role="link" target="_blank" href="https://github.com/murtuzaalisurti/spotlight">
                                 <div class="project-view">View Project</div>
                             </a>
                         </div>
                     </div>
-                    <div class="blogs-title" aria-label="button">
+                    <div class="blogs-title" aria-label="drop down button" role="button">
                         <div class="text">Blogs</div>
                         <div class="drop"><i class="fas fa-chevron-down"></i></div>
                     </div>
                     <div class="blog-projects">
                         <div class="block" id="project-1">
                             <div class="project-title">DEV Community</div>
-                            <a target="_blank" href="https://dev.to/murtuzaalisurti">
+                            <a role="link" target="_blank" href="https://dev.to/murtuzaalisurti">
                                 <div class="project-view">View Blog</div>
                             </a>
                         </div>
                         <div class="block" id="project-2">
                             <div class="project-title">Medium</div>
-                            <a target="_blank" href="https://techthatthrills.medium.com">
+                            <a role="link" target="_blank" href="https://techthatthrills.medium.com">
                                 <div class="project-view">View Blog</div>
                             </a>
                         </div>
                         <div class="block" id="project-3">
                             <div class="project-title">TechThatThrills</div>
-                            <a target="_blank" href="https://techthatthrills.wordpress.com">
+                            <a role="link" target="_blank" href="https://techthatthrills.wordpress.com">
                                 <div class="project-view">View Blog</div>
                             </a>
                         </div>
@@ -228,7 +228,7 @@
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" aria-label="contact section">
             <div class="contact-box">
                 <div class="section-name">Contact</div>
                 <div class="contact-info">
@@ -238,14 +238,13 @@
         </section>
 
         <footer>
-            <div class="social">
-                <a target="_blank" href="https://github.com/murtuzaalisurti"><i class="fab fa-github"></i></a>
-                <a target="_blank" href="https://twitter.com/murtuza_surti"><i class="fab fa-twitter"></i></a>
-                <a target="_blank" href="https://instagram.com/murtuzaali_surti"><i class="fab fa-instagram"></i></a>
+            <div class="social" aria-label="social media links">
+                <a aria-label="github profile" target="_blank" href="https://github.com/murtuzaalisurti"><i class="fab fa-github"></i></a>
+                <a aria-label="twitter profile" target="_blank" href="https://twitter.com/murtuza_surti"><i class="fab fa-twitter"></i></a>
+                <a aria-label="instagram profile" target="_blank" href="https://instagram.com/murtuzaali_surti"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="text1">&copy;2021 Made with&nbsp;<i class="fas fa-heart"></i>&nbsp;by&nbsp;<a
-                    href="https://github.com/murtuzaalisurti">Murtuza</a></div>
-            <div class="text2">Powered by&nbsp;<a href="https://github.com"><i class="fab fa-github"></i></a> Pages
+            <div class="text1" aria-label="contributor">&copy;2021 Made with&nbsp;<i class="fas fa-heart"></i>&nbsp;by&nbsp;<a aria-label="github profile" href="https://github.com/murtuzaalisurti">Murtuza</a></div>
+            <div class="text2" aria-label="powered by">Powered by&nbsp;<a href="https://github.com"><i class="fab fa-github"></i></a> Pages
             </div>
         </footer>
     </main>
