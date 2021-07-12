@@ -567,7 +567,7 @@ footer{
 .social{
     margin-bottom: 5rem;
 }
-.social a:nth-child(2){
+.social a{
     margin: 0 0.8rem;
 }
 .text1 a{
