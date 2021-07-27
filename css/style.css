@@ -172,15 +172,15 @@ section#landing{
     margin-left: 0;
     margin-right: 1.5rem;
 }
-/* .text_hide_hey, .text_hide_murtuza{
+.text_hide_hey, .text_hide_murtuza{
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: white;
-} */
-/* .text_cursor_hey, .text_cursor_murtuza{
+}
+.text_cursor_hey, .text_cursor_murtuza{
     position: absolute;
     top: 0;
     bottom: 0;
@@ -188,7 +188,7 @@ section#landing{
     right: 0;
     background-color: transparent;
     border-left: 3px solid black;
-} */
+}
 .brackets{
     display: flex;
     align-items: center;
@@ -197,7 +197,6 @@ section#landing{
 }
 
 div#line2 .text{
-    /* width: 25.3rem; */
     height: 100%;
 }
 .forward-slash{
