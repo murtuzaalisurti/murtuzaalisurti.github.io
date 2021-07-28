@@ -614,13 +614,23 @@ footer{
     height: 85%;
     width: 90%;
     background-color: var(--primary-color);
-    border: 1px transparent;
-    box-shadow: 0.2rem 0px 5rem 0px rgba(0, 0, 0, 0.2);
+    /* border: 2px solid #ececec; */
+    /* box-shadow: 0.2rem 0px 5rem 0px rgba(0, 0, 0, 0.2); */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
     align-items: center;
     position: relative;
+}
+.cards-contain-inset-shadow{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    box-shadow: inset 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
 }
 .cards{
     width: 100%;
@@ -634,7 +644,7 @@ footer{
     height: 100%;
     width: 20rem;
     background-color: white;
-    box-shadow: 0.2rem 0px 5rem 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
     border: 1px transparent;
     border-radius: 10px;
     text-align: center;
