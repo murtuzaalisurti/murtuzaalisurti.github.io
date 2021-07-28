@@ -614,8 +614,6 @@ footer{
     height: 85%;
     width: 90%;
     background-color: var(--primary-color);
-    /* border: 2px solid #ececec; */
-    /* box-shadow: 0.2rem 0px 5rem 0px rgba(0, 0, 0, 0.2); */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
