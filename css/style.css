@@ -840,3 +840,79 @@ footer{
 .none{
     display: none;
 }
+@media (max-width: 30rem) {
+    .header-contain{
+        display: none;
+    }
+    main{
+        margin-top: 3rem;
+        width: 100vw;
+    }
+    section#landing{
+        flex-flow: column;
+    }
+    .code_like_text_contain{
+        width: 80%;
+    }
+    .brackets{
+        font-size: 3rem;
+    }
+    .text{
+        font-size: 3rem;
+    }
+    .text-contain-2{
+        margin: 0;
+    }
+    .forward-slash{
+        font-size: 3rem;
+        transform: translateY(-5%) rotateZ(289deg);
+        height: 4rem;
+        /* display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center; */
+    }
+    #code_editor_containing_desc {
+        width: 100%;
+        transform: none;
+    }
+    .desc_content {
+        font-size: 2.5rem;
+    }
+    .section-name {
+        height: 10rem;
+        font-size: 3rem;
+    }
+    .aboutdesc {
+        display: flex;
+        flex-flow: column-reverse;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .about_text, .pic {
+        width: 60%;
+        height: auto;
+    }
+    .pic {
+        width: 40%;
+    }
+    .pic img {
+        width: 100%;
+        height: auto;
+    }
+    .about_text{
+        width: 90%;
+    }
+    .about_text .text {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.7rem;
+        padding-top: 4rem;
+        padding: 4rem 1rem 4rem 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    .dev-projects-title .text, .blogs-title .text {
+        font-size: 2rem;
+    }
+}
