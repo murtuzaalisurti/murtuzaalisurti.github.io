@@ -806,15 +806,15 @@ footer{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
-.temporary-blocking{
+/* .temporary-blocking{
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     display: none;
-}
-.message{
+} */
+/* .message{
     width: 80%;
     text-align: center;
     font-size: 2.5rem;
@@ -828,15 +828,15 @@ footer{
 .message-icon{
     font-size: 4rem;
     color: rgb(251, 203, 45);
-}
-@media (max-width: 62rem) {
+} */
+/* @media (max-width: 62rem) {
     .temporary-blocking{
         display: flex;
     }
     main, .header-contain{
         display: none;
     }
-}
+} */
 .none{
     display: none;
 }
