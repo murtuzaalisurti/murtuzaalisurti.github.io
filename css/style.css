@@ -809,12 +809,12 @@ footer{
 .none{
     display: none;
 }
-@media (max-width: 30rem) {
+@media (max-width: 60rem) {
     .header-contain{
         display: none;
     }
     main{
-        margin-top: 3rem;
+        margin-top: 1rem;
         width: 100vw;
     }
     section#landing{
@@ -832,17 +832,9 @@ footer{
     .text-contain-2{
         margin: 0;
     }
-    .forward-slash{
-        font-size: 3rem;
-        transform: translateY(-5%) rotateZ(289deg);
-        height: 4rem;
-    }
     #code_editor_containing_desc {
         width: 100%;
         transform: none;
-    }
-    .desc_content {
-        font-size: 2.5rem;
     }
     .section-name {
         height: 10rem;
@@ -856,7 +848,6 @@ footer{
         width: 100%;
     }
     .about_text, .pic {
-        width: 60%;
         height: auto;
     }
     .pic {
@@ -865,9 +856,6 @@ footer{
     .pic img {
         width: 100%;
         height: auto;
-    }
-    .about_text{
-        width: 90%;
     }
     .about_text .text {
         font-family: 'Montserrat', sans-serif;
@@ -930,6 +918,7 @@ footer{
     .cards-contain{
         height: 100%;
         width: 100%;
+        overflow: visible;
     }
     .cards{
         height: 100%;
@@ -948,5 +937,85 @@ footer{
     }
     .control{
         display: none;
+    }
+    .cards-contain-inset-shadow{
+        display: none;
+    }
+
+    #line1, #line2{
+        align-self: center;
+        width: 50vw;
+    }
+    #line2{
+        width: 60vw;
+    }
+    .hey, .immurtuza{
+        font-size: 4rem;
+    }
+    .brackets {
+        font-size: 4.3rem;
+    }
+    .forward-slash {
+        font-size: 3.5rem;
+        transform: translateY(-5%) rotateZ(286deg);
+        height: 5rem;
+    }
+    .desc_content {
+        font-size: 3.5rem;
+    }
+    .about_text {
+        width: 45%;
+    }
+    .pic {
+        width: 20%;
+    }
+    .cards{
+        flex-flow: row;
+        justify-content: space-around;
+    }
+}
+@media (max-width: 54rem) {
+    #line1, #line2{
+        align-self: center;
+        width: 45vw;
+    }
+    #line2{
+        width: 55vw;
+    }
+    .cards{
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+}
+@media (max-width: 40rem) {
+    .brackets{
+        font-size: 3rem;
+    }
+    .text{
+        font-size: 3rem;
+    }
+    .forward-slash{
+        font-size: 3rem;
+        transform: translateY(-5%) rotateZ(289deg);
+        height: 4rem;
+    }
+    .pic {
+        width: 40%;
+    }
+    .about_text{
+        width: 90%;
+    }
+    #line1{
+        width: fit-content;
+        align-self: flex-start;
+    }
+    #line2{
+        width: fit-content;
+        align-self: flex-end;
+    }
+    .desc_content {
+        font-size: 2.5rem;
     }
 }
