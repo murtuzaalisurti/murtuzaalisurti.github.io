@@ -806,37 +806,6 @@ footer{
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
-/* .temporary-blocking{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: none;
-} */
-/* .message{
-    width: 80%;
-    text-align: center;
-    font-size: 2.5rem;
-    font-family: 'Inter', sans-serif;
-    background-color: rgba(255, 248, 190, 0.596);
-    border: 0.2rem solid rgb(251, 203, 45);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    max-width: 50rem;
-}
-.message-icon{
-    font-size: 4rem;
-    color: rgb(251, 203, 45);
-} */
-/* @media (max-width: 62rem) {
-    .temporary-blocking{
-        display: flex;
-    }
-    main, .header-contain{
-        display: none;
-    }
-} */
 .none{
     display: none;
 }
@@ -867,10 +836,6 @@ footer{
         font-size: 3rem;
         transform: translateY(-5%) rotateZ(289deg);
         height: 4rem;
-        /* display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        text-align: center; */
     }
     #code_editor_containing_desc {
         width: 100%;
@@ -914,5 +879,47 @@ footer{
     }
     .dev-projects-title .text, .blogs-title .text {
         font-size: 2rem;
+    }
+    .block{
+        height: 100%;
+        flex-flow: column;
+        border: 1px solid transparent;
+        border-bottom: 2px solid #e6e6e6;
+        padding: 1rem 0;
+        margin-bottom: 2rem;
+    }
+    .block:hover{
+        border: 1px solid transparent;
+        border-bottom: 2px solid #e6e6e6;
+    }
+    .block:last-child {
+        border: 1px solid transparent;
+    }
+    .block a{
+        width: 45%;
+        width: fit-content;
+    }
+    .project-title{
+        font-size: 1.7rem;
+    }
+    .project-desc{
+        color: #4e4e4e;
+        margin-bottom: 0.5rem;
+    }
+    .project-title, .project-desc{
+        width: 100%;
+        padding: 0.5rem 0.3rem;
+        text-align: center;
+    }
+    .blog-projects .project-title{
+        margin-bottom: 1rem;
+    }
+    .contact-info {
+        display: block;
+        font-size: 1.7rem;
+        height: auto;
+        padding: 0 4rem;
+        padding-bottom: 5rem;
+        text-align: center;
     }
 }
