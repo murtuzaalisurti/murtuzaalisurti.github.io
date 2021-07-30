@@ -922,4 +922,31 @@ footer{
         padding-bottom: 5rem;
         text-align: center;
     }
+    .skill-cards{
+        height: fit-content;
+        margin-bottom: 3rem;
+        display: block;
+    }
+    .cards-contain{
+        height: 100%;
+        width: 100%;
+    }
+    .cards{
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .card{
+        position: relative;
+        height: 25rem;
+        margin: 2rem 0;
+    }
+    #card-1, #card-2, #card-3{
+        left: 0;
+        transform: none;
+    }
+    .control{
+        display: none;
+    }
 }
