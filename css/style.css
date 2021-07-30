@@ -1019,3 +1019,38 @@ footer{
         font-size: 2.5rem;
     }
 }
+/*
+.temporary-blocking{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.message{
+    width: 80%;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(255, 248, 190, 0.596);
+    border: 0.2rem solid rgb(251, 203, 45);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    max-width: 50rem;
+}
+.message-icon{
+    font-size: 4rem;
+    color: rgb(251, 203, 45);
+}
+@media (max-width: 62rem) {
+    .temporary-blocking{
+        display: flex;
+    }
+    main, .header-contain{
+        display: none;
+    }
+}
+.none{
+    display: none;
+}*/
