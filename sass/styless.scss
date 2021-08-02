@@ -1041,6 +1041,17 @@ footer{
     padding: 1.5rem;
     max-width: 50rem;
 }
+.message-text button{
+    margin-top: 1rem;
+    padding: 1.5rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8rem;
+    background-color: rgb(35, 87, 0);
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    color: white;
+}
 .message-icon{
     font-size: 4rem;
     color: rgb(251, 203, 45);
