@@ -399,14 +399,14 @@ div#line2 .text{
     transform: translateY(10px);
 }
 
-#about, #skills, #projects, #contact{
+#about, #skills, #projects, #contact, #experience{
     margin-top: 2.5rem;
     margin-bottom: 5rem;
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.about-box, .skills-box, .projects-box, .contact-box{
+.about-box, .skills-box, .projects-box, .contact-box, .experience-box{
     width: 85%;
     border: 1px solid transparent;
     border-radius: 1.2rem;
@@ -758,6 +758,70 @@ footer{
 .btn i {
     width: 100%;
 }
+.experience-data{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    // background-color: aqua;
+    // height: 30rem;
+    padding-top: 5rem;
+}
+.data-box{
+    height: 20rem;
+    width: 100%;
+    display: flex;
+}
+.timeline{
+    width: 25%;
+    height: 100%;
+    // background-color: aquamarine;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.draw{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    // background-color: blueviolet;
+}
+.data{
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    width: 75%;
+    height: 100%;
+    // background-color: bisque;
+    padding: 0 2rem;
+}
+.role{
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+}
+.time{
+    font-size: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+.exp-desc{
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Nunito', sans-serif;
+}
+.timeline .line{
+    width: 0.5rem;
+    height: 100%;
+    background-color: black;
+}
+.point{
+    position: absolute;
+    top: 0;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    background-color: black;
+}
 
 .dev-projects-title, .blogs-title{
     width: 80%;
@@ -1019,6 +1083,11 @@ footer{
     }
     .desc_content {
         font-size: 2.5rem;
+    }
+    .data-box{
+        height: 25rem;
+        width: 100%;
+        display: flex;
     }
 }
 
