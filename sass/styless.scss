@@ -128,12 +128,6 @@ section#landing{
     border-radius: 50%;
     margin-left: 1.2rem;
 }
-/* #code_editor_containing_desc .circle{
-    height: 29%;
-    width: 12%;
-    border: 2px solid black;
-    border-radius: 50%;
-} */
 #circle1{
     background-color: rgb(190, 26, 26);
 }
@@ -762,8 +756,6 @@ footer{
     display: flex;
     flex-flow: column;
     width: 100%;
-    // background-color: aqua;
-    // height: 30rem;
     padding-top: 5rem;
 }
 .data-box{
@@ -774,7 +766,6 @@ footer{
 .timeline{
     width: 25%;
     height: 100%;
-    // background-color: aquamarine;
     position: relative;
     display: flex;
     justify-content: center;
@@ -785,7 +776,6 @@ footer{
     bottom: 0;
     left: 0;
     right: 0;
-    // background-color: blueviolet;
 }
 .data{
     display: flex;
@@ -793,12 +783,12 @@ footer{
     justify-content: flex-start;
     width: 75%;
     height: 100%;
-    // background-color: bisque;
-    padding: 0 2rem;
+    padding: 0 2.1rem 0 0;
 }
 .role{
     font-family: 'Poppins', sans-serif;
     font-size: 3rem;
+    transform: translateY(-1rem);
 }
 .time{
     font-size: 1.5rem;
@@ -809,10 +799,12 @@ footer{
     font-size: 1.5rem;
     font-family: 'Nunito', sans-serif;
 }
+.timeline .line, .point{
+    background-color: #353535;
+}
 .timeline .line{
     width: 0.5rem;
     height: 100%;
-    background-color: black;
 }
 .point{
     position: absolute;
@@ -820,7 +812,6 @@ footer{
     height: 2.5rem;
     width: 2.5rem;
     border-radius: 50%;
-    background-color: black;
 }
 
 .dev-projects-title, .blogs-title{
@@ -1086,8 +1077,19 @@ footer{
     }
     .data-box{
         height: 25rem;
-        width: 100%;
-        display: flex;
+    }
+    .role{
+        font-size: 2.3rem;
+        transform: translateY(-0.5rem);
+    }
+    .time{
+        font-size: 1.2rem;
+    }
+    .exp-desc{
+        font-size: 1.4rem;
+    }
+    .timeline .line, .point{
+        background-color: #353535;
     }
 }
 
