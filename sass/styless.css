@@ -1260,6 +1260,14 @@ footer {
   padding-top: 5rem;
 }
 
+.experience-data a {
+  text-decoration: none;
+}
+
+.experience-data a:hover {
+  text-decoration: underline;
+}
+
 .data-box {
   height: 20rem;
   width: 100%;
