@@ -1701,50 +1701,6 @@ footer {
   }
 }
 
-.temporary-blocking {
-  height: 100vh;
-  width: 100vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: none;
-}
-
-.message {
-  width: 80%;
-  text-align: center;
-  font-size: 2.5rem;
-  font-family: 'Inter', sans-serif;
-  background-color: rgba(255, 248, 190, 0.596);
-  border: 0.2rem solid #fbcb2d;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  max-width: 50rem;
-}
-
-.message-text button {
-  margin-top: 1rem;
-  padding: 1.5rem 2rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.8rem;
-  background-color: #235700;
-  border: none;
-  border-radius: 1rem;
-  cursor: pointer;
-  color: white;
-}
-
-.message-icon {
-  font-size: 4rem;
-  color: #fbcb2d;
-}
-
 .none {
   display: none;
 }
