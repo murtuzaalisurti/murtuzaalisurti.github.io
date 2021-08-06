@@ -18,15 +18,6 @@ var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.r
 
 // Blink engine detection
 var isBlink = (isChrome || isOpera) && !!window.CSS;
-
-if (isSafari || isChrome || isFirefox){
-    // console.log(navigator.appVersion.indexOf("Mac")!=-1);
-    // let new_script = document.createElement("script");
-    // new_script.setAttribute("src", "./obfus_none/main1.js");
-    // document.body.appendChild(new_script);
-    console.log(1);
-}
-
 // if(isFirefox || isIE){
 //     // document.querySelector("main").style = `display: none;`;
 //     // document.querySelector(".header-contain").style = `display: none;`;
