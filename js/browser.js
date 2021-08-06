@@ -19,15 +19,13 @@ var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.r
 // Blink engine detection
 var isBlink = (isChrome || isOpera) && !!window.CSS;
 
-if (navigator.appVersion.indexOf("Mac")!=-1 || isSafari || isChrome){
-    console.log(navigator.appVersion.indexOf("Mac")!=-1);
-    let new_script = document.createElement("script");
-    new_script.setAttribute("src", "./obfus_none/main1.js");
-    document.body.appendChild(new_script);
-
-    let original_script = document.querySelector(".old");
-    document.body.removeChild(original_script);
-};
+if (isSafari || isChrome || isFirefox){
+    // console.log(navigator.appVersion.indexOf("Mac")!=-1);
+    // let new_script = document.createElement("script");
+    // new_script.setAttribute("src", "./obfus_none/main1.js");
+    // document.body.appendChild(new_script);
+    console.log(1);
+}
 
 // if(isFirefox || isIE){
 //     // document.querySelector("main").style = `display: none;`;
