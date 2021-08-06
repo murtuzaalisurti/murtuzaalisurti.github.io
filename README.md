@@ -9,3 +9,13 @@
 ## Want to contribute?
 
 Here are some [guidelines](https://github.com/murtuzaalisurti/murtuzaalisurti.github.io/blob/master/contributing.md)!
+
+---
+
+## Tech Stack
+
+<pre>
+ > HTML
+ > CSS
+ > Vanilla JavaScript
+</pre>
