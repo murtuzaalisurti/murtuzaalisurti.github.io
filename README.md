@@ -16,6 +16,6 @@ Here are some [guidelines](https://github.com/murtuzaalisurti/murtuzaalisurti.gi
 
 <pre>
  > HTML
- > CSS
+ > SASS
  > Vanilla JavaScript
 </pre>
