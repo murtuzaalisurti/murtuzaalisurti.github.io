@@ -1,5 +1,6 @@
 html {
   font-size: 62.5%;
+  -webkit-text-size-adjust: none;
 }
 
 :root {
@@ -1421,7 +1422,7 @@ footer {
   display: none;
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 62em) {
   .header-contain {
     display: none;
   }
@@ -1621,7 +1622,7 @@ footer {
   }
 }
 
-@media (max-width: 54rem) {
+@media (max-width: 54em) {
   #line1, #line2 {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
@@ -1646,18 +1647,19 @@ footer {
   }
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 40em) {
   .brackets {
-    font-size: 3rem;
+    font-size: 3em;
   }
   .text {
-    font-size: 3rem;
+    font-size: 3em;
   }
   .forward-slash {
-    font-size: 3rem;
+    font-size: 3em;
     -webkit-transform: translateY(-5%) rotateZ(289deg);
             transform: translateY(-5%) rotateZ(289deg);
     height: 4rem;
+    height: 1.3em;
   }
   .pic {
     width: 40%;
@@ -1680,21 +1682,21 @@ footer {
         align-self: flex-end;
   }
   .desc_content {
-    font-size: 2.5rem;
+    font-size: 2.5em;
   }
   .data-box {
-    height: 25rem;
+    height: 25em;
   }
   .role {
-    font-size: 2.3rem;
+    font-size: 2.3em;
     -webkit-transform: translateY(-0.5rem);
             transform: translateY(-0.5rem);
   }
   .time {
-    font-size: 1.2rem;
+    font-size: 1.2em;
   }
   .exp-desc {
-    font-size: 1.4rem;
+    font-size: 1.4em;
   }
   .timeline .line, .point {
     background-color: #353535;

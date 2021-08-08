@@ -1,0 +1,70 @@
+// For Apple Devices
+
+//iPhone 5 and 5S
+@mixin media5 {
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) {
+      @content;
+    }
+  }
+  
+  //iPhone 6,7,8
+  @mixin media6 {
+    @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+      @content;
+    }
+  }
+  
+  //iPhone 6,7,8 Plus
+  @mixin media6Plus {
+    @media only screen and (min-device-width: 414px) and (max-device-width: 736px) {
+      @content;
+    }
+  }
+  
+  // iPhone X
+  @mixin mediaX {
+    @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+      @content;
+    }
+  }
+  // iPhone X Landscape
+  @mixin mediaXLandscape {
+    @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
+      @content;
+    }
+  }
+  
+  // iPhone XR
+  @mixin mediaXR {
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+      @content;
+    }
+  }
+  
+  // iPhone XS Max
+  @mixin mediaXSMax {
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+      @content;
+    }
+  }
+  
+  //iPad
+  @mixin iPad {
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+      @content;
+    }
+  }
+  
+  //Landscape Generic phones
+  @mixin pixel {
+    @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+      @content;
+    }
+  }
+  
+  @mixin iPadPro {
+    @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) {
+      @content;
+    }
+  }
+  
