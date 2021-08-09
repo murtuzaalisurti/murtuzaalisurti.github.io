@@ -20,7 +20,7 @@ let all_cards = document.querySelectorAll(".cards .card");
 let left_btn = document.querySelector(".control").firstElementChild;
 let right_btn = document.querySelector(".control").lastElementChild;
 
-const skills_name = ["Software Developer", "Blogger", "Front-end Developer"];
+const skills_name = ["Software Developer", "Blogger", "Web Developer"];
 let header_links = document.querySelectorAll("nav ul div");
 let iteration = 1;
 function text_animate() {
@@ -40,8 +40,30 @@ function text_animate() {
     })
     
     let spans = document.querySelectorAll(".desc_text span");
+    let text_string = document.querySelector(".desc_text");
 
     for (let i = 0; i < spans.length; i++) {
+        let word_length = spans.length;
+        let zoom_in = text_string.animate([
+            {
+                transform: `scale(${Number(2)})`,
+                opacity: 0.2
+            },
+            {
+                opacity: 1, offset: 0.2
+            },
+            {
+                transform: `scale(${Number(1)})`,
+                opacity: 1
+            }
+        ], {
+            // delay: 300,
+            delay: `${Number((word_length/3)*100)}`,
+            duration: 400,
+            iterations: 1,
+            easing: `cubic-bezier(.74,.16,.38,.88)`,
+            fill: `both`
+        });
         spans[i].animate([
             {
                 opacity: 0,

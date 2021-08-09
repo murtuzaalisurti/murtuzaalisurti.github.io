@@ -697,6 +697,12 @@ div#line2 .text {
   }
 }
 
+.desc_text {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+  opacity: 0.2;
+}
+
 .desc_text span {
   display: inline-block;
   opacity: 0;
@@ -1422,7 +1428,7 @@ footer {
   display: none;
 }
 
-@media (max-width: 62em) {
+@media screen and (max-width: 62em) {
   .header-contain {
     display: none;
   }
@@ -1622,7 +1628,7 @@ footer {
   }
 }
 
-@media (max-width: 54em) {
+@media screen and (max-width: 54em) {
   #line1, #line2 {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
@@ -1647,7 +1653,7 @@ footer {
   }
 }
 
-@media (max-width: 40em) {
+@media screen and (max-width: 40em) {
   .brackets {
     font-size: 3em;
   }
