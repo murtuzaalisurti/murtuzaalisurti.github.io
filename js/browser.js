@@ -41,11 +41,11 @@ if (isIOSChrome) {
 var isBlink = (isChrome || isOpera) && !!window.CSS;
 
 if(isSafari || isFirefox){
-    let unobfus_script = document.createElement("script");
+    var unobfus_script = document.createElement("script");
     unobfus_script.src = "./js/main1.js";
     document.body.appendChild(unobfus_script);
 } else{
-    let obfus_script = document.createElement("script");
+    var obfus_script = document.createElement("script");
     obfus_script.src = "./js/main.js";
     document.body.appendChild(obfus_script);
 }
