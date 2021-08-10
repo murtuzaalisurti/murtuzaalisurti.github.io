@@ -54,3 +54,16 @@ if(isSafari || isFirefox){
 //     // document.querySelector(".header-contain").style = `display: none;`;
 //     // document.querySelector(".temporary-blocking").style = `display: flex;`;
 // }
+
+// insert this after main element if required
+/* <div class="temporary-blocking">
+        <div class="message">
+            <div class="message-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="message-text">
+                <strong>Make sure you are viewing this site on Chrome/Edge/Safari browser for a better
+                    experience.</strong><br><br>This website is not yet optimised for this browser.<br><br><em>Support
+                    for this browser is coming soon!</em>
+                <br><a href="microsoft-edge:https://murtuzaalisurti.github.io"><button>Open Microsoft Edge</button></a>
+            </div>
+        </div>
+</div> */
