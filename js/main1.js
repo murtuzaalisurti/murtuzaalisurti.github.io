@@ -20,6 +20,16 @@ let all_cards = document.querySelectorAll(".cards .card");
 let left_btn = document.querySelector(".control").firstElementChild;
 let right_btn = document.querySelector(".control").lastElementChild;
 
+let dev_projects_drop_button = document.querySelector(".dev-projects-title");
+let dev_projects = document.querySelector(".dev-projects");
+let dev_projects_drop_icon = document.querySelector(".dev-projects-title .drop");
+let view_project_links = document.querySelectorAll(".dev-projects a");
+
+let blog_projects_drop_button = document.querySelector(".blogs-title");
+let blog_projects = document.querySelector(".blog-projects");
+let blog_projects_drop_icon = document.querySelector(".blogs-title .drop");
+let view_blog_links = document.querySelectorAll(".blog-projects a");
+
 const skills_name = ["Software Developer", "Blogger", "Web Developer"];
 let header_links = document.querySelectorAll("nav ul div");
 let iteration = 1;
@@ -112,6 +122,13 @@ header_links.forEach((link) => {
         let anchor = String(e.target.innerText.toLowerCase());
         let anchored_element = document.querySelector(`#${anchor}`);
         anchored_element.scrollIntoView({behavior: "smooth"});
+    })
+    link.addEventListener("keydown", (e) => {
+        if(e.key === 'Enter'){
+            let anchor = String(e.target.innerText.toLowerCase());
+            let anchored_element = document.querySelector(`#${anchor}`);
+            anchored_element.scrollIntoView({behavior: "smooth"});
+        }
     })
 })
 
@@ -213,29 +230,98 @@ right_btn.addEventListener("click", () => {
     }
 
 })
-document.querySelector(".dev-projects-title").addEventListener("click", () => {
-    if(!document.querySelector(".dev-projects").style.maxHeight){
-        document.querySelector(".dev-projects-title .drop").innerHTML = `<i class="fas fa-chevron-up"></i>`;
-        document.querySelector(".dev-projects-title").classList.add("projects-reveal");
-        document.querySelector(".dev-projects").style.maxHeight = `${document.querySelector(".dev-projects").scrollHeight}px`;
+
+dev_projects_drop_button.addEventListener("click", () => {
+    if(!dev_projects.style.maxHeight){
+        dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
+        dev_projects_drop_button.classList.add("projects-reveal");
+        dev_projects.style.maxHeight = `${dev_projects.scrollHeight}px`;
     }
     else{
-        document.querySelector(".dev-projects-title .drop").innerHTML = `<i class="fas fa-chevron-down"></i>`;
-        document.querySelector(".dev-projects-title").classList.remove("projects-reveal");
-        document.querySelector(".dev-projects").style.maxHeight = null;
+        dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
+        dev_projects_drop_button.classList.remove("projects-reveal");
+        dev_projects.style.maxHeight = null;
     }
 })
 
-document.querySelector(".blogs-title").addEventListener("click", () => {
-    if(!document.querySelector(".blog-projects").style.maxHeight){
-        document.querySelector(".blogs-title .drop").innerHTML = `<i class="fas fa-chevron-up"></i>`;
-        document.querySelector(".blogs-title").classList.add("projects-reveal");
-        document.querySelector(".blog-projects").style.maxHeight = `${document.querySelector(".blog-projects").scrollHeight}px`;
+dev_projects_drop_button.addEventListener("keydown", (e) => {
+    if(e.key === 'Enter'){
+        if(!dev_projects.style.maxHeight){
+            dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
+            dev_projects_drop_button.classList.add("projects-reveal");
+            dev_projects.style.maxHeight = `${dev_projects.scrollHeight}px`;
+            view_project_links.forEach(link => {
+                link.setAttribute("tabindex", 0);
+            })
+        }
+        else{
+            dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
+            dev_projects_drop_button.classList.remove("projects-reveal");
+            dev_projects.style.maxHeight = null;
+            view_project_links.forEach(link => {
+                link.setAttribute("tabindex", -1);
+            })
+        }
+    }
+})
+
+dev_projects_drop_button.addEventListener("focus", (e) => {
+    if(!dev_projects.style.maxHeight){
+        view_project_links.forEach(link => {
+            link.setAttribute("tabindex", -1);
+        })
     }
     else{
-        document.querySelector(".blogs-title .drop").innerHTML = `<i class="fas fa-chevron-down"></i>`;
-        document.querySelector(".blogs-title").classList.remove("projects-reveal");
-        document.querySelector(".blog-projects").style.maxHeight = null;
+        view_project_links.forEach(link => {
+            link.setAttribute("tabindex", 0);
+        })
+    }
+})
+
+blog_projects_drop_button.addEventListener("click", () => {
+    if(!blog_projects.style.maxHeight){
+        blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
+        blog_projects_drop_button.classList.add("projects-reveal");
+        blog_projects.style.maxHeight = `${blog_projects.scrollHeight}px`;
+    }
+    else{
+        blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
+        blog_projects_drop_button.classList.remove("projects-reveal");
+        blog_projects.style.maxHeight = null;
+    }
+})
+
+blog_projects_drop_button.addEventListener("keydown", (e) => {
+    if(e.key === 'Enter'){
+        if(!blog_projects.style.maxHeight){
+            blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
+            blog_projects_drop_button.classList.add("projects-reveal");
+            blog_projects.style.maxHeight = `${blog_projects.scrollHeight}px`;
+            view_blog_links.forEach(link => {
+                link.setAttribute("tabindex", 0);
+            })
+        }
+        else{
+            blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
+            blog_projects_drop_button.classList.remove("projects-reveal");
+            blog_projects.style.maxHeight = null;
+            view_blog_links.forEach(link => {
+                link.setAttribute("tabindex", -1);
+            })
+        }
+    }
+})
+
+blog_projects_drop_button.addEventListener("focus", (e) => {
+    if(!blog_projects.style.maxHeight){
+        view_blog_links.forEach(link => {
+            link.setAttribute("tabindex", -1);
+        })
+    }
+    else{
+        view_blog_links.forEach(link => {
+            link.setAttribute("tabindex", 0);
+        })
     }
 })
 
