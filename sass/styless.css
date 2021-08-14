@@ -1501,7 +1501,7 @@ footer {
     font-size: 2rem;
   }
   .block {
-    height: 13rem;
+    height: 15rem;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-flow: column;
@@ -1533,11 +1533,14 @@ footer {
   }
   .project-title, .project-desc {
     width: 100%;
-    padding: 0.5rem 0.3rem;
+    padding: 0.5rem 2rem;
     text-align: center;
   }
   .blog-projects .project-title {
-    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .blog-projects .block {
+    height: 11rem;
   }
   .contact-info {
     display: block;
