@@ -463,3 +463,41 @@ function typing_anime(word){
     }
 }
 typing_anime(1);
+
+document.querySelectorAll(".experience-data a").forEach((a) => {
+    a.addEventListener("mouseover", () => {
+        a.style = `text-decoration: underline`;
+    })
+    a.addEventListener("mouseleave", () => {
+        a.style = `text-decoration: none`;
+    })
+})
+
+document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
+    let anchor = document.createElement("a");
+    point.appendChild(anchor);
+
+    let data_id = point.parentElement.parentElement.id;
+    let link_element_a = document.querySelector(`#${data_id} .data .role a`);
+
+    if(data_id != "data-5"){
+        let link = link_element_a.getAttribute("href");
+        anchor.setAttribute("href", link);
+    }
+
+    point.addEventListener("mouseover", (e) => {
+        if(e.target.classList.contains("point")){
+            if(data_id != "data-5"){
+                link_element_a.style = `text-decoration: underline;`;
+            }
+        }
+    })
+    point.addEventListener("mouseleave", (e) => {
+        if(e.target.classList.contains("point")){
+            if(data_id != "data-5"){
+                link_element_a.style = `text-decoration: none;`;
+            }
+        }
+    })
+    
+})

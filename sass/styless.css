@@ -1351,7 +1351,19 @@ footer {
   top: 0;
   height: 2.5rem;
   width: 2.5rem;
+  background-color: white;
+  border: 0.5rem solid #353535;
   border-radius: 50%;
+}
+
+.point:hover {
+  background-color: #353535;
+}
+
+.point a {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 
 .dev-projects-title, .blogs-title {
