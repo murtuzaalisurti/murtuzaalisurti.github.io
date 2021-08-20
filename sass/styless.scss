@@ -448,11 +448,35 @@ div#line2 .text{
 .about_text .text{
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
-    padding-top: 9rem;
+    padding: 6rem 0rem 0rem 5rem;
     width: 80%;
 }
 .about_text .text em{
     display: contents;
+}
+.recent-work{
+    padding: 2rem 0rem 0rem 5rem;
+}
+.recent-work button{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease-out, padding 0.3s ease-out;
+}
+.recent-work button i{
+    padding-left: 1rem;
+    transition: all 0.3s ease-out;
+}
+.recent-work button:hover{
+    padding: 1rem 0.8rem;
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
+.recent-work button:hover i{
+    padding-left: 1.5rem;
 }
 .skill-cards{
     justify-content: space-around;
