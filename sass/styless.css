@@ -1540,6 +1540,15 @@ footer {
     width: 100%;
     text-align: center;
   }
+  .recent-work {
+    padding: 0rem 0rem 2rem 0rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
   .dev-projects-title .text, .blogs-title .text {
     font-size: 2rem;
   }
