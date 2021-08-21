@@ -569,6 +569,8 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
     if(data_id != "data-5"){
         let link = link_element_a.getAttribute("href");
         anchor.setAttribute("href", link);
+        anchor.setAttribute("target", "_blank");
+        anchor.setAttribute("rel", "noreferrer");
     }
 
     point.addEventListener("mouseover", (e) => {
