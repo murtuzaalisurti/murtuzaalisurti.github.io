@@ -3,10 +3,6 @@ html {
   -webkit-text-size-adjust: none;
 }
 
-:root {
-  --primary-color: white;
-}
-
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -25,6 +21,16 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  --primary-color: white;
+  --text-color: black;
+  --boxshadow-major: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  --boxshadow-inset-cards: inset 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
+  --boxshadow-card: 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --primary-color: black;
+  --text-color: white;
 }
 
 .header-contain {
@@ -32,14 +38,34 @@ body {
 }
 
 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 3rem 0rem 0rem 0rem;
+  height: 7.5rem;
+}
+
+header button {
+  background-color: var(--primary-color);
+  padding: 0 1.5rem;
+  border: none;
+  font-size: 3.1rem;
+}
+
+#navbar {
   background-color: var(--primary-color);
   border: 1px solid transparent;
   border-radius: 1rem;
-  margin: 3rem 0rem 0rem 0rem;
   width: 65rem;
-  height: 7.5rem;
-  -webkit-box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-major);
+          box-shadow: var(--boxshadow-major);
 }
 
 nav, nav > ul {
@@ -75,7 +101,7 @@ nav ul div {
   position: relative;
   cursor: pointer;
   text-decoration: none;
-  color: black;
+  color: var(--text-color);
 }
 
 nav ul div::before {
@@ -86,7 +112,8 @@ nav ul div::before {
   left: 0;
   right: 0;
   z-index: 0;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid;
+  border-color: var(--text-color);
   -webkit-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transition: -webkit-transform 0.2s ease-out;
@@ -142,8 +169,8 @@ section#landing {
   border: 1px solid transparent;
   border-radius: 1.2rem;
   background-color: var(--primary-color);
-  -webkit-box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-major);
+          box-shadow: var(--boxshadow-major);
   overflow: hidden;
 }
 
@@ -727,8 +754,8 @@ div#line2 .text {
   border: 1px solid transparent;
   border-radius: 1.2rem;
   background-color: var(--primary-color);
-  -webkit-box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-major);
+          box-shadow: var(--boxshadow-major);
 }
 
 .skills-box {
@@ -844,8 +871,8 @@ div#line2 .text {
   border: 3px solid transparent;
   border-radius: 1.2rem;
   background-color: var(--primary-color);
-  -webkit-box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-major);
+          box-shadow: var(--boxshadow-major);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1081,8 +1108,8 @@ footer {
   left: 0;
   right: 0;
   background-color: transparent;
-  -webkit-box-shadow: inset 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
-          box-shadow: inset 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-inset-cards);
+          box-shadow: var(--boxshadow-inset-cards);
   pointer-events: none;
 }
 
@@ -1099,8 +1126,8 @@ footer {
   height: 100%;
   width: 20rem;
   background-color: white;
-  -webkit-box-shadow: 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
-          box-shadow: 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-card);
+          box-shadow: var(--boxshadow-card);
   border: 1px transparent;
   border-radius: 10px;
   text-align: center;
@@ -1404,8 +1431,8 @@ footer {
   background-color: white;
   border: 1px transparent;
   border-radius: 10px;
-  -webkit-box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-major);
+          box-shadow: var(--boxshadow-major);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1450,8 +1477,8 @@ footer {
   transition: max-height 0.5s ease-out;
   width: 80%;
   border: 1px solid transparent;
-  -webkit-box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
-          box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: var(--boxshadow-major);
+          box-shadow: var(--boxshadow-major);
   border-top: none;
   border-bottom-left-radius: 1.2rem;
   border-bottom-right-radius: 1.2rem;
