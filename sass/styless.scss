@@ -47,7 +47,7 @@ header{
     height: 7.5rem;
 }
 header button{
-    background-color: var(--primary-color);
+    background-color: transparent;
     color: var(--text-color);
     padding: 0 1.5rem;
     border: none;
@@ -55,6 +55,38 @@ header button{
 }
 header button:hover{
     cursor: pointer;
+}
+.day-night-container{
+    position: relative;
+}
+.sun, .moon{
+    font-size: 3.1rem;
+    width: fit-content;
+    height: fit-content;
+}
+.moon{
+    position: absolute;
+    inset: 0;
+}
+.moon-logo{
+    opacity: 0;
+    transform: translateY(20%) rotateZ(50deg);
+    transition: all 0.2s ease-out;
+}
+.sun-logo{
+    opacity: 1;
+    transform: translateY(0) rotateZ(0deg);
+    transition: all 0.2s ease-out;
+}
+.animate-sun{
+    opacity: 0;
+    transform: translateY(20%) rotateZ(100deg);
+    color: var(--text-color);
+}
+.animate-moon{
+    opacity: 1;
+    transform: translateY(0%) rotateZ(0deg);
+    color: var(--text-color);
 }
 #navbar{
     background-color: var(--primary-color);
@@ -128,7 +160,6 @@ section#landing{
     border: 1px solid transparent;
     border-radius: 1.2rem;
     background-color: var(--primary-color);
-    // box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
     box-shadow: var(--boxshadow-major);
     overflow: hidden;
 }
@@ -455,7 +486,6 @@ div#line2 .text{
     border: 1px solid transparent;
     border-radius: 1.2rem;
     background-color: var(--primary-color);
-    // box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
     box-shadow: var(--boxshadow-major);
 }
 .skills-box{
@@ -494,7 +524,6 @@ div#line2 .text{
     height: auto;
     padding-top: 2rem;
 }
-
 .about_text .text{
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
@@ -540,13 +569,11 @@ div#line2 .text{
     border: 3px solid transparent;
     border-radius: 1.2rem;
     background-color: var(--primary-color);
-    // box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
     box-shadow: var(--boxshadow-major);
     display: flex;
     flex-flow: column;
     justify-content: center;
 }
-
 .skill-logo, .skill-title, .skill-desc{
     display: flex;
     justify-content: center;
@@ -571,7 +598,6 @@ div#line2 .text{
     font-family: 'Montserrat', sans-serif;
     font-size: 1.3rem;
 }
-
 .project-list{
     width: 100%;
     display: flex;
@@ -579,7 +605,6 @@ div#line2 .text{
     justify-content: space-around;
     align-items: center;
 }
-
 .block{
     width: 100%;
     height: 7rem;
@@ -604,7 +629,6 @@ div#line2 .text{
     font-size: 1.2rem;
     font-family: 'Ubuntu', sans-serif;
 }
-
 .block:hover{
     border-top: 5px solid transparent;
     border-left: 5px solid;
@@ -615,7 +639,7 @@ div#line2 .text{
     font-family: 'Share Tech Mono', sans-serif;
     font-size: 1.5rem;
     text-align: center;
-    width: 15%;
+    width: fit-content;
     position: relative;
 }
 .block a::before{
@@ -686,8 +710,6 @@ footer{
 .social a, .text1 a, .text2 a{
     color: var(--text-color);
 }
-
-
 .skill-cards{
     height: 42rem;
     width: 85%;
@@ -714,7 +736,6 @@ footer{
     left: 0;
     right: 0;
     background-color: transparent;
-    // box-shadow: inset 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
     box-shadow: var(--boxshadow-inset-cards);
     pointer-events: none;
 }
@@ -730,7 +751,6 @@ footer{
     height: 100%;
     width: 20rem;
     background-color: var(--primary-color);
-    // box-shadow: 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
     box-shadow: var(--boxshadow-card);
     border: 1px transparent;
     border-radius: 10px;
@@ -797,7 +817,6 @@ footer{
     font-family: 'Montserrat', sans-serif;
     padding: 0 0.5rem;
 }
-
 .control{
     position: absolute;
     top: 40%;
@@ -833,7 +852,6 @@ footer{
     justify-content: center;
     align-items: center;
 }
-
 .btn-hover{
     transform: translateX(0%);
     color: var(--slide-btn-color);
@@ -843,7 +861,6 @@ footer{
     transform: translateX(0%);
     color: var(--slide-btn-color);
 }
-
 .btn i {
     width: 100%;
 }
@@ -937,7 +954,6 @@ footer{
     background-color: var(--primary-color);
     border: 1px transparent;
     border-radius: 10px;
-    // box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
     box-shadow: var(--boxshadow-major);
     display: flex;
     justify-content: space-between;
@@ -948,7 +964,6 @@ footer{
 .dev-projects-title:hover, .blogs-title:hover{
     cursor: pointer;
 }
-
 .dev-projects-title .text, .blogs-title .text{
     font-size: 2.5rem;
 }
@@ -967,7 +982,6 @@ footer{
     transition: max-height 0.5s ease-out;
     width: 80%;
     border: 1px solid transparent;
-    // box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
     box-shadow: var(--boxshadow-major);
     border-top: none;
     border-bottom-left-radius: 1.2rem;
