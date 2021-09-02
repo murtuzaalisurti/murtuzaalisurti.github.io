@@ -38,7 +38,8 @@ body {
 .dark {
   --primary-color: rgb(23, 23, 23);
   --text-color: #dfdfdf;
-  --boxshadow-major: 0 0.6px 2.2px rgba(255, 255, 255, 0.003), 0 1.5px 5.3px rgba(255, 255, 255, 0.004), 0 2.9px 10px rgba(255, 255, 255, 0.005), 0 5.1px 17.9px rgba(255, 255, 255, 0.006), 0 9.6px 33.4px rgba(255, 255, 255, 0.008), 0 23px 80px rgba(255, 255, 255, 0.07);
+  --boxshadow-major: none;
+  --dark-border: #404040;
   --boxshadow-inset-cards: inset 0.1rem 0px 2rem 0px rgba(144, 144, 144, 0.068);
   --boxshadow-card: 0.2rem 0px 2rem 0px rgba(255, 255, 255, 0.1);
   --skill-logo-color: rgb(119, 119, 119);
