@@ -592,9 +592,6 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
 
 document.querySelector("#header button").addEventListener("click", () => {
     document.querySelector("body").classList.toggle("dark");
-    if(document.querySelector("body").classList.contains("dark")){
-        document.querySelector("#header button").innerHTML = `<i class="fas fa-moon"></i>`;
-    } else{
-        document.querySelector("#header button").innerHTML = `<i class="fas fa-sun"></i>`;
-    }
+    document.querySelector(".sun-logo").classList.toggle("animate-sun");
+    document.querySelector(".moon-logo").classList.toggle("animate-moon");
 })

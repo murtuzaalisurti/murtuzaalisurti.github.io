@@ -67,7 +67,7 @@ header {
 }
 
 header button {
-  background-color: var(--primary-color);
+  background-color: transparent;
   color: var(--text-color);
   padding: 0 1.5rem;
   border: none;
@@ -76,6 +76,55 @@ header button {
 
 header button:hover {
   cursor: pointer;
+}
+
+.day-night-container {
+  position: relative;
+}
+
+.sun, .moon {
+  font-size: 3.1rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.moon {
+  position: absolute;
+  inset: 0;
+}
+
+.moon-logo {
+  opacity: 0;
+  -webkit-transform: translateY(20%) rotateZ(50deg);
+          transform: translateY(20%) rotateZ(50deg);
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.sun-logo {
+  opacity: 1;
+  -webkit-transform: translateY(0) rotateZ(0deg);
+          transform: translateY(0) rotateZ(0deg);
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.animate-sun {
+  opacity: 0;
+  -webkit-transform: translateY(20%) rotateZ(100deg);
+          transform: translateY(20%) rotateZ(100deg);
+  color: var(--text-color);
+}
+
+.animate-moon {
+  opacity: 1;
+  -webkit-transform: translateY(0%) rotateZ(0deg);
+          transform: translateY(0%) rotateZ(0deg);
+  color: var(--text-color);
 }
 
 #navbar {
@@ -1014,7 +1063,9 @@ div#line2 .text {
   font-family: 'Share Tech Mono', sans-serif;
   font-size: 1.5rem;
   text-align: center;
-  width: 15%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   position: relative;
 }
 
