@@ -30,25 +30,29 @@ let blog_projects = document.querySelector(".blog-projects");
 let blog_projects_drop_icon = document.querySelector(".blogs-title .drop");
 let view_blog_links = document.querySelectorAll(".blog-projects a");
 
+let theme;
+let body = document.querySelector("body");
+let dark_mode_toggle_btn = document.querySelector("#header button");
+
 const skills_name = ["Software Developer", "Blogger", "Web Developer"];
 let header_links = document.querySelectorAll("nav ul div");
 let iteration = 1;
 function text_animate() {
-    
+
     let skill_split = skills_name.map((skill) => {
         return skill.split("");
     })
 
     let skill_string = skill_split.map((a_skill) => {
         let string_skill = a_skill.map((letter) => {
-            if(letter == " "){
+            if (letter == " ") {
                 return `<span>&nbsp;<span>`;
             }
             return `<span>${letter}</span>`;
         })
         return string_skill.join("");
     })
-    
+
     let spans = document.querySelectorAll(".desc_text span");
     let text_string = document.querySelector(".desc_text");
 
@@ -68,7 +72,7 @@ function text_animate() {
             }
         ], {
             // delay: 300,
-            delay: `${Number((word_length/3)*100)}`,
+            delay: `${Number((word_length / 3) * 100)}`,
             duration: 400,
             iterations: 1,
             easing: `cubic-bezier(.74,.16,.38,.88)`,
@@ -96,16 +100,16 @@ function text_animate() {
                 spans.forEach((span) => {
                     span.style = `opacity: 0`;
                 })
-                
-                if(iteration%3 != 0){
-                    if(iteration%2 != 0){
+
+                if (iteration % 3 != 0) {
+                    if (iteration % 2 != 0) {
                         document.querySelector(".desc_text").innerHTML = skill_string[0];
                     }
-                    if(iteration%2 == 0){
+                    if (iteration % 2 == 0) {
                         document.querySelector(".desc_text").innerHTML = skill_string[1];
                     }
                 }
-                if(iteration%3 == 0){
+                if (iteration % 3 == 0) {
                     document.querySelector(".desc_text").innerHTML = skill_string[2];
                 }
                 text_animate();
@@ -121,13 +125,13 @@ header_links.forEach((link) => {
     link.addEventListener("click", (e) => {
         let anchor = String(e.target.innerText.toLowerCase());
         let anchored_element = document.querySelector(`#${anchor}`);
-        anchored_element.scrollIntoView({behavior: "smooth"});
+        anchored_element.scrollIntoView({ behavior: "smooth" });
     })
     link.addEventListener("keydown", (e) => {
-        if(e.key === 'Enter'){
+        if (e.key === 'Enter') {
             let anchor = String(e.target.innerText.toLowerCase());
             let anchored_element = document.querySelector(`#${anchor}`);
-            anchored_element.scrollIntoView({behavior: "smooth"});
+            anchored_element.scrollIntoView({ behavior: "smooth" });
         }
     })
 })
@@ -135,18 +139,18 @@ header_links.forEach((link) => {
 
 all_cards.forEach((card) => {
     card.addEventListener("mouseover", () => {
-        if(card.classList.contains("card-1-pos")){
+        if (card.classList.contains("card-1-pos")) {
             left_btn.classList.add("btn-hover");
         }
-        if(card.classList.contains("card-3-pos")){
+        if (card.classList.contains("card-3-pos")) {
             right_btn.classList.add("btn-hover");
         }
     })
     card.addEventListener("mouseleave", () => {
-        if(card.classList.contains("card-1-pos")){
+        if (card.classList.contains("card-1-pos")) {
             left_btn.classList.remove("btn-hover");
         }
-        if(card.classList.contains("card-3-pos")){
+        if (card.classList.contains("card-3-pos")) {
             right_btn.classList.remove("btn-hover");
         }
     })
@@ -194,19 +198,19 @@ left_btn.addEventListener("click", () => {
 right_btn.addEventListener("click", () => {
 
     if (all_cards[1].classList.contains('card-2-pos')) {
-        
+
         all_cards[0].classList.remove("card-1-pos");
         all_cards[0].classList.add("card-3-pos");
-        
+
         all_cards[1].classList.remove("card-2-pos");
         all_cards[1].classList.add("card-1-pos");
-        
+
         all_cards[2].classList.remove("card-3-pos");
         all_cards[2].classList.add("card-2-pos");
     }
 
     else if (all_cards[1].classList.contains("card-1-pos")) {
-        
+
         all_cards[0].classList.remove("card-3-pos");
         all_cards[0].classList.add("card-2-pos");
 
@@ -221,7 +225,7 @@ right_btn.addEventListener("click", () => {
 
         all_cards[0].classList.remove("card-2-pos");
         all_cards[0].classList.add("card-1-pos");
-        
+
         all_cards[1].classList.remove("card-3-pos");
         all_cards[1].classList.add("card-2-pos");
 
@@ -232,31 +236,35 @@ right_btn.addEventListener("click", () => {
 })
 
 dev_projects_drop_button.addEventListener("click", () => {
-    if(!dev_projects.style.maxHeight){
+    if (!dev_projects.style.maxHeight) {
         dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
         dev_projects_drop_button.classList.add("projects-reveal");
+        dev_projects.style = `border: 0.3rem solid; border-color: var(--only-dark-border);`;
         dev_projects.style.maxHeight = `${dev_projects.scrollHeight}px`;
     }
-    else{
+    else {
         dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
         dev_projects_drop_button.classList.remove("projects-reveal");
+        dev_projects.style = `border: 1px solid transparent;`;
         dev_projects.style.maxHeight = null;
     }
 })
 
 dev_projects_drop_button.addEventListener("keydown", (e) => {
-    if(e.key === 'Enter'){
-        if(!dev_projects.style.maxHeight){
+    if (e.key === 'Enter') {
+        if (!dev_projects.style.maxHeight) {
             dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
             dev_projects_drop_button.classList.add("projects-reveal");
+            dev_projects.style = `border: 0.3rem solid; border-color: var(--only-dark-border);`;
             dev_projects.style.maxHeight = `${dev_projects.scrollHeight}px`;
             view_project_links.forEach(link => {
                 link.setAttribute("tabindex", 0);
             })
         }
-        else{
+        else {
             dev_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
             dev_projects_drop_button.classList.remove("projects-reveal");
+            dev_projects.style = `border: 1px solid transparent;`;
             dev_projects.style.maxHeight = null;
             view_project_links.forEach(link => {
                 link.setAttribute("tabindex", -1);
@@ -266,12 +274,12 @@ dev_projects_drop_button.addEventListener("keydown", (e) => {
 })
 
 dev_projects_drop_button.addEventListener("focus", (e) => {
-    if(!dev_projects.style.maxHeight){
+    if (!dev_projects.style.maxHeight) {
         view_project_links.forEach(link => {
             link.setAttribute("tabindex", -1);
         })
     }
-    else{
+    else {
         view_project_links.forEach(link => {
             link.setAttribute("tabindex", 0);
         })
@@ -279,31 +287,35 @@ dev_projects_drop_button.addEventListener("focus", (e) => {
 })
 
 blog_projects_drop_button.addEventListener("click", () => {
-    if(!blog_projects.style.maxHeight){
+    if (!blog_projects.style.maxHeight) {
         blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
         blog_projects_drop_button.classList.add("projects-reveal");
+        blog_projects.style = `border: 0.3rem solid; border-color: var(--only-dark-border);`;
         blog_projects.style.maxHeight = `${blog_projects.scrollHeight}px`;
     }
-    else{
+    else {
         blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
         blog_projects_drop_button.classList.remove("projects-reveal");
+        blog_projects.style = `border: 1px solid transparent;`;
         blog_projects.style.maxHeight = null;
     }
 })
 
 blog_projects_drop_button.addEventListener("keydown", (e) => {
-    if(e.key === 'Enter'){
-        if(!blog_projects.style.maxHeight){
+    if (e.key === 'Enter') {
+        if (!blog_projects.style.maxHeight) {
             blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-up"></i>`;
             blog_projects_drop_button.classList.add("projects-reveal");
+            blog_projects.style = `border: 0.3rem solid; border-color: var(--only-dark-border);`;
             blog_projects.style.maxHeight = `${blog_projects.scrollHeight}px`;
             view_blog_links.forEach(link => {
                 link.setAttribute("tabindex", 0);
             })
         }
-        else{
+        else {
             blog_projects_drop_icon.innerHTML = `<i class="fas fa-chevron-down"></i>`;
             blog_projects_drop_button.classList.remove("projects-reveal");
+            blog_projects.style = `border: 1px solid transparent;`;
             blog_projects.style.maxHeight = null;
             view_blog_links.forEach(link => {
                 link.setAttribute("tabindex", -1);
@@ -313,12 +325,12 @@ blog_projects_drop_button.addEventListener("keydown", (e) => {
 })
 
 blog_projects_drop_button.addEventListener("focus", (e) => {
-    if(!blog_projects.style.maxHeight){
+    if (!blog_projects.style.maxHeight) {
         view_blog_links.forEach(link => {
             link.setAttribute("tabindex", -1);
         })
     }
-    else{
+    else {
         view_blog_links.forEach(link => {
             link.setAttribute("tabindex", 0);
         })
@@ -326,21 +338,21 @@ blog_projects_drop_button.addEventListener("focus", (e) => {
 })
 
 
-function typing_anime(word){
-    if(word == 1){
+function typing_anime(word) {
+    if (word == 1) {
         let timings = {
             easing: `steps(${Number(word_len_1[0] + 1)}, end)`,
             delay: 2000,
             duration: 2000,
             fill: 'forwards'
         }
-        
+
         let cursor_timings = {
             duration: 700,
             iterations: Infinity,
             easing: 'cubic-bezier(0,.26,.44,.93)'
         }
-        
+
         document.querySelector(".text_cursor_hey").animate([
             {
                 opacity: 0
@@ -352,15 +364,15 @@ function typing_anime(word){
                 opacity: 1
             }
         ], cursor_timings);
-        
-        if(text_array_slice_1.length == 1){
+
+        if (text_array_slice_1.length == 1) {
             timings.easing = `steps(${Number(word_len_1[0])}, end)`;
-        
+
             let reveal_animation_1 = document.querySelector(".text_hide_hey").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_1) * (word_len_1[0])}%` }
             ], timings);
-        
+
             document.querySelector(".text_cursor_hey").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_1) * (word_len_1[0])}%` }
@@ -372,40 +384,40 @@ function typing_anime(word){
                 document.querySelector(".text_hide_div_hey").classList.remove("text_hide_hey");
                 typing_anime(2);
             }
-        } else{
+        } else {
             document.querySelector(".text_hide_hey").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_1) * (word_len_1[0] + 1)}%` }
             ], timings);
-        
+
             document.querySelector(".text_cursor_hey").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_1) * (word_len_1[0] + 1)}%` }
             ], timings);
         }
-        
-        
+
+
         for (let i = 1; i < text_array_slice_1.length; i++) {
             const single_word_len = word_len_1[i];
-        
+
             if (i == 1) {
                 var left_instance = (100 / text_len_1) * (word_len_1[i - 1] + 1);
             }
-        
+
             let timings_2 = {
                 easing: `steps(${Number(single_word_len + 1)}, end)`,
                 delay: (2 * (i + 1) + (2 * i)) * (1000),
                 duration: 2000,
                 fill: 'forwards'
             }
-        
+
             if (i == (text_array_slice_1.length - 1)) {
                 timings_2.easing = `steps(${Number(single_word_len)}, end)`;
                 let reveal_animation_1 = document.querySelector(".text_hide_hey").animate([
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_1) * (word_len_1[i]))}%` }
                 ], timings_2);
-        
+
                 document.querySelector(".text_cursor_hey").animate([
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_1) * (word_len_1[i]))}%` }
@@ -422,30 +434,30 @@ function typing_anime(word){
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_1) * (word_len_1[i] + 1))}%` }
                 ], timings_2);
-        
+
                 document.querySelector(".text_cursor_hey").animate([
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_1) * (word_len_1[i] + 1))}%` }
                 ], timings_2);
             }
-        
+
             left_instance = left_instance + ((100 / text_len_1) * (word_len_1[i] + 1));
         }
     }
-    if(word == 2){
+    if (word == 2) {
         let timings = {
             easing: `steps(${Number(word_len_2[0] + 1)}, end)`,
             delay: 2000,
             duration: 2000,
             fill: 'forwards'
         }
-        
+
         let cursor_timings = {
             duration: 700,
             iterations: Infinity,
             easing: 'cubic-bezier(0,.26,.44,.93)'
         }
-        
+
         document.querySelector(".text_cursor_murtuza").animate([
             {
                 opacity: 0
@@ -457,15 +469,15 @@ function typing_anime(word){
                 opacity: 1
             }
         ], cursor_timings);
-        
-        if(text_array_slice_2.length == 1){
+
+        if (text_array_slice_2.length == 1) {
             timings.easing = `steps(${Number(word_len_2[0])}, end)`;
-        
+
             let reveal_animation_2 = document.querySelector(".text_hide_murtuza").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_2) * (word_len_2[0])}%` }
             ], timings);
-        
+
             document.querySelector(".text_cursor_murtuza").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_2) * (word_len_2[0])}%` }
@@ -475,51 +487,51 @@ function typing_anime(word){
                 document.querySelector(".text_cursor_div_murtuza").classList.remove("text_cursor_murtuza");
                 document.querySelector(".text_hide_div_murtuza").classList.add("text_hide_murtuza");
                 document.querySelector(".text_hide_murtuza").animate([
-                    {left: '100%'},
-                    {left: '0%'}
-                ], 
-                {
-                    duration: 200,
-                    fill: 'forwards',
-                    easing: 'ease-out'
-                })
+                    { left: '100%' },
+                    { left: '0%' }
+                ],
+                    {
+                        duration: 200,
+                        fill: 'forwards',
+                        easing: 'ease-out'
+                    })
                 document.querySelector(".text_cursor_div_hey").classList.add("text_cursor_hey");
                 document.querySelector(".text_hide_div_hey").classList.add("text_hide_hey");
                 typing_anime(1);
             }
-        } else{
+        } else {
             document.querySelector(".text_hide_murtuza").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_2) * (word_len_2[0] + 1)}%` }
             ], timings);
-        
+
             document.querySelector(".text_cursor_murtuza").animate([
                 { left: '0%' },
                 { left: `${(100 / text_len_2) * (word_len_2[0] + 1)}%` }
             ], timings);
         }
-        
-        
+
+
         for (let i = 1; i < text_array_slice_2.length; i++) {
             const single_word_len = word_len_2[i];
             if (i == 1) {
                 var left_instance = (100 / text_len_2) * (word_len_2[i - 1] + 1);
             }
-        
+
             let timings_2 = {
                 easing: `steps(${Number(single_word_len + 1)}, end)`,
                 delay: (2 * (i + 1) + (2 * i)) * (1000),
                 duration: 2000,
                 fill: 'forwards'
             }
-        
+
             if (i == (text_array_slice_2.length - 1)) {
                 timings_2.easing = `steps(${Number(single_word_len)}, end)`;
                 let reveal_animation_2 = document.querySelector(".text_hide_murtuza").animate([
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_2) * (word_len_2[i]))}%` }
                 ], timings_2);
-        
+
                 document.querySelector(".text_cursor_murtuza").animate([
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_2) * (word_len_2[i]))}%` }
@@ -537,13 +549,13 @@ function typing_anime(word){
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_2) * (word_len_2[i] + 1))}%` }
                 ], timings_2);
-        
+
                 document.querySelector(".text_cursor_murtuza").animate([
                     { left: `${left_instance}%` },
                     { left: `${left_instance + ((100 / text_len_2) * (word_len_2[i] + 1))}%` }
                 ], timings_2);
             }
-        
+
             left_instance = left_instance + ((100 / text_len_2) * (word_len_2[i] + 1));
         }
     }
@@ -566,7 +578,7 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
     let data_id = point.parentElement.parentElement.id;
     let link_element_a = document.querySelector(`#${data_id} .data .role a`);
 
-    if(data_id != "data-5"){
+    if (data_id != "data-5") {
         let link = link_element_a.getAttribute("href");
         anchor.setAttribute("href", link);
         anchor.setAttribute("target", "_blank");
@@ -574,24 +586,67 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
     }
 
     point.addEventListener("mouseover", (e) => {
-        if(e.target.classList.contains("point")){
-            if(data_id != "data-5"){
+        if (e.target.classList.contains("point")) {
+            if (data_id != "data-5") {
                 link_element_a.style = `text-decoration: underline;`;
             }
         }
     })
     point.addEventListener("mouseleave", (e) => {
-        if(e.target.classList.contains("point")){
-            if(data_id != "data-5"){
+        if (e.target.classList.contains("point")) {
+            if (data_id != "data-5") {
                 link_element_a.style = `text-decoration: none;`;
             }
         }
     })
-    
+
 })
 
-document.querySelector("#header button").addEventListener("click", () => {
-    document.querySelector("body").classList.toggle("dark");
+function animation_toggle_logo(){
     document.querySelector(".sun-logo").classList.toggle("animate-sun");
     document.querySelector(".moon-logo").classList.toggle("animate-moon");
+}
+
+dark_mode_toggle_btn.addEventListener("click", () => {
+    theme_check('toggle');
+    animation_toggle_logo();
 })
+
+if(localStorage.getItem('theme') == 'dark'){
+    theme_check('stay');
+}
+
+function theme_check(events) {
+    if (events == 'toggle') {
+        if (localStorage.getItem('theme') == null) {
+            if (!body.classList.contains("dark")) {
+                body.classList.add("dark");
+                theme = 'dark';
+            }
+            else {
+                body.classList.remove("dark");
+                theme = 'light';
+            }
+            localStorage.setItem('theme', theme);
+        }
+        else {
+            theme = localStorage.getItem('theme');
+            if (theme == 'dark') {
+                body.classList.remove("dark");
+                theme = 'light';
+            }
+            else if (theme == 'light') {
+                body.classList.add("dark");
+                theme = 'dark';
+            }
+            localStorage.setItem('theme', theme);
+        }
+    }
+    else if (events == 'stay') {
+        theme = localStorage.getItem('theme');
+        if (theme == 'dark') {
+            body.classList.add("dark");
+            animation_toggle_logo();
+        }
+    }
+}

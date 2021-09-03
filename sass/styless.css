@@ -26,6 +26,7 @@ body {
   --primary-color: white;
   --text-color: black;
   --boxshadow-major: 5px 5px 50px rgba(0, 0, 0, 0.1);
+  --only-dark-border: transparent;
   --boxshadow-inset-cards: inset 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
   --boxshadow-card: 0.2rem 0px 2rem 0px rgba(0, 0, 0, 0.1);
   --skill-logo-color: rgb(119, 119, 119);
@@ -37,11 +38,11 @@ body {
 
 .dark {
   --primary-color: rgb(23, 23, 23);
-  --text-color: #dfdfdf;
+  --text-color: #c6c6c6;
   --boxshadow-major: none;
-  --dark-border: #404040;
+  --only-dark-border: #404040;
   --boxshadow-inset-cards: inset 0.1rem 0px 2rem 0px rgba(144, 144, 144, 0.068);
-  --boxshadow-card: 0.2rem 0px 2rem 0px rgba(255, 255, 255, 0.1);
+  --boxshadow-card: none;
   --skill-logo-color: rgb(119, 119, 119);
   --slide-btn-bg: rgb(216, 216, 216);
   --slide-btn-color: rgb(75, 75, 75);
@@ -130,7 +131,8 @@ header button:hover {
 
 #navbar {
   background-color: var(--primary-color);
-  border: 1px solid transparent;
+  border: 0.3rem solid;
+  border-color: var(--only-dark-border);
   border-radius: 1rem;
   width: 65rem;
   -webkit-box-shadow: var(--boxshadow-major);
@@ -236,7 +238,8 @@ section#landing {
 }
 
 #code_editor_containing_name, #code_editor_containing_desc {
-  border: 1px solid transparent;
+  border: 0.3rem solid;
+  border-color: var(--only-dark-border);
   border-radius: 1.2rem;
   background-color: var(--primary-color);
   -webkit-box-shadow: var(--boxshadow-major);
@@ -827,7 +830,8 @@ div#line2 .text {
 
 .about-box, .skills-box, .projects-box, .contact-box, .experience-box {
   width: 85%;
-  border: 1px solid transparent;
+  border: 0.3rem solid;
+  border-color: var(--only-dark-border);
   border-radius: 1.2rem;
   background-color: var(--primary-color);
   -webkit-box-shadow: var(--boxshadow-major);
@@ -1207,6 +1211,9 @@ footer {
   background-color: transparent;
   -webkit-box-shadow: var(--boxshadow-inset-cards);
           box-shadow: var(--boxshadow-inset-cards);
+  border: 0.3rem solid;
+  border-color: var(--only-dark-border);
+  border-radius: 1rem;
   pointer-events: none;
 }
 
@@ -1225,7 +1232,8 @@ footer {
   background-color: var(--primary-color);
   -webkit-box-shadow: var(--boxshadow-card);
           box-shadow: var(--boxshadow-card);
-  border: 1px transparent;
+  border: 0.3rem solid;
+  border-color: var(--only-dark-border);
   border-radius: 10px;
   text-align: center;
   display: -webkit-box;
@@ -1534,7 +1542,8 @@ footer {
   height: 8rem;
   margin-top: 3rem;
   background-color: var(--primary-color);
-  border: 1px transparent;
+  border: 0.3rem solid;
+  border-color: var(--only-dark-border);
   border-radius: 10px;
   -webkit-box-shadow: var(--boxshadow-major);
           box-shadow: var(--boxshadow-major);
