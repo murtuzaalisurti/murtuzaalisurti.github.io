@@ -41,6 +41,27 @@ body{
     --slide-btn-color: rgb(75, 75, 75);
     --point-border-line-bg: #c9c9c9;
 }
+.back-to-top{
+    position: fixed;
+    bottom: 3rem;
+    right: 2rem;
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 4;
+}
+.show-back-to-top:hover{
+    cursor: pointer;
+}
+.show-back-to-top{
+    opacity: 1;
+    visibility: visible;
+}
 .header-contain{
     width: 98.7rem;
 }
@@ -692,7 +713,7 @@ a{
     color: var(--text-color);
 }
 footer{
-    margin: 15rem 0rem 2rem 0rem;
+    margin: 15rem 0rem 5rem 0rem;
 }
 .text1, .text2, .social{
     font-size: 2rem;
@@ -1203,6 +1224,12 @@ footer{
     }
 }
 @media screen and (max-width: 40em) {
+    .back-to-top{
+        bottom: 2rem;
+        right: 2rem;
+        height: 3.5rem;
+        width: 3.5rem;
+    }
     .brackets{
         font-size: 3em;
     }

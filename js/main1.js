@@ -650,3 +650,17 @@ function theme_check(events) {
         }
     }
 }
+
+let back_to_top = document.querySelector(".back-to-top");
+window.addEventListener("scroll", () => {
+    if(document.body.scrollTop > 200 || document.documentElement.scrollTop > 200){
+        back_to_top.classList.add("show-back-to-top");
+    }
+    else{
+        back_to_top.classList.remove("show-back-to-top");
+    }
+})
+back_to_top.addEventListener("click", () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+})
