@@ -819,6 +819,7 @@ div#line2 .text {
 #about, #skills, #projects, #contact, #experience {
   margin-top: 2.5rem;
   margin-bottom: 5rem;
+  padding-top: 4rem;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
