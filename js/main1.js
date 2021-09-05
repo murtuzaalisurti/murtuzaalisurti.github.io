@@ -32,7 +32,7 @@ let view_blog_links = document.querySelectorAll(".blog-projects a");
 
 let theme;
 let body = document.querySelector("body");
-let dark_mode_toggle_btn = document.querySelector("#header button");
+let dark_mode_toggle_btn = document.querySelector("#dark-mode-toggle");
 
 const skills_name = ["Software Developer", "Blogger", "Web Developer"];
 let header_links = document.querySelectorAll("nav ul div");
@@ -126,12 +126,18 @@ header_links.forEach((link) => {
         let anchor = String(e.target.innerText.toLowerCase());
         let anchored_element = document.querySelector(`#${anchor}`);
         anchored_element.scrollIntoView({ behavior: "smooth" });
+        document.querySelector("#navbar").classList.add("none");
+        document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-bars"></i>`;
+        document.querySelector("#hamburger-menu").style = `position: default;`;
     })
     link.addEventListener("keydown", (e) => {
         if (e.key === 'Enter') {
             let anchor = String(e.target.innerText.toLowerCase());
             let anchored_element = document.querySelector(`#${anchor}`);
             anchored_element.scrollIntoView({ behavior: "smooth" });
+            document.querySelector("#navbar").classList.add("none");
+            document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-bars"></i>`;
+            document.querySelector("#hamburger-menu").style = `position: default;`;
         }
     })
 })
@@ -664,3 +670,28 @@ back_to_top.addEventListener("click", () => {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 })
+
+document.querySelector("#hamburger-menu").addEventListener("click", () => {
+    document.querySelector("#navbar").classList.toggle("none");
+    if(!document.querySelector("#navbar").classList.contains("none")){
+        document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-times"></i>`;
+        document.querySelector("#hamburger-menu").style = `position: fixed; top: 5rem;`;
+    } else{
+        document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-bars"></i>`;
+        document.querySelector("#hamburger-menu").style = `position: default;`;
+    }
+})
+
+const media = window.matchMedia('(max-width: 62em)');
+
+function handle_viewport_change(e){
+    if(e.matches){
+        document.querySelector("#navbar").classList.add("none");
+    }
+    else{
+        document.querySelector("#navbar").classList.remove("none");
+    }
+}
+
+media.addEventListener("change", handle_viewport_change);
+handle_viewport_change(media);
