@@ -1034,10 +1034,42 @@ footer{
 .none{
     display: none;
 }
+#hamburger-menu{
+    display: none;
+}
 
 @media screen and (max-width: 62em) {
     .header-contain{
-        display: none;
+        width: 85%;
+    }
+    #header{
+        display: flex;
+    }
+    #hamburger-menu{
+        display: block;
+        z-index: 6;
+    }
+    #navbar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 80vw;
+        max-width: 45rem;
+        z-index: 5;
+    }
+    #dark-mode-toggle{
+        margin-left: auto;
+    }
+    nav > ul{
+        justify-content: center;
+        flex-direction: column;
+    }
+    nav > ul div{
+        height: 15%;
+    }
+    nav > ul div::before{
+        bottom: 20px;
     }
     main{
         margin-top: 1rem;
