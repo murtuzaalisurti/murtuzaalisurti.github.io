@@ -23,6 +23,8 @@ body{
     --slide-btn-bg: rgb(216, 216, 216);
     --slide-btn-color: rgb(75, 75, 75);
     --point-border-line-bg: #353535;
+    --dev-blog-projects-border-bottom: #e6e6e6;
+    --dev-projects-desc-color: #4e4e4e;
 
     background-color: var(--primary-color);
 }
@@ -31,15 +33,14 @@ body{
     --text-color: #c6c6c6;
     --boxshadow-major: none;
     --only-dark-border: #404040;
-    // --boxshadow-major: 5px 5px 50px rgba(243, 253, 255, 0.045);
-    // --boxshadow-major: 0 0.6px 2.2px rgba(255, 255, 255, 0.003), 0 1.5px 5.3px rgba(255, 255, 255, 0.004), 0 2.9px 10px rgba(255, 255, 255, 0.005), 0 5.1px 17.9px rgba(255, 255, 255, 0.006), 0 9.6px 33.4px rgba(255, 255, 255, 0.008), 0 23px 80px rgba(255, 255, 255, 0.07);
     --boxshadow-inset-cards: inset 0.1rem 0px 2rem 0px rgba(144, 144, 144, 0.068);
-    // --boxshadow-card: 0.2rem 0px 2rem 0px rgba(255, 255, 255, 0.1);
     --boxshadow-card: none;
     --skill-logo-color: rgb(119, 119, 119);
     --slide-btn-bg: rgb(216, 216, 216);
     --slide-btn-color: rgb(75, 75, 75);
     --point-border-line-bg: #c9c9c9;
+    --dev-blog-projects-border-bottom: #404040;
+    --dev-projects-desc-color: #bebebe;
 }
 .back-to-top{
     position: fixed;
@@ -243,16 +244,16 @@ section#landing{
     justify-content: flex-start;
 }
 #line1{
-    padding-left: 2rem;
+    padding-left: 10%;
     align-items: center;
 }
 #line2{
     justify-content: flex-end;
-    padding-right: 2rem;
+    padding-right: 10%;
     align-items: center;
 }
 .text{
-    font-size: 4rem;
+    font-size: 5rem;
     font-family: 'Share Tech Mono', monospace;
     color: var(--text-color);
     display: flex;
@@ -260,13 +261,9 @@ section#landing{
 }
 .text-contain{
     height: fit-content;
-    margin-left: 1.5rem;
     position: relative;
 }
-.text-contain-2{
-    margin-left: 0;
-    margin-right: 1.5rem;
-}
+
 .text_hide_hey, .text_hide_murtuza{
     position: absolute;
     top: 0;
@@ -285,28 +282,10 @@ section#landing{
     border-left: 3px solid;
     border-color: var(--text-color);
 }
-.brackets{
-    display: flex;
-    align-items: center;
-    font-size: 8rem;
-    height: 100%;
-    color: var(--text-color);
-}
 
 div#line2 .text{
     height: 100%;
 }
-.forward-slash{
-    color: var(--text-color);
-    font-size: 7rem;
-    transform: translateY(-8%) rotateZ(289deg);
-    height: 9rem;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: center;
-}
-
 .desc_content{
     height: 90%;
     background-color: var(--primary-color);
@@ -1135,13 +1114,15 @@ footer{
         height: 15rem;
         flex-flow: column;
         border: 1px solid transparent;
-        border-bottom: 2px solid #e6e6e6;
+        border-bottom: 2px solid;
+        border-bottom-color: var(--dev-blog-projects-border-bottom);
         padding: 1rem 0;
         margin-bottom: 2rem;
     }
     .block:hover{
         border: 1px solid transparent;
-        border-bottom: 2px solid #e6e6e6;
+        border-bottom: 2px solid;
+        border-bottom-color: var(--dev-blog-projects-border-bottom);
     }
     .block:last-child {
         border: 1px solid transparent;
@@ -1154,7 +1135,7 @@ footer{
         font-size: 1.7rem;
     }
     .project-desc{
-        color: #4e4e4e;
+        color: var(--dev-projects-desc-color);
         margin-bottom: 0.5rem;
     }
     .project-title, .project-desc{
@@ -1207,24 +1188,18 @@ footer{
     .cards-contain-inset-shadow{
         display: none;
     }
-
     #line1, #line2{
         align-self: center;
-        width: 50vw;
+        width: 100%;
+    }
+    #line1{
+        padding-left: 20%;
     }
     #line2{
-        width: 60vw;
+        padding-right: 20%;
     }
     .hey, .immurtuza{
-        font-size: 4rem;
-    }
-    .brackets {
-        font-size: 4.3rem;
-    }
-    .forward-slash {
-        font-size: 3.5rem;
-        transform: translateY(-5%) rotateZ(286deg);
-        height: 5rem;
+        font-size: 5rem;
     }
     .desc_content {
         font-size: 3.5rem;
@@ -1243,10 +1218,6 @@ footer{
 @media screen and (max-width: 54em) {
     #line1, #line2{
         align-self: center;
-        width: 55vw;
-    }
-    #line2{
-        width: 55vw;
     }
     .cards{
         height: 100%;
@@ -1262,17 +1233,8 @@ footer{
         height: 3.5rem;
         width: 3.5rem;
     }
-    .brackets{
-        font-size: 3em;
-    }
     .text{
-        font-size: 3em;
-    }
-    .forward-slash{
-        font-size: 3em;
-        transform: translateY(-5%) rotateZ(289deg);
-        height: 4rem;
-        height: 1.3em;
+        font-size: 3.5em;
     }
     .pic {
         width: 40%;
@@ -1283,10 +1245,12 @@ footer{
     #line1{
         width: fit-content;
         align-self: flex-start;
+        padding-left: 10%;
     }
     #line2{
         width: fit-content;
         align-self: flex-end;
+        padding-right: 10%;
     }
     .desc_content {
         font-size: 2.5em;
