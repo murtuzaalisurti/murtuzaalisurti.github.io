@@ -34,7 +34,11 @@ let theme;
 let body = document.querySelector("body");
 let dark_mode_toggle_btn = document.querySelector("#dark-mode-toggle");
 
+let hamburger_menu = document.querySelector("#hamburger-menu");
+let navbar = document.querySelector("#navbar");
+
 const skills_name = ["Software Developer", "Blogger", "Web Developer"];
+document.querySelector(".desc_text").setAttribute("aria-label", skills_name[0]);
 let header_links = document.querySelectorAll("nav ul div");
 let iteration = 1;
 function text_animate() {
@@ -104,13 +108,16 @@ function text_animate() {
                 if (iteration % 3 != 0) {
                     if (iteration % 2 != 0) {
                         document.querySelector(".desc_text").innerHTML = skill_string[0];
+                        document.querySelector(".desc_text").setAttribute("aria-label", skills_name[0]);
                     }
                     if (iteration % 2 == 0) {
                         document.querySelector(".desc_text").innerHTML = skill_string[1];
+                        document.querySelector(".desc_text").setAttribute("aria-label", skills_name[1]);
                     }
                 }
                 if (iteration % 3 == 0) {
                     document.querySelector(".desc_text").innerHTML = skill_string[2];
+                    document.querySelector(".desc_text").setAttribute("aria-label", skills_name[2]);
                 }
                 text_animate();
             }, 2000)
@@ -120,28 +127,6 @@ function text_animate() {
 }
 
 text_animate();
-
-header_links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-        let anchor = String(e.target.innerText.toLowerCase());
-        let anchored_element = document.querySelector(`#${anchor}`);
-        anchored_element.scrollIntoView({ behavior: "smooth" });
-        document.querySelector("#navbar").classList.add("none");
-        document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-bars"></i>`;
-        document.querySelector("#hamburger-menu").style = `position: default;`;
-    })
-    link.addEventListener("keydown", (e) => {
-        if (e.key === 'Enter') {
-            let anchor = String(e.target.innerText.toLowerCase());
-            let anchored_element = document.querySelector(`#${anchor}`);
-            anchored_element.scrollIntoView({ behavior: "smooth" });
-            document.querySelector("#navbar").classList.add("none");
-            document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-bars"></i>`;
-            document.querySelector("#hamburger-menu").style = `position: default;`;
-        }
-    })
-})
-
 
 all_cards.forEach((card) => {
     card.addEventListener("mouseover", () => {
@@ -586,9 +571,11 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
 
     if (data_id != "data-5") {
         let link = link_element_a.getAttribute("href");
+        let timeline_point_aria_label = link_element_a.innerText;
         anchor.setAttribute("href", link);
         anchor.setAttribute("target", "_blank");
         anchor.setAttribute("rel", "noreferrer");
+        anchor.setAttribute("aria-label", timeline_point_aria_label);
     }
 
     point.addEventListener("mouseover", (e) => {
@@ -671,14 +658,14 @@ back_to_top.addEventListener("click", () => {
     document.documentElement.scrollTop = 0;
 })
 
-document.querySelector("#hamburger-menu").addEventListener("click", () => {
-    document.querySelector("#navbar").classList.toggle("none");
-    if(!document.querySelector("#navbar").classList.contains("none")){
-        document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-times"></i>`;
-        document.querySelector("#hamburger-menu").style = `position: fixed; top: 5rem;`;
+hamburger_menu.addEventListener("click", () => {
+    navbar.classList.toggle("none");
+    if(!navbar.classList.contains("none")){
+        hamburger_menu.innerHTML = `<i class="fas fa-times"></i>`;
+        hamburger_menu.style = `position: fixed; top: 5rem;`;
     } else{
-        document.querySelector("#hamburger-menu").innerHTML = `<i class="fas fa-bars"></i>`;
-        document.querySelector("#hamburger-menu").style = `position: default;`;
+        hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
+        hamburger_menu.style = `position: default;`;
     }
 })
 
@@ -686,10 +673,44 @@ const media = window.matchMedia('(max-width: 62em)');
 
 function handle_viewport_change(e){
     if(e.matches){
-        document.querySelector("#navbar").classList.add("none");
+        navbar.classList.add("none");
+        header_links.forEach((link) => {
+            link.addEventListener("click", (e) => {
+                let anchor = String(e.target.innerText.toLowerCase());
+                let anchored_element = document.querySelector(`#${anchor}`);
+                anchored_element.scrollIntoView({ behavior: "smooth" });
+                navbar.classList.add("none");
+                hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
+                hamburger_menu.style = `position: default;`;
+            })
+            link.addEventListener("keydown", (e) => {
+                if (e.key === 'Enter') {
+                    let anchor = String(e.target.innerText.toLowerCase());
+                    let anchored_element = document.querySelector(`#${anchor}`);
+                    anchored_element.scrollIntoView({ behavior: "smooth" });
+                    navbar.classList.add("none");
+                    hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
+                    hamburger_menu.style = `position: default;`;
+                }
+            })
+        })
     }
     else{
-        document.querySelector("#navbar").classList.remove("none");
+        navbar.classList.remove("none");
+        header_links.forEach((link) => {
+            link.addEventListener("click", (e) => {
+                let anchor = String(e.target.innerText.toLowerCase());
+                let anchored_element = document.querySelector(`#${anchor}`);
+                anchored_element.scrollIntoView({ behavior: "smooth" });
+            })
+            link.addEventListener("keydown", (e) => {
+                if (e.key === 'Enter') {
+                    let anchor = String(e.target.innerText.toLowerCase());
+                    let anchored_element = document.querySelector(`#${anchor}`);
+                    anchored_element.scrollIntoView({ behavior: "smooth" });
+                }
+            })
+        })
     }
 }
 
