@@ -1524,6 +1524,8 @@ footer {
   display: inline-block;
   height: 100%;
   width: 100%;
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
 }
 
 .project-list {

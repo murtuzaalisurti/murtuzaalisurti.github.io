@@ -576,6 +576,7 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
         anchor.setAttribute("target", "_blank");
         anchor.setAttribute("rel", "noreferrer");
         anchor.setAttribute("aria-label", timeline_point_aria_label);
+        anchor.setAttribute("title", timeline_point_aria_label);
     }
 
     point.addEventListener("mouseover", (e) => {
