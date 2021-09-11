@@ -37,28 +37,26 @@ let dark_mode_toggle_btn = document.querySelector("#dark-mode-toggle");
 let hamburger_menu = document.querySelector("#hamburger-menu");
 let navbar = document.querySelector("#navbar");
 
-const skills_name = ["Software Developer", "Blogger", "Web Developer"];
+const skills_name = ["Software Developer", "Blogger", "Web Developer", "Front-End Developer"];
 document.querySelector(".desc_text").setAttribute("aria-label", skills_name[0]);
 let header_links = document.querySelectorAll("nav ul div");
 let iteration = 1;
+let skill_split = skills_name.map((skill) => {
+    return skill.split("");
+})
+let skill_string = skill_split.map((a_skill) => {
+    let string_skill = a_skill.map((letter) => {
+        if (letter == " ") {
+            return `<span>&nbsp;<span>`;
+        }
+        return `<span>${letter}</span>`;
+    })
+    return string_skill.join("");
+})
+let text_string = document.querySelector(".desc_text");
+text_string.innerHTML = skill_string[0];
 function text_animate() {
-
-    let skill_split = skills_name.map((skill) => {
-        return skill.split("");
-    })
-
-    let skill_string = skill_split.map((a_skill) => {
-        let string_skill = a_skill.map((letter) => {
-            if (letter == " ") {
-                return `<span>&nbsp;<span>`;
-            }
-            return `<span>${letter}</span>`;
-        })
-        return string_skill.join("");
-    })
-
     let spans = document.querySelectorAll(".desc_text span");
-    let text_string = document.querySelector(".desc_text");
 
     for (let i = 0; i < spans.length; i++) {
         let word_length = spans.length;
@@ -105,19 +103,25 @@ function text_animate() {
                     span.style = `opacity: 0`;
                 })
 
-                if (iteration % 3 != 0) {
-                    if (iteration % 2 != 0) {
-                        document.querySelector(".desc_text").innerHTML = skill_string[0];
-                        document.querySelector(".desc_text").setAttribute("aria-label", skills_name[0]);
+                if (iteration % 4 != 0) {
+                    if (iteration % 3 != 0) {
+                        if(iteration%2 != 0){
+                            text_string.innerHTML = skill_string[0];
+                            text_string.setAttribute("aria-label", skills_name[0]);
+                        }
+                        if(iteration%2 == 0){
+                            text_string.innerHTML = skill_string[1];
+                            text_string.setAttribute("aria-label", skills_name[1]);
+                        }
                     }
-                    if (iteration % 2 == 0) {
-                        document.querySelector(".desc_text").innerHTML = skill_string[1];
-                        document.querySelector(".desc_text").setAttribute("aria-label", skills_name[1]);
+                    if (iteration % 3 == 0) {
+                        text_string.innerHTML = skill_string[2];
+                        text_string.setAttribute("aria-label", skills_name[2]);
                     }
                 }
-                if (iteration % 3 == 0) {
-                    document.querySelector(".desc_text").innerHTML = skill_string[2];
-                    document.querySelector(".desc_text").setAttribute("aria-label", skills_name[2]);
+                if (iteration % 4 == 0) {
+                    text_string.innerHTML = skill_string[3];
+                    text_string.setAttribute("aria-label", skills_name[3]);
                 }
                 text_animate();
             }, 2000)
