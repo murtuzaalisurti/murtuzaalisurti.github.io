@@ -14,6 +14,7 @@ Here are some [guidelines](https://github.com/murtuzaalisurti/murtuzaalisurti.gi
 
 ## Tech Stack
 
+Nothing fancy here, just some good old stuff!
 <pre>
  > HTML
  > SCSS
