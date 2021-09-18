@@ -1125,6 +1125,10 @@ a {
   color: var(--text-color);
 }
 
+.contact-info div:not(:last-child) {
+  padding-bottom: 1rem;
+}
+
 footer {
   margin: 15rem 0rem 5rem 0rem;
 }
