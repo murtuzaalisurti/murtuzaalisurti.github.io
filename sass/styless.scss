@@ -679,15 +679,12 @@ a{
     color: black;
 }
 .contact-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: block;
     font-size: 2rem;
     color: var(--text-color);
     font-family: 'Montserrat', sans-serif;
-    height: 5rem;
-    padding-bottom: 5rem;
+    padding: 0 4rem 5rem 4rem;
+    text-align: center;
 }
 .contact-info a{
     color: var(--text-color);
