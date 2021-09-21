@@ -571,9 +571,9 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
     point.appendChild(anchor);
 
     let data_id = point.parentElement.parentElement.id;
-    let link_element_a = document.querySelector(`#${data_id} .data .role a`);
-
-    if (data_id != "data-5") {
+    let link_element_a;
+    if (data_id != "data-6" && data_id != "data-2") {
+        link_element_a = document.querySelector(`#${data_id} .data .role a`);
         let link = link_element_a.getAttribute("href");
         let timeline_point_aria_label = link_element_a.innerText;
         anchor.setAttribute("href", link);
@@ -585,14 +585,14 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
 
     point.addEventListener("mouseover", (e) => {
         if (e.target.classList.contains("point")) {
-            if (data_id != "data-5") {
+            if (data_id != "data-6" && data_id != "data-2") {
                 link_element_a.style = `text-decoration: underline;`;
             }
         }
     })
     point.addEventListener("mouseleave", (e) => {
         if (e.target.classList.contains("point")) {
-            if (data_id != "data-5") {
+            if (data_id != "data-6" && data_id != "data-2") {
                 link_element_a.style = `text-decoration: none;`;
             }
         }
