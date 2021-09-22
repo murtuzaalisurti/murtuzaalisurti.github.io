@@ -35,6 +35,8 @@ body {
   --point-border-line-bg: #353535;
   --dev-blog-projects-border-bottom: #e6e6e6;
   --dev-projects-desc-color: #4e4e4e;
+  --point-box-shadow: 0rem 0rem 0rem 0.5rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 1rem rgba(0, 0, 0, 0.06);
+  --point-shadow-hover: 0rem 0rem 0rem 0.65rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 1.15rem rgba(0, 0, 0, 0.06);
   background-color: var(--primary-color);
 }
 
@@ -51,6 +53,8 @@ body {
   --point-border-line-bg: #c9c9c9;
   --dev-blog-projects-border-bottom: #404040;
   --dev-projects-desc-color: #bebebe;
+  --point-shadow-hover: 0rem 0rem 0rem 0.65rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 1.15rem rgba(255, 255, 255, 0.10);
+  --point-box-shadow: 0rem 0rem 0rem 0.5rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 1rem rgba(255, 255, 255, 0.10);
 }
 
 .back-to-top {
@@ -1510,10 +1514,36 @@ footer {
   border: 0.5rem solid;
   border-color: var(--point-border-line-bg);
   border-radius: 50%;
+  -webkit-box-shadow: var(--point-box-shadow);
+          box-shadow: var(--point-box-shadow);
 }
 
 .point:hover {
   background-color: var(--point-border-line-bg);
+  -webkit-animation: point_shadow 0.7s linear infinite alternate both;
+          animation: point_shadow 0.7s linear infinite alternate both;
+}
+
+@-webkit-keyframes point_shadow {
+  0% {
+    -webkit-box-shadow: var(--point-box-shadow);
+            box-shadow: var(--point-box-shadow);
+  }
+  100% {
+    -webkit-box-shadow: var(--point-shadow-hover);
+            box-shadow: var(--point-shadow-hover);
+  }
+}
+
+@keyframes point_shadow {
+  0% {
+    -webkit-box-shadow: var(--point-box-shadow);
+            box-shadow: var(--point-box-shadow);
+  }
+  100% {
+    -webkit-box-shadow: var(--point-shadow-hover);
+            box-shadow: var(--point-shadow-hover);
+  }
 }
 
 .point a {
@@ -1870,6 +1900,9 @@ footer {
         -ms-flex-align: center;
             align-items: center;
   }
+  .contact-info {
+    font-size: 1.5rem;
+  }
 }
 
 @media screen and (max-width: 40em) {
@@ -1887,6 +1920,9 @@ footer {
   }
   .about_text {
     width: 90%;
+  }
+  .about_text .text {
+    padding: 4rem 2rem 4rem 2rem;
   }
   #line1 {
     width: -webkit-fit-content;
