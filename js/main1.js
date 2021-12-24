@@ -22,6 +22,7 @@ let right_btn = document.querySelector(".control").lastElementChild;
 
 let dev_projects_drop_button = document.querySelector(".dev-projects-title");
 let dev_projects = document.querySelector(".dev-projects");
+let dev_projects_blocks = document.querySelectorAll(".dev-projects .block");
 let dev_projects_drop_icon = document.querySelector(".dev-projects-title .drop");
 let view_project_links = document.querySelectorAll(".dev-projects a");
 
@@ -229,6 +230,10 @@ right_btn.addEventListener("click", () => {
     }
 
 })
+
+for(let k = 0; k < dev_projects_blocks.length; k++){
+    dev_projects_blocks[k].id = `project-${k+1}`;
+}
 
 dev_projects_drop_button.addEventListener("click", () => {
     if (!dev_projects.style.maxHeight) {
@@ -570,7 +575,6 @@ let all_experiences = document.querySelectorAll(".experience-data .data-box");
 
 for(let i = 0; i < all_experiences.length; i++){
     all_experiences[i].id = `data-${i+1}`;
-    console.log(all_experiences[i].id);
 }
 
 document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
@@ -589,7 +593,6 @@ document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
         anchor.setAttribute("aria-label", timeline_point_aria_label);
         anchor.setAttribute("title", timeline_point_aria_label);
     }
-    console.log(document.querySelector(`#${data_id} .data .role a`));
 
     point.addEventListener("mouseover", (e) => {
         if (e.target.classList.contains("point")) {
