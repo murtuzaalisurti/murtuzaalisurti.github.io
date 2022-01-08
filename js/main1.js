@@ -28,6 +28,7 @@ let view_project_links = document.querySelectorAll(".dev-projects a");
 
 let blog_projects_drop_button = document.querySelector(".blogs-title");
 let blog_projects = document.querySelector(".blog-projects");
+let blog_projects_blocks = document.querySelectorAll(".blog-projects .block");
 let blog_projects_drop_icon = document.querySelector(".blogs-title .drop");
 let view_blog_links = document.querySelectorAll(".blog-projects a");
 
@@ -233,6 +234,10 @@ right_btn.addEventListener("click", () => {
 
 for(let k = 0; k < dev_projects_blocks.length; k++){
     dev_projects_blocks[k].id = `project-${k+1}`;
+}
+
+for(let k = 0; k < blog_projects_blocks.length; k++){
+    blog_projects_blocks[k].id = `blog-project-${k+1}`;
 }
 
 dev_projects_drop_button.addEventListener("click", () => {
