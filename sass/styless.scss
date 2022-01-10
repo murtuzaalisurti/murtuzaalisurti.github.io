@@ -1,6 +1,7 @@
 html{
     font-size: 62.5%;
     -webkit-text-size-adjust: none;
+    scroll-behavior: smooth;
 }
 *{
     box-sizing: border-box;
@@ -45,6 +46,18 @@ body{
     --dev-projects-desc-color: #bebebe;
     --point-shadow-hover: 0rem 0rem 0rem 0.65rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 1.15rem rgba(255, 255, 255, 0.10);
     --point-box-shadow: 0rem 0rem 0rem 0.5rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 1rem rgba(255, 255, 255, 0.10);
+}
+#skip-to-main{
+    position: absolute;
+    font-size: 2rem;
+    background-color: var(--text-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    transform: translateY(-10rem);
+    transition: transform 0.4s ease-out;
+}
+#skip-to-main:focus{
+    transform: translateY(0);
 }
 .back-to-top{
     position: fixed;
@@ -769,7 +782,6 @@ footer{
     width: 20rem;
     background-color: var(--primary-color);
     box-shadow: var(--boxshadow-card);
-    // border: 1px transparent;
     border: 0.3rem solid;
     border-color: var(--only-dark-border);
     border-radius: 10px;
