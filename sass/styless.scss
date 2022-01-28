@@ -633,8 +633,7 @@ div#line2 .text{
 }
 .block{
     width: 100%;
-    height: 7rem;
-    margin-bottom: 1rem;
+    padding: 3rem 1rem;
     border: 1px solid transparent;
     transition: border 0.2s ease-out;
     background-color: var(--primary-color);
@@ -645,8 +644,11 @@ div#line2 .text{
 .block:last-child{
     margin-bottom: 2rem;
 }
+.block:first-child{
+    margin-top: 2rem;
+}
 .project-title{
-    width: 20%;
+    width: 25%;
     font-size: 1.6rem;
     font-family: 'Ubuntu', sans-serif;
 }
@@ -665,7 +667,7 @@ div#line2 .text{
     font-family: 'Share Tech Mono', sans-serif;
     font-size: 1.5rem;
     text-align: center;
-    width: fit-content;
+    width: 18%;
     position: relative;
 }
 .block a::before{
@@ -1140,12 +1142,11 @@ footer{
         font-size: 2rem;
     }
     .block{
-        height: 15rem;
         flex-flow: column;
         border: 1px solid transparent;
         border-bottom: 2px solid;
         border-bottom-color: var(--dev-blog-projects-border-bottom);
-        padding: 1rem 0;
+        padding: 1rem 1.5rem;
         margin-bottom: 2rem;
     }
     .block:hover{
@@ -1157,26 +1158,23 @@ footer{
         border: 1px solid transparent;
     }
     .block a{
-        width: 45%;
         width: fit-content;
+        margin-top: 1rem;
     }
     .project-title{
         font-size: 1.7rem;
     }
     .project-desc{
         color: var(--dev-projects-desc-color);
-        margin-bottom: 0.5rem;
     }
     .project-title, .project-desc{
         width: 100%;
-        padding: 0.5rem 2rem;
+        padding: 1rem 2rem;
         text-align: center;
     }
     .blog-projects .project-title{
         font-size: 2rem;
-    }
-    .blog-projects .block{
-        height: 11rem;
+        padding: 2rem 1rem;
     }
     .contact-info {
         display: block;
