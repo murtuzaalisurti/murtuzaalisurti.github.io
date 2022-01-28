@@ -1157,6 +1157,13 @@ footer{
     .block:last-child {
         border: 1px solid transparent;
     }
+    .blog-projects .block a{
+        margin: 0;
+    }
+    .blog-projects .block{
+        margin-bottom: 0;
+        padding-bottom: 2rem;
+    }
     .block a{
         width: fit-content;
         margin-top: 1rem;
