@@ -39,7 +39,7 @@ let dark_mode_toggle_btn = document.querySelector("#dark-mode-toggle");
 let hamburger_menu = document.querySelector("#hamburger-menu");
 let navbar = document.querySelector("#navbar");
 
-const skills_name = ["Front-end Developer", "Web Enthusiast", "Blogger", "Technical Writer", "Full-Stack Explorer", "Content Creator"];
+const skills_name = ["Full-stack Developer", "Content Creator", "Web Dev", "Blogger"];
 document.querySelector(".desc_text").setAttribute("aria-label", skills_name[0]);
 let header_links = document.querySelectorAll("nav ul div");
 let iteration = 1;
