@@ -185,7 +185,8 @@ nav ul div:hover::before{
 }
 main{
     margin: 3rem 5rem 0rem 5rem;
-    width: 98.7rem;
+    width: 100%;
+    max-width: 95rem;
 }
 section#landing{
     width: 100%;
@@ -217,8 +218,9 @@ section#landing{
 #code_editor_containing_desc{
     position: absolute;
     height: 95%;
-    width: 55rem;
-    transform: translate(-5%, -3%);
+    // width: 55rem;
+    width: calc(100% + 50px);
+    transform: translate(-7%, -3%);
     z-index: -1;
 }
 .code_editor_style{
@@ -1083,7 +1085,7 @@ footer{
     }
     main{
         margin-top: 1rem;
-        width: 100vw;
+        width: 100%;
     }
     section#landing{
         flex-flow: column;

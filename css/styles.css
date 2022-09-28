@@ -10,6 +10,7 @@ html {
   margin: 0;
   padding: 0;
   -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
   transition: all 0.3s;
 }
 
@@ -65,15 +66,18 @@ body {
   color: var(--primary-color);
   padding: 0.5rem 1rem;
   -webkit-transform: translateY(-10rem);
+      -ms-transform: translateY(-10rem);
           transform: translateY(-10rem);
   -webkit-transition: -webkit-transform 0.4s ease-out;
   transition: -webkit-transform 0.4s ease-out;
+  -o-transition: transform 0.4s ease-out;
   transition: transform 0.4s ease-out;
   transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
 }
 
 #skip-to-main:focus {
   -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
           transform: translateY(0);
 }
 
@@ -154,22 +158,27 @@ header button:hover {
 .moon-logo {
   opacity: 0;
   -webkit-transform: translateY(20%) rotateZ(50deg);
+      -ms-transform: translateY(20%) rotate(50deg);
           transform: translateY(20%) rotateZ(50deg);
   -webkit-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
 
 .sun-logo {
   opacity: 1;
   -webkit-transform: translateY(0) rotateZ(0deg);
+      -ms-transform: translateY(0) rotate(0deg);
           transform: translateY(0) rotateZ(0deg);
   -webkit-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
 
 .animate-sun {
   opacity: 0;
   -webkit-transform: translateY(20%) rotateZ(100deg);
+      -ms-transform: translateY(20%) rotate(100deg);
           transform: translateY(20%) rotateZ(100deg);
   color: var(--text-color);
 }
@@ -177,6 +186,7 @@ header button:hover {
 .animate-moon {
   opacity: 1;
   -webkit-transform: translateY(0%) rotateZ(0deg);
+      -ms-transform: translateY(0%) rotate(0deg);
           transform: translateY(0%) rotateZ(0deg);
   color: var(--text-color);
 }
@@ -207,7 +217,7 @@ nav > ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
 
 nav ul div {
@@ -230,7 +240,7 @@ nav ul div {
 nav ul div::before {
   --text-color: var(--text-color);
   position: absolute;
-  content: '';
+  content: "";
   top: 0;
   bottom: -5px;
   left: 0;
@@ -239,9 +249,11 @@ nav ul div::before {
   border-bottom: 2px solid;
   border-color: var(--text-color);
   -webkit-transform: scaleX(0);
+      -ms-transform: scaleX(0);
           transform: scaleX(0);
   -webkit-transition: -webkit-transform 0.2s ease-out;
   transition: -webkit-transform 0.2s ease-out;
+  -o-transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
   pointer-events: none;
@@ -253,12 +265,14 @@ nav ul div:hover {
 
 nav ul div:hover::before {
   -webkit-transform: scaleX(1);
+      -ms-transform: scaleX(1);
           transform: scaleX(1);
 }
 
 main {
   margin: 3rem 5rem 0rem 5rem;
-  width: 98.7rem;
+  width: 100%;
+  max-width: 95rem;
 }
 
 section#landing {
@@ -308,9 +322,10 @@ section#landing {
 #code_editor_containing_desc {
   position: absolute;
   height: 95%;
-  width: 55rem;
-  -webkit-transform: translate(-5%, -3%);
-          transform: translate(-5%, -3%);
+  width: calc(100% + 50px);
+  -webkit-transform: translate(-7%, -3%);
+      -ms-transform: translate(-7%, -3%);
+          transform: translate(-7%, -3%);
   z-index: -1;
 }
 
@@ -358,7 +373,7 @@ section#landing {
 }
 
 #circle1 {
-  background-color: #be1a1a;
+  background-color: rgb(190, 26, 26);
 }
 
 #circle2 {
@@ -366,7 +381,7 @@ section#landing {
 }
 
 #circle3 {
-  background-color: #ffff6d;
+  background-color: rgb(255, 255, 109);
 }
 
 .line {
@@ -399,7 +414,7 @@ section#landing {
 
 .text {
   font-size: 5rem;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   color: var(--text-color);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -458,7 +473,7 @@ div#line2 .text {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 3.4rem;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   position: relative;
 }
 
@@ -477,6 +492,7 @@ div#line2 .text {
   top: 5%;
   left: 15%;
   -webkit-transform: rotateZ(20deg);
+      -ms-transform: rotate(20deg);
           transform: rotateZ(20deg);
   -webkit-animation-name: moving_icon_1;
           animation-name: moving_icon_1;
@@ -492,6 +508,7 @@ div#line2 .text {
   top: 85%;
   right: 8%;
   -webkit-transform: rotateZ(-10deg);
+      -ms-transform: rotate(-10deg);
           transform: rotateZ(-10deg);
   -webkit-animation-name: moving_icon_2;
           animation-name: moving_icon_2;
@@ -507,6 +524,7 @@ div#line2 .text {
   top: 20%;
   right: 15%;
   -webkit-transform: rotateZ(-30deg);
+      -ms-transform: rotate(-30deg);
           transform: rotateZ(-30deg);
   -webkit-animation-name: moving_icon_3;
           animation-name: moving_icon_3;
@@ -522,6 +540,7 @@ div#line2 .text {
   top: 70%;
   left: 10%;
   -webkit-transform: rotateZ(-10deg);
+      -ms-transform: rotate(-10deg);
           transform: rotateZ(-10deg);
   -webkit-animation-name: moving_icon_4;
           animation-name: moving_icon_4;
@@ -537,6 +556,7 @@ div#line2 .text {
   bottom: 8%;
   left: 38%;
   -webkit-transform: rotateZ(20deg);
+      -ms-transform: rotate(20deg);
           transform: rotateZ(20deg);
   -webkit-animation-name: moving_icon_5;
           animation-name: moving_icon_5;
@@ -601,7 +621,6 @@ div#line2 .text {
             transform: rotateZ(20deg);
   }
 }
-
 @-webkit-keyframes moving_icon_2 {
   0% {
     top: 85%;
@@ -628,7 +647,6 @@ div#line2 .text {
             transform: rotateZ(-10deg);
   }
 }
-
 @keyframes moving_icon_2 {
   0% {
     top: 85%;
@@ -655,7 +673,6 @@ div#line2 .text {
             transform: rotateZ(-10deg);
   }
 }
-
 @-webkit-keyframes moving_icon_3 {
   0% {
     top: 20%;
@@ -682,7 +699,6 @@ div#line2 .text {
             transform: rotateZ(-30deg);
   }
 }
-
 @keyframes moving_icon_3 {
   0% {
     top: 20%;
@@ -709,7 +725,6 @@ div#line2 .text {
             transform: rotateZ(-30deg);
   }
 }
-
 @-webkit-keyframes moving_icon_4 {
   0% {
     top: 70%;
@@ -736,7 +751,6 @@ div#line2 .text {
             transform: rotateZ(-15deg);
   }
 }
-
 @keyframes moving_icon_4 {
   0% {
     top: 70%;
@@ -763,7 +777,6 @@ div#line2 .text {
             transform: rotateZ(-15deg);
   }
 }
-
 @-webkit-keyframes moving_icon_5 {
   0% {
     bottom: 8%;
@@ -790,7 +803,6 @@ div#line2 .text {
             transform: rotateZ(20deg);
   }
 }
-
 @keyframes moving_icon_5 {
   0% {
     bottom: 8%;
@@ -817,10 +829,10 @@ div#line2 .text {
             transform: rotateZ(20deg);
   }
 }
-
 .desc_text {
   color: var(--text-color);
   -webkit-transform: scale(2);
+      -ms-transform: scale(2);
           transform: scale(2);
   opacity: 0.2;
 }
@@ -829,6 +841,7 @@ div#line2 .text {
   display: inline-block;
   opacity: 0;
   -webkit-transform: translateY(10px);
+      -ms-transform: translateY(10px);
           transform: translateY(10px);
 }
 
@@ -884,7 +897,7 @@ div#line2 .text {
   height: 12rem;
   font-size: 4rem;
   color: var(--text-color);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
 
 .aboutdesc, .skill-cards {
@@ -920,7 +933,7 @@ div#line2 .text {
 }
 
 .about_text .text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2rem;
   padding: 6rem 0rem 0rem 5rem;
   width: 80%;
@@ -935,7 +948,7 @@ div#line2 .text {
 }
 
 .recent-work button {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   color: var(--text-color);
   padding: 1rem 0;
@@ -943,12 +956,14 @@ div#line2 .text {
   border: none;
   border-radius: 0.5rem;
   -webkit-transition: background 0.3s ease-out, padding 0.3s ease-out;
+  -o-transition: background 0.3s ease-out, padding 0.3s ease-out;
   transition: background 0.3s ease-out, padding 0.3s ease-out;
 }
 
 .recent-work button i {
   padding-left: 1rem;
   -webkit-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
 
@@ -1013,14 +1028,14 @@ div#line2 .text {
 }
 
 .skill-title {
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-weight: 700;
   font-size: 2rem;
 }
 
 .skill-desc {
   height: 40%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.3rem;
 }
 
@@ -1045,6 +1060,7 @@ div#line2 .text {
   padding: 3rem 1rem;
   border: 1px solid transparent;
   -webkit-transition: border 0.2s ease-out;
+  -o-transition: border 0.2s ease-out;
   transition: border 0.2s ease-out;
   background-color: var(--primary-color);
   display: -webkit-box;
@@ -1068,13 +1084,13 @@ div#line2 .text {
 .project-title {
   width: 25%;
   font-size: 1.6rem;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .project-desc {
   width: 40%;
   font-size: 1.2rem;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .block:hover {
@@ -1085,7 +1101,7 @@ div#line2 .text {
 }
 
 .block a {
-  font-family: 'Share Tech Mono', sans-serif;
+  font-family: "Share Tech Mono", sans-serif;
   font-size: 1.5rem;
   text-align: center;
   width: 18%;
@@ -1094,7 +1110,7 @@ div#line2 .text {
 
 .block a::before {
   position: absolute;
-  content: '';
+  content: "";
   top: 0;
   bottom: 0;
   left: 0;
@@ -1102,16 +1118,19 @@ div#line2 .text {
   border-bottom: 2px solid;
   border-color: var(--text-color);
   -webkit-transform: scaleX(0);
+      -ms-transform: scaleX(0);
           transform: scaleX(0);
   pointer-events: none;
   -webkit-transition: -webkit-transform 0.2s ease-out;
   transition: -webkit-transform 0.2s ease-out;
+  -o-transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out;
   transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
 }
 
 .block a:hover::before {
   -webkit-transform: scaleX(1);
+      -ms-transform: scaleX(1);
           transform: scaleX(1);
 }
 
@@ -1133,7 +1152,7 @@ a {
   display: block;
   font-size: 2rem;
   color: var(--text-color);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding: 0 4rem 5rem 4rem;
   text-align: center;
 }
@@ -1152,7 +1171,7 @@ footer {
 
 .text1, .text2, .social {
   font-size: 2rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   text-align: center;
   color: var(--text-color);
 }
@@ -1268,6 +1287,7 @@ footer {
 .card-1-pos {
   left: -10%;
   -webkit-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
   z-index: 0;
 }
@@ -1275,8 +1295,10 @@ footer {
 .card-2-pos {
   left: 50%;
   -webkit-transform: translate(-50%) scale(1.2);
+      -ms-transform: translate(-50%) scale(1.2);
           transform: translate(-50%) scale(1.2);
   -webkit-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
   z-index: 2;
 }
@@ -1284,6 +1306,7 @@ footer {
 .card-3-pos {
   left: 80%;
   -webkit-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
   z-index: 0;
 }
@@ -1317,7 +1340,6 @@ footer {
     left: 80%;
   }
 }
-
 .card .content {
   height: 95%;
   width: 90%;
@@ -1350,13 +1372,13 @@ footer {
 .card .heading {
   height: 30%;
   font-size: 2rem;
-  font-family: 'Merriweather', sans-serif;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Merriweather", sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .card .text {
   height: 50%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   padding: 0 0.5rem;
 }
 
@@ -1381,11 +1403,13 @@ footer {
 
 .btn-1 {
   -webkit-transform: translateX(20%);
+      -ms-transform: translateX(20%);
           transform: translateX(20%);
 }
 
 .btn-2 {
   -webkit-transform: translateX(-20%);
+      -ms-transform: translateX(-20%);
           transform: translateX(-20%);
 }
 
@@ -1398,6 +1422,7 @@ footer {
   color: transparent;
   -webkit-transition: color 0.3s ease-out, background-color 0.3s ease-out, -webkit-transform 0.3s ease-out;
   transition: color 0.3s ease-out, background-color 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  -o-transition: color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
   transition: color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out;
   transition: color 0.3s ease-out, background-color 0.3s ease-out, transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
   border-radius: 50%;
@@ -1418,6 +1443,7 @@ footer {
 
 .btn-hover {
   -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
           transform: translateX(0%);
   color: var(--slide-btn-color);
 }
@@ -1425,6 +1451,7 @@ footer {
 .btn:hover {
   background-color: var(--slide-btn-bg);
   -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
           transform: translateX(0%);
   color: var(--slide-btn-color);
 }
@@ -1500,21 +1527,22 @@ footer {
 }
 
 .role {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 3rem;
   -webkit-transform: translateY(-1rem);
+      -ms-transform: translateY(-1rem);
           transform: translateY(-1rem);
 }
 
 .time {
   font-size: 1.5rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .exp-desc {
   padding-top: 1rem;
   font-size: 1.5rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
 .timeline .line, .point {
@@ -1566,12 +1594,12 @@ footer {
             box-shadow: var(--point-shadow-hover);
   }
 }
-
 .point a {
   display: inline-block;
   height: 100%;
   width: 100%;
   -webkit-transform: scale(1.25);
+      -ms-transform: scale(1.25);
           transform: scale(1.25);
 }
 
@@ -1614,15 +1642,18 @@ footer {
   padding-right: 2.5rem;
   font-size: 2rem;
   -webkit-transform: translateY(-10%);
+      -ms-transform: translateY(-10%);
           transform: translateY(-10%);
   -webkit-transition: -webkit-transform 0.1s ease-out;
   transition: -webkit-transform 0.1s ease-out;
+  -o-transition: transform 0.1s ease-out;
   transition: transform 0.1s ease-out;
   transition: transform 0.1s ease-out, -webkit-transform 0.1s ease-out;
 }
 
 .dev-projects-title:hover .drop, .blogs-title:hover .drop {
   -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
           transform: translateY(0);
 }
 
@@ -1630,6 +1661,7 @@ footer {
   height: 100%;
   max-height: 0;
   -webkit-transition: max-height 0.5s ease-out;
+  -o-transition: max-height 0.5s ease-out;
   transition: max-height 0.5s ease-out;
   width: 80%;
   border: 1px solid transparent;
@@ -1700,7 +1732,7 @@ footer {
   }
   main {
     margin-top: 1rem;
-    width: 100vw;
+    width: 100%;
   }
   section#landing {
     -webkit-box-orient: vertical;
@@ -1723,6 +1755,7 @@ footer {
   #code_editor_containing_desc {
     width: 100%;
     -webkit-transform: none;
+        -ms-transform: none;
             transform: none;
   }
   .section-name {
@@ -1756,7 +1789,7 @@ footer {
     height: auto;
   }
   .about_text .text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 1.7rem;
     padding-top: 4rem;
     padding: 4rem 1rem 4rem 1rem;
@@ -1863,6 +1896,7 @@ footer {
   #card-1, #card-2, #card-3 {
     left: 0;
     -webkit-transform: none;
+        -ms-transform: none;
             transform: none;
   }
   .control {
@@ -1904,7 +1938,6 @@ footer {
         justify-content: space-around;
   }
 }
-
 @media screen and (max-width: 54em) {
   #line1, #line2 {
     -ms-flex-item-align: center;
@@ -1928,7 +1961,6 @@ footer {
     font-size: 1.5rem;
   }
 }
-
 @media screen and (max-width: 40em) {
   .back-to-top {
     bottom: 2rem;
@@ -1973,6 +2005,7 @@ footer {
   .role {
     font-size: 2.3em;
     -webkit-transform: translateY(-0.5rem);
+        -ms-transform: translateY(-0.5rem);
             transform: translateY(-0.5rem);
   }
   .time {
@@ -1982,7 +2015,6 @@ footer {
     font-size: 1.4em;
   }
 }
-
 .none {
   display: none;
 }
