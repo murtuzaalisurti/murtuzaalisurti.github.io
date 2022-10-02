@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 html {
   font-size: 62.5%;
   -webkit-text-size-adjust: none;
@@ -39,6 +46,7 @@ body {
   --dev-projects-desc-color: #4e4e4e;
   --point-box-shadow: 0rem 0rem 0rem 0.5rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 1rem rgba(0, 0, 0, 0.06);
   --point-shadow-hover: 0rem 0rem 0rem 0.65rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 1.15rem rgba(0, 0, 0, 0.06);
+  --btn-hover: #e7e7e7;
   background-color: var(--primary-color);
 }
 
@@ -57,6 +65,7 @@ body {
   --dev-projects-desc-color: #bebebe;
   --point-shadow-hover: 0rem 0rem 0rem 0.65rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 1.15rem rgba(255, 255, 255, 0.10);
   --point-box-shadow: 0rem 0rem 0rem 0.5rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 1rem rgba(255, 255, 255, 0.10);
+  --btn-hover: rgba(231, 231, 231, 0.1);
 }
 
 #skip-to-main {
@@ -968,9 +977,8 @@ div#line2 .text {
 }
 
 .recent-work button:hover {
-  padding: 1rem 0.8rem;
-  background-color: #e7e7e7;
-  color: black;
+  padding: 1rem 1.8rem;
+  background-color: var(--btn-hover);
   cursor: pointer;
 }
 
