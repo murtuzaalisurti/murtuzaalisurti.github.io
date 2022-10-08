@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "minjs": "npx terser public/js/app.js --compress --mangle --output public/js/app.min.js",
+    "minjs": "npx terser public/js/app.js --compress --mangle --output public/js/app.min.js && git add .",
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
