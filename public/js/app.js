@@ -686,24 +686,25 @@ const media = window.matchMedia('(max-width: 62em)');
 
 function handle_viewport_change(e){
     if(e.matches){
+        console.log(e)
         navbar.classList.add("none");
         header_links.forEach((link) => {
             link.addEventListener("click", (e) => {
                 let anchor = String(e.target.innerText.toLowerCase());
                 let anchored_element = document.querySelector(`#${anchor}`);
                 anchored_element.scrollIntoView({ behavior: "smooth" });
-                navbar.classList.add("none");
-                hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
-                hamburger_menu.style = `position: default;`;
+                // navbar.classList.add("none");
+                // hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
+                // hamburger_menu.style = `position: default;`;
             })
             link.addEventListener("keydown", (e) => {
                 if (e.key === 'Enter') {
                     let anchor = String(e.target.innerText.toLowerCase());
                     let anchored_element = document.querySelector(`#${anchor}`);
                     anchored_element.scrollIntoView({ behavior: "smooth" });
-                    navbar.classList.add("none");
-                    hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
-                    hamburger_menu.style = `position: default;`;
+                    // navbar.classList.add("none");
+                    // hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
+                    // hamburger_menu.style = `position: default;`;
                 }
             })
         })
