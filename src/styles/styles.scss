@@ -336,17 +336,6 @@ section#landing {
     justify-content: flex-start;
 }
 
-#line1 {
-    padding-left: 10%;
-    align-items: center;
-}
-
-#line2 {
-    justify-content: flex-end;
-    padding-right: 10%;
-    align-items: center;
-}
-
 .text {
     transition: none;
     font-size: 5rem;
@@ -354,39 +343,6 @@ section#landing {
     color: var(--text-color);
     display: flex;
     align-items: center;
-}
-
-.text-contain {
-    transition: none;
-    height: fit-content;
-    position: relative;
-}
-
-.text_hide_hey,
-.text_hide_murtuza {
-    transition: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--primary-color);
-}
-
-.text_cursor_hey,
-.text_cursor_murtuza {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    border-left: 3px solid;
-    border-color: var(--text-color);
-}
-
-div#line2 .text {
-    height: 100%;
 }
 
 .desc_content {
@@ -506,14 +462,21 @@ div#line2 .text {
     width: 100%;
 }
 
+.aboutdesc {
+    padding: 0 0 7rem 0;
+}
+
 .about_text {
     color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 7rem 0 3rem;
 }
 
 .about_text,
 .pic {
     width: 60%;
-    height: 35rem;
 }
 
 .pic {
@@ -523,22 +486,15 @@ div#line2 .text {
 .pic img {
     width: 90%;
     height: auto;
-    padding-top: 2rem;
 }
 
 .about_text .text {
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
-    padding: 6rem 0rem 0rem 5rem;
-    width: 80%;
 }
 
 .about_text .text em {
     display: contents;
-}
-
-.recent-work {
-    padding: 2rem 0rem 0rem 5rem;
 }
 
 .recent-work button {
@@ -552,7 +508,28 @@ div#line2 .text {
     transition: background 0.3s ease-out, padding 0.3s ease-out;
 }
 
+.recent-work {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    width: fit-content;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    padding: 1rem 0;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease-out, padding 0.3s ease-out;
+}
+
 .recent-work button i {
+    padding-left: 1rem;
+    transition: all 0.3s ease-out;
+}
+
+.recent-work i {
     padding-left: 1rem;
     transition: all 0.3s ease-out;
 }
@@ -563,7 +540,17 @@ div#line2 .text {
     cursor: pointer;
 }
 
+.recent-work:hover {
+    padding: 1rem 1.8rem;
+    background-color: var(--btn-hover);
+    cursor: pointer;
+}
+
 .recent-work button:hover i {
+    padding-left: 1.5rem;
+}
+
+.recent-work:hover i {
     padding-left: 1.5rem;
 }
 
@@ -1198,10 +1185,6 @@ footer {
         }
     }
 
-    .text-contain-2 {
-        margin: 0;
-    }
-
     #code_editor_containing_desc {
         width: 100%;
         transform: none;
@@ -1218,6 +1201,7 @@ footer {
         justify-content: center;
         align-items: center;
         width: 100%;
+        padding: 0;
     }
 
     .about_text,
@@ -1234,17 +1218,23 @@ footer {
         height: auto;
     }
 
+    .about_text {
+        padding: 4rem 1.5rem;
+    }
+
     .about_text .text {
         font-family: 'Montserrat', sans-serif;
         font-size: 1.7rem;
-        padding-top: 4rem;
-        padding: 4rem 1rem 4rem 1rem;
         width: 100%;
         text-align: center;
     }
 
+    .recent-work-cta {
+        display: flex;
+        justify-content: center;
+    }
+
     .recent-work {
-        padding: 0rem 0rem 2rem 0rem;
         display: flex;
         justify-content: center;
     }
@@ -1356,31 +1346,12 @@ footer {
         display: none;
     }
 
-    #line1,
-    #line2 {
-        align-self: center;
-        width: 100%;
-    }
-
-    #line1 {
-        padding-left: 20%;
-    }
-
-    #line2 {
-        padding-right: 20%;
-    }
-
-    .hey,
-    .immurtuza {
-        font-size: 5rem;
-    }
-
     .desc_content {
         font-size: 3.5rem;
     }
 
     .about_text {
-        width: 45%;
+        width: 55%;
     }
 
     .pic {
@@ -1394,11 +1365,6 @@ footer {
 }
 
 @media screen and (max-width: 54em) {
-
-    #line1,
-    #line2 {
-        align-self: center;
-    }
 
     .cards {
         height: 100%;
@@ -1448,22 +1414,7 @@ footer {
 
     .about_text {
         width: 90%;
-    }
-
-    .about_text .text {
-        padding: 4rem 2rem 4rem 2rem;
-    }
-
-    #line1 {
-        width: fit-content;
-        align-self: flex-start;
-        padding-left: 10%;
-    }
-
-    #line2 {
-        width: fit-content;
-        align-self: flex-end;
-        padding-right: 10%;
+        padding: 4rem 1.5rem;
     }
 
     .desc_content {
