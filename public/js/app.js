@@ -22,7 +22,7 @@ let navbar = document.querySelector("#navbar");
 
 const skills_name = ["Full-stack Developer", "Content Creator", "Web Dev", "Blogger"];
 document.querySelector(".desc_text").setAttribute("aria-label", skills_name[0]);
-let header_links = document.querySelectorAll("nav ul div");
+let header_links = document.querySelectorAll("nav ul > li");
 let iteration = 1;
 let skill_split = skills_name.map((skill) => {
     return skill.split("");
@@ -86,8 +86,8 @@ function text_animate() {
                     span.style = `opacity: 0`;
                 })
 
-                for(let k = 0; k < skills_name.length; k++){
-                    if(iteration == (k+1)){
+                for (let k = 0; k < skills_name.length; k++) {
+                    if (iteration == (k + 1)) {
                         text_string.innerHTML = skill_string[k];
                         break;
                     }
@@ -98,7 +98,7 @@ function text_animate() {
         }
     }
 
-    if(iteration == skills_name.length){
+    if (iteration == skills_name.length) {
         iteration = 1;
     } else {
         iteration++;
@@ -205,12 +205,12 @@ right_btn.addEventListener("click", () => {
 
 })
 
-for(let k = 0; k < dev_projects_blocks.length; k++){
-    dev_projects_blocks[k].id = `project-${k+1}`;
+for (let k = 0; k < dev_projects_blocks.length; k++) {
+    dev_projects_blocks[k].id = `project-${k + 1}`;
 }
 
-for(let k = 0; k < blog_projects_blocks.length; k++){
-    blog_projects_blocks[k].id = `blog-project-${k+1}`;
+for (let k = 0; k < blog_projects_blocks.length; k++) {
+    blog_projects_blocks[k].id = `blog-project-${k + 1}`;
 }
 
 dev_projects_drop_button.addEventListener("click", () => {
@@ -327,8 +327,8 @@ document.querySelectorAll(".experience-data a").forEach((a) => {
 
 let all_experiences = document.querySelectorAll(".experience-data .data-box");
 
-for(let i = 0; i < all_experiences.length; i++){
-    all_experiences[i].id = `data-${i+1}`;
+for (let i = 0; i < all_experiences.length; i++) {
+    all_experiences[i].id = `data-${i + 1}`;
 }
 
 document.querySelectorAll(".data-box .timeline .point").forEach((point) => {
@@ -372,10 +372,10 @@ dark_mode_toggle_btn.addEventListener("click", () => {
 
 let back_to_top = document.querySelector(".back-to-top");
 window.addEventListener("scroll", () => {
-    if(document.body.scrollTop > 200 || document.documentElement.scrollTop > 200){
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
         back_to_top.classList.add("show-back-to-top");
     }
-    else{
+    else {
         back_to_top.classList.remove("show-back-to-top");
     }
 })
@@ -386,10 +386,10 @@ back_to_top.addEventListener("click", () => {
 
 hamburger_menu.addEventListener("click", () => {
     navbar.classList.toggle("none");
-    if(!navbar.classList.contains("none")){
+    if (!navbar.classList.contains("none")) {
         hamburger_menu.innerHTML = `<i class="fas fa-times"></i>`;
         hamburger_menu.style = `position: fixed; top: 5rem;`;
-    } else{
+    } else {
         hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
         hamburger_menu.style = `position: default;`;
     }
@@ -397,45 +397,63 @@ hamburger_menu.addEventListener("click", () => {
 
 const media = window.matchMedia('(max-width: 62em)');
 
-function handle_viewport_change(e){
-    if(e.matches){
+function onNavLinkClick(e) {
+    let anchor = String(e.target.innerText.toLowerCase());
+    let anchored_element = document.querySelector(`#${anchor}`);
+    anchored_element.scrollIntoView({ behavior: "smooth" });
+    navbar.classList.add("none");
+    hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
+    hamburger_menu.style = `position: default;`;
+}
+
+function onNavLinkEnter(e) {
+    if (e.key === 'Enter') {
+        let anchor = String(e.target.innerText.toLowerCase());
+        let anchored_element = document.querySelector(`#${anchor}`);
+        anchored_element.scrollIntoView({ behavior: "smooth" });
         navbar.classList.add("none");
-        header_links.forEach((link) => {
-            link.addEventListener("click", (e) => {
-                let anchor = String(e.target.innerText.toLowerCase());
-                let anchored_element = document.querySelector(`#${anchor}`);
-                anchored_element.scrollIntoView({ behavior: "smooth" });
-                navbar.classList.add("none");
-                hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
-                hamburger_menu.style = `position: default;`;
-            })
-            link.addEventListener("keydown", (e) => {
-                if (e.key === 'Enter') {
-                    let anchor = String(e.target.innerText.toLowerCase());
-                    let anchored_element = document.querySelector(`#${anchor}`);
-                    anchored_element.scrollIntoView({ behavior: "smooth" });
-                    navbar.classList.add("none");
-                    hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
-                    hamburger_menu.style = `position: default;`;
-                }
-            })
-        })
+        hamburger_menu.innerHTML = `<i class="fas fa-bars"></i>`;
+        hamburger_menu.style = `position: default;`;
     }
-    else{
-        navbar.classList.remove("none");
+}
+
+function onNavLinkClickDesktop(e) {
+    let anchor = String(e.target.innerText.toLowerCase());
+    let anchored_element = document.querySelector(`#${anchor}`);
+    anchored_element.scrollIntoView({ behavior: "smooth" });
+}
+
+function onNavLinkEnterDesktop(e) {
+    if (e.key === 'Enter') {
+        let anchor = String(e.target.innerText.toLowerCase());
+        let anchored_element = document.querySelector(`#${anchor}`);
+        anchored_element.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+function handle_viewport_change(e) {
+    if (e.matches) {
+        navbar.classList.add("none");
+
         header_links.forEach((link) => {
-            link.addEventListener("click", (e) => {
-                let anchor = String(e.target.innerText.toLowerCase());
-                let anchored_element = document.querySelector(`#${anchor}`);
-                anchored_element.scrollIntoView({ behavior: "smooth" });
-            })
-            link.addEventListener("keydown", (e) => {
-                if (e.key === 'Enter') {
-                    let anchor = String(e.target.innerText.toLowerCase());
-                    let anchored_element = document.querySelector(`#${anchor}`);
-                    anchored_element.scrollIntoView({ behavior: "smooth" });
-                }
-            })
+            // https://sebhastian.com/javascript-remove-event-listener/
+            link.removeEventListener("click", onNavLinkClickDesktop)
+            link.addEventListener("click", onNavLinkClick)
+
+            link.removeEventListener("keydown", onNavLinkEnterDesktop)
+            link.addEventListener("keydown", onNavLinkEnter)
+        })
+    } else if (!e.matches) {
+        navbar.classList.remove("none");
+
+        header_links.forEach((link) => {
+
+            link.removeEventListener("click", onNavLinkClick)
+            link.addEventListener("click", onNavLinkClickDesktop)
+
+            link.removeEventListener("keydown", onNavLinkEnter)
+            link.addEventListener("keydown", onNavLinkEnterDesktop)
+
         })
     }
 }

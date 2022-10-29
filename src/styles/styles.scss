@@ -184,7 +184,7 @@ nav>ul {
     font-family: 'Share Tech Mono', monospace;
 }
 
-nav ul div {
+nav ul li {
     height: 80%;
     display: flex;
     justify-content: center;
@@ -195,7 +195,7 @@ nav ul div {
     color: var(--text-color);
 }
 
-nav ul div::before {
+nav ul li::before {
     --text-color: var(--text-color);
     position: absolute;
     content: '';
@@ -211,11 +211,11 @@ nav ul div::before {
     pointer-events: none;
 }
 
-nav ul div:hover {
+nav ul li:hover {
     cursor: pointer;
 }
 
-nav ul div:hover::before {
+nav ul li:hover::before {
     transform: scaleX(1);
 }
 
@@ -1142,11 +1142,11 @@ footer {
         flex-direction: column;
     }
 
-    nav>ul div {
+    nav>ul li {
         height: 15%;
     }
 
-    nav>ul div::before {
+    nav>ul li::before {
         bottom: 20px;
     }
 
