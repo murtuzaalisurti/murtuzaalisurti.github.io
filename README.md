@@ -1,8 +1,6 @@
-# Portfolio | Murtuza
+#  Murtuzaali Surti
 
 > Hey, myself Murtuza and here's a look at my [portfolio website](https://murtuzaalisurti.github.io)!
-
-<img src="./public/assets/portfolio_link_preview_img.jpg" alt="website front" width="500px">
 
 ---
 
@@ -12,11 +10,4 @@ Here are some [guidelines](https://github.com/murtuzaalisurti/murtuzaalisurti.gi
 
 ---
 
-## Tech Stack
-
-Nothing fancy here, just some good old stuff!
-<pre>
- > HTML
- > SCSS
- > Vanilla JavaScript
-</pre>
+> Built with [Astro](https://astro.build/) :heart:
