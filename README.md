@@ -1,4 +1,4 @@
-#  Murtuzaali Surti
+# Murtuzaali Surti
 
 > Hey, myself Murtuza and here's a look at my [portfolio website](https://murtuzaalisurti.github.io)!
 
