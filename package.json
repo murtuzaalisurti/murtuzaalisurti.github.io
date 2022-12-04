@@ -14,6 +14,16 @@
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
+    "@fontsource/cabin": "^4.5.9",
+    "@fontsource/ibm-plex-sans": "^4.5.13",
+    "@fontsource/inter": "^4.5.14",
+    "@fontsource/montserrat": "^4.5.13",
+    "@fontsource/nunito": "^4.5.11",
+    "@fontsource/poppins": "^4.5.10",
+    "@fontsource/roboto-condensed": "^4.5.9",
+    "@fontsource/share-tech-mono": "^4.5.9",
+    "@fontsource/titillium-web": "^4.5.9",
+    "@fontsource/ubuntu": "^4.5.11",
     "astro": "^1.4.6",
     "husky": "^8.0.1",
     "npm-run-all": "^4.1.5",
