@@ -1,20 +1,66 @@
 ---
+import '@fontsource-variable/league-spartan';
+import '@fontsource-variable/montserrat';
+import '@fontsource-variable/nunito';
+import '@fontsource/poppins/900.css';
+import '@fontsource-variable/alexandria';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/rubik';
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/sections/Hero.astro';
-import About from '../components/sections/About.astro';
-import Skills from '../components/sections/Skills.astro';
-import Projects from '../components/sections/Projects.astro';
-import Experience from '../components/sections/Experience.astro';
-import Contact from '../components/sections/Contact.astro';
 ---
 
-<Layout title="Murtuzaali Surti">
-	<main id="main">
-		<Hero />
-		<About />
-		<Skills />
-		<Projects />
-		<Experience />
-		<Contact />
+<Layout title="Welcome to Astro.">
+	<main>
+		<section id="bioContainer">
+			<h1>
+				Murtuzaali Surti
+			</h1>
+			<p>Breaking and fixing code, with passion, as a software engineer. Bugs are on my most wanted list. Wanna <a href="https://syntackle.live">join me</a>?</p>
+		</section>
 	</main>
 </Layout>
+
+<style>
+	h1 {
+		font-size: 2rem;
+		font-family: 'League Spartan Variable', sans-serif;
+		font-family: 'Montserrat Variable', sans-serif;
+		/* font-family: 'Nunito Variable', sans-serif; */
+		/* font-family: 'Poppins', sans-serif; */
+		/* font-family: 'Alexandria Variable', sans-serif; */
+		/* font-family: 'Inter Variable', sans-serif; */
+		font-weight: 650;
+		/* color: aliceblue; */
+	}
+
+	p {
+		font-family: 'League Spartan Variable', sans-serif;
+		font-family: 'Montserrat Variable', sans-serif;
+		font-family: 'Nunito Variable', sans-serif;
+		font-family: 'Poppins', sans-serif;
+		font-family: 'Alexandria Variable', sans-serif;
+		font-family: 'Inter Variable', sans-serif;
+		font-family: 'Rubik Variable', sans-serif;
+		font-size: 1rem;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 4rem 2rem 2rem 2rem;
+	}
+
+	#bioContainer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 1rem;
+		width: 70%;
+		max-width: 35rem;
+	}
+
+	main > #bioContainer > *:not(h1) {
+		margin-bottom: 1rem;
+	}
+</style>

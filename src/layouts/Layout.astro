@@ -1,214 +1,39 @@
----
-import Footer from "../components/Footer.astro";
-import Navbar from "../components/Navbar.astro";
+--- 
+interface Props {
+	title: string;
+}
 
-/* 
-importing fonts from npm package using @fontsource
-*/
-// import "@fontsource/cabin"
-// import "@fontsource/ibm-plex-sans"
-// import "@fontsource/inter"
-// import "@fontsource/titillium-web"
-// import "@fontsource/roboto-condensed"
-import "@fontsource/montserrat"
-import "@fontsource/nunito"
-import "@fontsource/poppins"
-import "@fontsource/share-tech-mono"
-import "@fontsource/ubuntu"
-
-import "../styles/styles.scss";
 const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-
-        <script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-SE7F2MMEPG"
-        ></script>
-        <script is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-
-            gtag("config", "G-SE7F2MMEPG");
-        </script>
-
-        <script is:inline>
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({
-                    "gtm.start": new Date().getTime(),
-                    event: "gtm.js",
-                });
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != "dataLayer" ? "&l=" + l : "";
-                j.async = true;
-                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-                f.parentNode.insertBefore(j, f);
-            })(window, document, "script", "dataLayer", "GTM-M54GD84");
-        </script>
-
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="author" content="Murtuzaali Surti" />
-        <meta
-            name="description"
-            content="A full stack developer specializing in JavaScript, currently focusing on Reactjs, serverless, content creation & blogging!"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Murtuzaali Surti" />
-        <meta
-            property="og:description"
-            content="A full stack developer specializing in JavaScript, currently focusing on Reactjs, serverless, content creation & blogging!"
-        />
-        <meta property="og:url" content="https://murtuzaalisurti.github.io" />
-        <meta
-            property="og:image"
-            content="https://murtuzaalisurti.github.io/assets/banner.jpg"
-        />
-        <!-- https://raw.githubusercontent.com/murtuzaalisurti/murtuzaalisurti.github.io/master/assets/banner.jpg -->
-        <meta
-            property="og:image:secure_url"
-            content="https://murtuzaalisurti.github.io/assets/banner.jpg"
-        />
-        <meta property="og:image:width" content="1920" />
-        <meta property="og:image:height" content="1005" />
-        <meta property="og:image:alt" content="Hey, I'm Murtuza" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Murtuzaali Surti" />
-        <meta name="twitter:site" content="@murtuza_surti" />
-        <meta name="twitter:creator" content="@murtuza_surti" />
-        <meta
-            name="twitter:description"
-            content="A full stack developer specializing in JavaScript, currently focusing on Reactjs, serverless, content creation & blogging!"
-        />
-        <meta name="twitter:image:alt" content="Hey, I'm Murtuza" />
-        <meta
-            name="twitter:image"
-            content="https://murtuzaalisurti.github.io/assets/banner.jpg"
-        />
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "headline": "Murtuzaali Surti",
-                "description": "A full stack developer specializing in JavaScript, currently focusing on Reactjs, serverless, content creation & blogging!",
-                "image": "https://murtuzaalisurti.github.io/assets/banner.jpg",
-                "url": "https://murtuzaalisurti.github.io",
-                "author": {
-                    "@type": "Person",
-                    "name": "Murtuzaali Surti",
-                    "url": "https://murtuzaalisurti.github.io"
-                }
-            }
-        </script>
-        <meta
-            name="google-site-verification"
-            content="SEuC_uqoA0M4t9hSN84c_ejUf5YumN3t8RWchHAIeKE"
-        />
-        <link
-            rel="shortcut icon"
-            type="image/jpg"
-            href="./assets/favicon.png"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-            integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-            crossorigin="anonymous"
-            referrerPolicy="no-referrer"
-        />
-
-        <link rel="me" href="https://mastodon.social/@murtuzaalisurti" />
-    </head>
-    <body>
-        <noscript
-            ><iframe
-                src="https://www.googletagmanager.com/ns.html?id=GTM-M54GD84"
-                height="0"
-                width="0"
-                style="display:none;visibility:hidden"></iframe>
-        </noscript>
-        <a href="#main" class="skip" id="skip-to-main">Skip to main content</a>
-        <button class="back-to-top" aria-label="scroll to top of the page"
-            ><i class="fas fa-chevron-up"></i>
-        </button>
-        <Navbar />
-        <script is:inline>
-            let theme;
-            let body = document.querySelector("body");
-
-            function animation_toggle_logo() {
-                document
-                    .querySelector(".sun-logo")
-                    .classList.toggle("animate-sun");
-                document
-                    .querySelector(".moon-logo")
-                    .classList.toggle("animate-moon");
-            }
-
-            theme_check("stay");
-
-            function theme_check(events) {
-                if (events == "toggle") {
-                    try {
-                        if (localStorage.getItem("theme") == null) {
-                            if (!body.classList.contains("dark")) {
-                                body.classList.add("dark");
-                                theme = "dark";
-                            } else {
-                                body.classList.remove("dark");
-                                theme = "light";
-                            }
-                            localStorage.setItem("theme", theme);
-                        } else {
-                            theme = localStorage.getItem("theme");
-                            if (theme == "dark") {
-                                body.classList.remove("dark");
-                                theme = "light";
-                            } else if (theme == "light") {
-                                body.classList.add("dark");
-                                theme = "dark";
-                            }
-                            localStorage.setItem("theme", theme);
-                        }
-                    } catch (error) {
-                        console.error(error)
-
-                        if (!body.classList.contains("dark")) {
-                            body.classList.add("dark");
-                            theme = "dark";
-                        } else {
-                            body.classList.remove("dark");
-                            theme = "light";
-                        }
-                    }
-                } else if (events == "stay") {
-                    try {
-                        theme = localStorage.getItem("theme");
-                        if (theme == "dark") {
-                            body.classList.add("dark");
-                            animation_toggle_logo();
-                        }
-                    } catch (error) {
-                        console.error(error)
-                    }
-                }
-            }
-        </script>
-        <slot />
-        <Footer />
-        <script is:inline src="/js/app.min.js"></script>
-    </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
 </html>
+<style is:global>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	html {
+		line-height: 1.5;
+	}
+	html:focus-within {
+		scroll-behavior: smooth;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+</style>
