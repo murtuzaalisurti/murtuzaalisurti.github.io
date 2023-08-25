@@ -1,66 +1,124 @@
 ---
-import '@fontsource-variable/league-spartan';
 import '@fontsource-variable/montserrat';
-import '@fontsource-variable/nunito';
-import '@fontsource/poppins/900.css';
-import '@fontsource-variable/alexandria';
-import '@fontsource-variable/inter';
 import '@fontsource-variable/rubik';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<section id="bioContainer">
+		<section id="bio">
 			<h1>
 				Murtuzaali Surti
 			</h1>
-			<p>Breaking and fixing code, with passion, as a software engineer. Bugs are on my most wanted list. Wanna <a href="https://syntackle.live">join me</a>?</p>
+			<p>Breaking and fixing code, with passion, as a software engineer. Bugs are on my most wanted list, and I write a lot. Wanna <a href="https://syntackle.live/write/">join me</a>?</p>
+		</section>
+		<section id="projects" class="section">
+			<h3>Projects</h3>
+			<div id="container">
+				<div class="project">
+					<a href="https://contact-card.vercel.app">Contact Card Generator</a>
+					<p>A simple contact card generator!</p>
+				</div>
+				<div class="project">
+					<a href="https://syntackle.live">Syntackle</a>
+					<p>Developer blog covering everything related to the web!</p>
+				</div>
+			</div>
+		</section>
+		<section id="experience" class="section">
+			<h3>Experience</h3>
+			<div id="container">
+				<div class="project">
+					<a href="https://contact-card.vercel.app">Contact Card Generator</a>
+					<p>A simple contact card generator!</p>
+				</div>
+				<div class="project">
+					<a href="https://syntackle.live">Syntackle</a>
+					<p>Developer blog covering everything related to the web!</p>
+				</div>
+			</div>
 		</section>
 	</main>
 </Layout>
 
 <style>
-	h1 {
-		font-size: 2rem;
-		font-family: 'League Spartan Variable', sans-serif;
+	
+	h1, h2, h3, h4, h5, h6 {
 		font-family: 'Montserrat Variable', sans-serif;
-		/* font-family: 'Nunito Variable', sans-serif; */
-		/* font-family: 'Poppins', sans-serif; */
-		/* font-family: 'Alexandria Variable', sans-serif; */
-		/* font-family: 'Inter Variable', sans-serif; */
-		font-weight: 650;
-		/* color: aliceblue; */
+		font-weight: 850;
 	}
 
-	p {
-		font-family: 'League Spartan Variable', sans-serif;
-		font-family: 'Montserrat Variable', sans-serif;
-		font-family: 'Nunito Variable', sans-serif;
-		font-family: 'Poppins', sans-serif;
-		font-family: 'Alexandria Variable', sans-serif;
-		font-family: 'Inter Variable', sans-serif;
+	h1 {
+		font-weight: 900;
+		font-size: var(--max-heading-font-size);
+	}
+	
+	h2 {
+		font-size: calc(var(--max-heading-font-size) - calc(var(--max-heading-font-size)/8));
+	}
+
+	h3 {
+		font-size: calc(var(--max-heading-font-size) - calc(2 * (var(--max-heading-font-size)/8)));
+	}
+
+	h4 {
+		font-size: calc(var(--max-heading-font-size) - calc(3 * (var(--max-heading-font-size)/8)));
+	}
+
+	h5 {
+		font-size: calc(var(--max-heading-font-size) - calc(4 * (var(--max-heading-font-size)/8)));
+	}
+
+	h5 {
+		font-size: calc(var(--max-heading-font-size) - calc(5 * (var(--max-heading-font-size)/8)));
+	}
+
+	a {
+		font-family: inherit;
+		width: fit-content;
+	}
+
+	p, .project {
 		font-family: 'Rubik Variable', sans-serif;
-		font-size: 1rem;
+		font-weight: 400;
+		font-size: var(--content-font-size);
 	}
 
 	main {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		gap: 1.5rem;
 		padding: 4rem 2rem 2rem 2rem;
 	}
 
-	#bioContainer {
+	#bio, .section {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		gap: 1rem;
 		width: 70%;
 		max-width: 35rem;
 	}
 
-	main > #bioContainer > *:not(h1) {
+	#projects > #container {
+		padding-top: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.7rem;
+	}
+	
+	#bio {
+		gap: 1rem;
+	}
+
+	#projects > #container .project {
+		display: flex;
+		flex-direction: column;
+		gap: 0.1rem;
+	}
+
+	main > #bio > *:not(h1) {
 		margin-bottom: 1rem;
 	}
 </style>
