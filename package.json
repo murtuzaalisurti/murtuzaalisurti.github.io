@@ -11,12 +11,16 @@
   },
   "dependencies": {
     "@fontsource-variable/alexandria": "^5.0.8",
+    "@fontsource-variable/cormorant": "^5.0.9",
+    "@fontsource-variable/eczar": "^5.0.8",
     "@fontsource-variable/inter": "^5.0.8",
     "@fontsource-variable/league-spartan": "^5.0.8",
     "@fontsource-variable/montserrat": "^5.0.9",
     "@fontsource-variable/nunito": "^5.0.9",
     "@fontsource-variable/rubik": "^5.0.10",
+    "@fontsource/gentium-plus": "^5.0.8",
     "@fontsource/poppins": "^5.0.8",
+    "@fontsource/proza-libre": "^5.0.8",
     "astro": "^2.10.12"
   }
 }
