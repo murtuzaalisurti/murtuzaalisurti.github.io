@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^4.0.0",
     "@fontsource-variable/alexandria": "^5.0.8",
     "@fontsource-variable/cormorant": "^5.0.9",
     "@fontsource-variable/eczar": "^5.0.8",
@@ -22,7 +21,6 @@
     "@fontsource/gentium-plus": "^5.0.8",
     "@fontsource/poppins": "^5.0.8",
     "@fontsource/proza-libre": "^5.0.8",
-    "astro": "^2.10.12",
-    "tailwindcss": "^3.3.3"
+    "astro": "^2.10.12"
   }
 }
