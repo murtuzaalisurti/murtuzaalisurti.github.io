@@ -14,20 +14,15 @@ import List from '../components/List';
 			<p>Breaking and fixing code, with passion, as a software engineer. Bugs are on my most wanted list, and I write a lot. Wanna <a href="https://syntackle.live/write/">join me</a>?</p>
 		</section>
 		<section id="projects" class="section">
-			<!-- <h3>Projects</h3>
-			<div id="container">
-				<div class="project">
-					<a href="https://contact-card.vercel.app">Contact Card Generator</a>
-					<p>A simple contact card generator!</p>
-				</div>
-				<div class="project">
-					<a href="https://syntackle.live">Syntackle</a>
-					<p>Developer blog covering everything related to the web!</p>
-				</div>
-			</div> -->
 			<List section='projects' list={[
 				{
 					id: 1,
+					title: "Syntackle",
+					desc: "Developer blog",
+					url: "https://syntackle.live"
+				},
+				{
+					id: 2,
 					title: "Contact Card Generator",
 					desc: "A simple contact card generator!",
 					url: "https://contact-card.vercel.app"
@@ -46,87 +41,3 @@ import List from '../components/List';
 		</section>
 	</main>
 </Layout>
-
-<style is:global>
-	
-	h1, h2, h3, h4, h5, h6 {
-		font-family: 'Montserrat Variable', sans-serif;
-		font-weight: 850;
-	}
-
-	h1 {
-		font-weight: 900;
-		font-size: var(--max-heading-font-size);
-	}
-	
-	h2 {
-		font-size: calc(var(--max-heading-font-size) - calc(var(--max-heading-font-size)/8));
-	}
-
-	h3 {
-		font-size: calc(var(--max-heading-font-size) - calc(2 * (var(--max-heading-font-size)/8)));
-	}
-
-	h4 {
-		font-size: calc(var(--max-heading-font-size) - calc(3 * (var(--max-heading-font-size)/8)));
-	}
-
-	h5 {
-		font-size: calc(var(--max-heading-font-size) - calc(4 * (var(--max-heading-font-size)/8)));
-	}
-
-	h5 {
-		font-size: calc(var(--max-heading-font-size) - calc(5 * (var(--max-heading-font-size)/8)));
-	}
-
-	a {
-		font-family: inherit;
-		width: fit-content;
-	}
-
-	p, .item {
-		font-family: 'Rubik Variable', sans-serif;
-		font-weight: 400;
-		font-size: var(--content-font-size);
-	}
-
-	main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1.5rem;
-		padding: 4rem 2rem 2rem 2rem;
-	}
-
-	#bio, .section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		width: 70%;
-		max-width: 35rem;
-	}
-
-	#projects > #container,
-	#experience > #container {
-		padding-top: 1rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 0.7rem;
-	}
-	
-	#bio {
-		gap: 1rem;
-	}
-
-	#projects > #container .item,
-	#experience > #container .item {
-		display: flex;
-		flex-direction: column;
-		gap: 0.1rem;
-	}
-
-	main > #bio > *:not(h1) {
-		margin-bottom: 1rem;
-	}
-</style>

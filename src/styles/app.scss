@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    --max-heading-font-size: 2.5rem;
+    --content-font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+        Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat Variable', sans-serif;
+    font-weight: 850;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: var(--max-heading-font-size);
+}
+
+h2 {
+    font-size: calc(var(--max-heading-font-size) - calc(var(--max-heading-font-size)/8));
+}
+
+h3 {
+    font-size: calc(var(--max-heading-font-size) - calc(2 * (var(--max-heading-font-size)/8)));
+}
+
+h4 {
+    font-size: calc(var(--max-heading-font-size) - calc(3 * (var(--max-heading-font-size)/8)));
+}
+
+h5 {
+    font-size: calc(var(--max-heading-font-size) - calc(4 * (var(--max-heading-font-size)/8)));
+}
+
+h5 {
+    font-size: calc(var(--max-heading-font-size) - calc(5 * (var(--max-heading-font-size)/8)));
+}
+
+a {
+    font-family: inherit;
+    width: fit-content;
+}
+
+hr {
+    background: rgba($color: #000000, $alpha: 0.15);
+    outline: none;
+    border: none;
+    height: 0.25rem;
+}
+
+p, .listContainer .item {
+    font-family: 'Rubik Variable', sans-serif;
+    font-weight: 400;
+    font-size: var(--content-font-size);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 4rem 2rem 2rem 2rem;
+
+    #bio, .section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 70%;
+        max-width: 35rem;
+
+        @media screen and (max-width: 43em) {
+            width: 90%;
+        }
+    }
+
+    .section, #bio {
+        & > *:nth-child(1) {
+
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            hr {
+                height: 0.25rem;
+                flex: 1 1 100%;
+            }
+        }
+    }
+
+    #bio {
+        gap: 1rem;
+
+        *:not(h1) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    #projects, #experience {
+
+        .listContainer {
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0.7rem;
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+        }
+    }
+}
