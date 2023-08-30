@@ -2,6 +2,7 @@
 import '@fontsource-variable/montserrat';
 import '@fontsource-variable/rubik';
 import Layout from '../layouts/Layout.astro';
+import List from '../components/List';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -13,7 +14,7 @@ import Layout from '../layouts/Layout.astro';
 			<p>Breaking and fixing code, with passion, as a software engineer. Bugs are on my most wanted list, and I write a lot. Wanna <a href="https://syntackle.live/write/">join me</a>?</p>
 		</section>
 		<section id="projects" class="section">
-			<h3>Projects</h3>
+			<!-- <h3>Projects</h3>
 			<div id="container">
 				<div class="project">
 					<a href="https://contact-card.vercel.app">Contact Card Generator</a>
@@ -23,25 +24,30 @@ import Layout from '../layouts/Layout.astro';
 					<a href="https://syntackle.live">Syntackle</a>
 					<p>Developer blog covering everything related to the web!</p>
 				</div>
-			</div>
+			</div> -->
+			<List section='projects' list={[
+				{
+					id: 1,
+					title: "Contact Card Generator",
+					desc: "A simple contact card generator!",
+					url: "https://contact-card.vercel.app"
+				}
+			]} />
 		</section>
 		<section id="experience" class="section">
-			<h3>Experience</h3>
-			<div id="container">
-				<div class="project">
-					<a href="https://contact-card.vercel.app">Contact Card Generator</a>
-					<p>A simple contact card generator!</p>
-				</div>
-				<div class="project">
-					<a href="https://syntackle.live">Syntackle</a>
-					<p>Developer blog covering everything related to the web!</p>
-				</div>
-			</div>
+			<List section='experience' list={[
+				{
+					id: 1,
+					title: "Contact Card Generator",
+					desc: "A simple contact card generator!",
+					url: "https://contact-card.vercel.app"
+				}
+			]} />
 		</section>
 	</main>
 </Layout>
 
-<style>
+<style is:global>
 	
 	h1, h2, h3, h4, h5, h6 {
 		font-family: 'Montserrat Variable', sans-serif;
@@ -78,7 +84,7 @@ import Layout from '../layouts/Layout.astro';
 		width: fit-content;
 	}
 
-	p, .project {
+	p, .item {
 		font-family: 'Rubik Variable', sans-serif;
 		font-weight: 400;
 		font-size: var(--content-font-size);
@@ -100,7 +106,8 @@ import Layout from '../layouts/Layout.astro';
 		max-width: 35rem;
 	}
 
-	#projects > #container {
+	#projects > #container,
+	#experience > #container {
 		padding-top: 1rem;
 		display: flex;
 		flex-direction: column;
@@ -112,7 +119,8 @@ import Layout from '../layouts/Layout.astro';
 		gap: 1rem;
 	}
 
-	#projects > #container .project {
+	#projects > #container .item,
+	#experience > #container .item {
 		display: flex;
 		flex-direction: column;
 		gap: 0.1rem;
