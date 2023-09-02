@@ -1,11 +1,17 @@
 import type { TListPropsWithChildren } from "../lib/types";
+import { motion } from "framer-motion";
 
 const List = ({ children, list, section }: TListPropsWithChildren) => {
     if (section === "experience" || section === "projects") {
         return (
             <>
                 <h3>{section.charAt(0).toUpperCase() + section.slice(1)}<hr /></h3>
-                <div className="listContainer">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="listContainer"
+                >
                     {
                         list.map(entry => {
                             return (
@@ -16,7 +22,7 @@ const List = ({ children, list, section }: TListPropsWithChildren) => {
                             )
                         })
                     }
-                </div>
+                </motion.div>
             </>
         )
     }
