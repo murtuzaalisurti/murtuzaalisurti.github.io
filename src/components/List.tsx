@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const List = ({ children, list, section }: TListPropsWithChildren) => {
     if (section === "experience" || section === "projects") {
         return (
-            <>
+            <div>
                 <h3>{section.charAt(0).toUpperCase() + section.slice(1)}<hr /></h3>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
@@ -23,7 +23,7 @@ const List = ({ children, list, section }: TListPropsWithChildren) => {
                         })
                     }
                 </motion.div>
-            </>
+            </div>
         )
     }
     return <></>

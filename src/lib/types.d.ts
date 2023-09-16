@@ -11,3 +11,17 @@ export interface TList {
 }
 
 export type TListPropsWithChildren = PropsWithChildren<TList>
+
+export interface TExperienceBlock {
+    section: string,
+    list: {
+        id: number,
+        title: string,
+        link: string,
+        startDate: string,
+        endDate: string,
+        role: string
+    }[]
+}
+
+export type TExperienceBlockWithChildren = PropsWithChildren<TExperienceBlock>

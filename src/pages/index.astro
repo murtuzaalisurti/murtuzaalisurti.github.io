@@ -3,6 +3,7 @@ import '@fontsource-variable/montserrat';
 import '@fontsource-variable/rubik';
 import Layout from '../layouts/Layout.astro';
 import List from '../components/List';
+import ExperienceBlock from '../components/ExperienceBlock';
 ---
 
 <Layout title="Murtuza">
@@ -14,7 +15,7 @@ import List from '../components/List';
 			<p>Breaking and fixing code, with passion, as a software engineer. Bugs are on my most wanted list, and I write a lot. Wanna <a href="https://syntackle.live/write/">join me</a>?</p>
 		</section>
 		<section id="projects" class="section">
-			<List client:load section='projects' list={[
+			<List client:visible section='projects' list={[
 				{
 					id: 1,
 					title: "Syntackle",
@@ -30,12 +31,14 @@ import List from '../components/List';
 			]} />
 		</section>
 		<section id="experience" class="section">
-			<List client:visible section='experience' list={[
+			<ExperienceBlock client:visible section="experience" list={[
 				{
 					id: 1,
-					title: "Contact Card Generator",
-					desc: "A simple contact card generator!",
-					url: "https://contact-card.vercel.app"
+					title: "Software Engineer",
+					role: "Working on an enterprise application related to legal entities. Using Docker, NestJS, PostgreSQL, leaning more towards the backend side.",
+					link: "https://contact-card.vercel.app",
+					startDate: "May, 2023",
+					endDate: "Present"
 				}
 			]} />
 		</section>

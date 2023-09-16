@@ -87,7 +87,8 @@ main {
     }
 
     .section, #bio {
-        & > *:nth-child(1) {
+        // * open issue https://github.com/withastro/astro/issues/8377
+        & > div:nth-child(1) {
 
             position: relative;
             display: flex;
@@ -123,6 +124,122 @@ main {
                 flex-direction: column;
                 gap: 0.1rem;
             }
+        }
+
+        .experience-data {
+            display: flex;
+            flex-flow: column;
+            width: 100%;
+            padding-top: 5rem;
+        }
+        
+        .experience-data a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+        
+        .experience-data a:hover {
+            text-decoration: underline;
+        }
+        
+        .data-box {
+            // height: 20rem;
+            height: fit-content;
+            width: 100%;
+            display: flex;
+            color: var(--text-color);
+        }
+        
+        .timeline {
+            width: 25%;
+            // height: 100%;
+            // height: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .draw {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        
+        .data {
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+            width: 75%;
+            height: 100%;
+            padding: 0 2.1rem 5rem 0;
+        }
+        
+        .role {
+            font-family: 'Rubik Variable', sans-serif;
+            font-size: 3rem;
+            transform: translateY(-0.5rem);
+        }
+        
+        .time {
+            font-size: 1.5rem;
+            font-style: italic;
+            font-family: 'Rubik Variable', sans-serif;
+        }
+        
+        .exp-desc {
+            padding-top: 1.5rem;
+            padding-right: 20%;
+            font-size: 1.5rem;
+            font-family: 'Rubik Variable', sans-serif;
+            font-weight: 400;
+            line-height: 1.5em;
+        }
+        
+        .timeline .line,
+        .point {
+            background-color: var(--point-border-line-bg);
+        }
+        
+        .timeline .line {
+            width: 0.5rem;
+            height: 100%;
+        }
+        
+        .point {
+            position: absolute;
+            top: 0;
+            height: 2.5rem;
+            width: 2.5rem;
+            background-color: var(--primary-color);
+            border: 0.5rem solid;
+            border-color: var(--point-border-line-bg);
+            border-radius: 50%;
+            box-shadow: var(--point-box-shadow);
+        }
+        
+        .point:hover {
+            background-color: var(--point-border-line-bg);
+            animation: point_shadow 0.7s linear infinite alternate both;
+        }
+        
+        @keyframes point_shadow {
+            0% {
+                box-shadow: var(--point-box-shadow);
+            }
+        
+            100% {
+                box-shadow: var(--point-shadow-hover);
+            }
+        
+        }
+        
+        .point a {
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            transform: scale(1.25);
         }
     }
 }
