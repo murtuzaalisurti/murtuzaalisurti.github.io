@@ -7,6 +7,9 @@
 html {
     --max-heading-font-size: 2.5rem;
     --content-font-size: 1.2rem;
+    --point-box-shadow: 0rem 0rem 0rem 0.3rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 0.5rem rgba(0, 0, 0, 0.06);
+    --point-shadow-hover: 0rem 0rem 0rem 0.35rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 0.65rem rgba(0, 0, 0, 0.06);
+    --point-border-line-bg: black;
     line-height: 1.5;
 }
 
@@ -71,7 +74,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     padding: 4rem 2rem 2rem 2rem;
 
     #bio, .section {
@@ -130,12 +133,12 @@ main {
             display: flex;
             flex-flow: column;
             width: 100%;
-            padding-top: 5rem;
+            padding-top: 3rem;
         }
         
         .experience-data a {
             text-decoration: none;
-            color: var(--text-color);
+            color: black;
         }
         
         .experience-data a:hover {
@@ -143,17 +146,14 @@ main {
         }
         
         .data-box {
-            // height: 20rem;
             height: fit-content;
             width: 100%;
             display: flex;
-            color: var(--text-color);
+            color: black;
         }
         
         .timeline {
-            width: 25%;
-            // height: 100%;
-            // height: auto;
+            width: 10%;
             position: relative;
             display: flex;
             justify-content: center;
@@ -171,27 +171,31 @@ main {
             display: flex;
             flex-flow: column;
             justify-content: flex-start;
-            width: 75%;
+            width: 100%;
             height: 100%;
-            padding: 0 2.1rem 5rem 0;
+            padding: 0 2.5rem 2rem 1rem;
+            transform: translateY(-3%);
         }
         
         .role {
-            font-family: 'Rubik Variable', sans-serif;
-            font-size: 3rem;
-            transform: translateY(-0.5rem);
+            // font-family: 'Rubik Variable', sans-serif;
+            font-size: var(--content-font-size);
+
+            & > h4, & > a {
+                font-weight: 800;
+            }
         }
         
         .time {
-            font-size: 1.5rem;
+            font-size: calc(var(--content-font-size) - 0.3rem);
             font-style: italic;
             font-family: 'Rubik Variable', sans-serif;
         }
         
         .exp-desc {
-            padding-top: 1.5rem;
-            padding-right: 20%;
-            font-size: 1.5rem;
+            padding-top: 1.2rem;
+            padding-right: 5%;
+            font-size: calc(var(--content-font-size) - 0.1rem);
             font-family: 'Rubik Variable', sans-serif;
             font-weight: 400;
             line-height: 1.5em;
@@ -199,22 +203,22 @@ main {
         
         .timeline .line,
         .point {
-            background-color: var(--point-border-line-bg);
+            background-color: rgb(52, 52, 52);
         }
         
         .timeline .line {
-            width: 0.5rem;
+            width: 0.35rem;
             height: 100%;
         }
         
         .point {
             position: absolute;
             top: 0;
-            height: 2.5rem;
-            width: 2.5rem;
-            background-color: var(--primary-color);
-            border: 0.5rem solid;
-            border-color: var(--point-border-line-bg);
+            height: calc(var(--content-font-size) + 0.5rem);
+            width: calc(var(--content-font-size) + 0.5rem);
+            background-color: white;
+            border: 0.35rem solid;
+            border-color: rgb(52, 52, 52);
             border-radius: 50%;
             box-shadow: var(--point-box-shadow);
         }

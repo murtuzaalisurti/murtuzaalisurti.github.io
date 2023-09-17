@@ -5,7 +5,7 @@ const List = ({ children, list, section }: TListPropsWithChildren) => {
     if (section === "experience" || section === "projects") {
         return (
             <div>
-                <h3>{section.charAt(0).toUpperCase() + section.slice(1)}<hr /></h3>
+                <h3 className="section-heading">{section.charAt(0).toUpperCase() + section.slice(1)}<hr /></h3>
                 <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
