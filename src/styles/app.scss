@@ -91,7 +91,7 @@ main {
 
     .section, #bio {
         // * open issue https://github.com/withastro/astro/issues/8377
-        & > div:nth-child(1) {
+        & > h3:nth-child(1) {
 
             position: relative;
             display: flex;
@@ -138,7 +138,7 @@ main {
         
         .experience-data a {
             text-decoration: none;
-            color: black;
+            color: #262626;
         }
         
         .experience-data a:hover {
@@ -178,11 +178,14 @@ main {
         }
         
         .role {
-            // font-family: 'Rubik Variable', sans-serif;
             font-size: var(--content-font-size);
 
+            h4 {
+                font-family: 'Rubik Variable', sans-serif;
+            }
+
             & > h4, & > a {
-                font-weight: 800;
+                font-weight: 400;
             }
         }
         

@@ -10,10 +10,7 @@ export interface TList {
     }[]
 }
 
-export type TListPropsWithChildren = PropsWithChildren<TList>
-
 export interface TExperienceBlock {
-    section: string,
     list: {
         id: number,
         title: string,
@@ -24,4 +21,10 @@ export interface TExperienceBlock {
     }[]
 }
 
+export interface TSectionHeader {
+    heading: string
+}
+
+export type TListPropsWithChildren = PropsWithChildren<TList>
 export type TExperienceBlockWithChildren = PropsWithChildren<TExperienceBlock>
+export type TSectionHeaderWithChildren = PropsWithChildren<TSectionHeader>

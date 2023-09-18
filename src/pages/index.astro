@@ -1,9 +1,15 @@
 ---
 import '@fontsource-variable/montserrat';
 import '@fontsource-variable/rubik';
+
 import Layout from '../layouts/Layout.astro';
 import List from '../components/List';
 import ExperienceBlock from '../components/ExperienceBlock';
+import SectionHeader from '../components/SectionHeader';
+
+import { customAlphabet } from 'nanoid';
+
+const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 5);
 ---
 
 <Layout title="Murtuza">
@@ -12,43 +18,84 @@ import ExperienceBlock from '../components/ExperienceBlock';
 			<h1>
 				Murtuzaali Surti
 			</h1>
-			<p>Breaking and fixing code, with passion, as a software engineer. Bugs are on my most wanted list, and I write a lot. Wanna <a href="https://syntackle.live/write/">join me</a>?</p>
+			<p>Breaking and fixing code as a software engineer. Bugs are on my most wanted list. I write a lot. Wanna <a href="https://syntackle.live/write/">join me</a>?</p>
 		</section>
 		<section id="projects" class="section">
-			<List client:visible section='projects' list={[
-				{
-					id: 1,
-					title: "Syntackle",
-					desc: "Developer blog",
-					url: "https://syntackle.live"
-				},
-				{
-					id: 2,
-					title: "Contact Card Generator",
-					desc: "A simple contact card generator!",
-					url: "https://contact-card.vercel.app"
-				}
-			]} />
+			<SectionHeader heading='projects'>
+				<List client:visible section='projects' list={[
+					{
+						id: nanoid() as unknown as number,
+						title: "Syntackle",
+						desc: "Developer blog",
+						url: "https://syntackle.live"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "Contact Card Generator",
+						desc: "A simple contact card generator!",
+						url: "https://contact-card.vercel.app"
+					}
+				]} />
+			</SectionHeader>
 		</section>
 		<section id="experience" class="section">
-			<ExperienceBlock client:visible section="experience" list={[
-				{
-					id: 1,
-					title: "Software Engineer - Imriel",
-					role: "Working on an enterprise application related to legal entities. Using Docker, NestJS, PostgreSQL, leaning more towards the backend side.",
-					link: "https://contact-card.vercel.app",
-					startDate: "May, 2023",
-					endDate: "Present"
-				},
-				{
-					id: 2,
-					title: "SWE Intern - Imriel",
-					role: "React, MUI, Jest as a frontend software engineer!",
-					link: "https://contact-card.vercel.app",
-					startDate: "May, 2023",
-					endDate: "Present"
-				}
-			]} />
+			<SectionHeader heading='experience'>
+				<ExperienceBlock client:visible list={[
+					{
+						id: nanoid() as unknown as number,
+						title: "Software Engineer - Imriel",
+						role: "Working on an enterprise application related to legal entities. Using Docker, NestJS, PostgreSQL, leaning more towards the backend side.",
+						link: "https://contact-card.vercel.app",
+						startDate: "May, 2023",
+						endDate: "Present"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "SWE Intern - Imriel",
+						role: "React, MUI, Jest as a frontend software engineer!",
+						link: "https://contact-card.vercel.app",
+						startDate: "May, 2023",
+						endDate: "Present"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "Creator - Syntackle",
+						role: "Building a developer blog covering topics & tutorials related to the web, javascript, jamstack, serverless and much more.",
+						link: "https://syyntackle.live",
+						startDate: "Feb, 2022",
+						endDate: "Present"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "Content Creator - Aviyel",
+						role: "Technical Content Creator.",
+						link: "https://aviyel.com",
+						startDate: "Oct, 2021",
+						endDate: "Jan, 2023"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "Author - CSS Tricks",
+						role: "Wrote articles related to Web Design and Development.",
+						link: "https://css-tricks.com",
+						startDate: "July, 2021",
+						endDate: "Jun, 2023"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "Technical Writer - Draft",
+						role: "Freelance Content Writer.",
+						link: "https://draft.dev",
+						startDate: "Sept, 2021",
+						endDate: "Jun, 2022"
+					}
+				]} />
+			</SectionHeader>
+		</section>
+		<section id="contact" class="section">
+			<SectionHeader heading='contact'>
+				hello
+			</SectionHeader>
 		</section>
 	</main>
 </Layout>
