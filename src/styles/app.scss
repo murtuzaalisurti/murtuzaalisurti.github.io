@@ -64,7 +64,7 @@ hr {
     height: 0.25rem;
 }
 
-p, .listContainer .item {
+p, .listContainer .item, #socialList a {
     font-family: 'Rubik Variable', sans-serif;
     font-weight: 400;
     font-size: var(--content-font-size);
@@ -74,7 +74,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 3.5rem;
     padding: 4rem 2rem 2rem 2rem;
 
     #bio, .section {
@@ -84,23 +84,31 @@ main {
         width: 70%;
         max-width: 35rem;
 
+        .section-heading {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1rem;
+    
+            hr {
+                height: 0.25rem;
+                flex: 1 1 100%;
+            }
+        }
+
         @media screen and (max-width: 43em) {
             width: 90%;
         }
     }
 
-    .section, #bio {
-        // * open issue https://github.com/withastro/astro/issues/8377
-        & > h3:nth-child(1) {
-
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-
-            hr {
-                height: 0.25rem;
-                flex: 1 1 100%;
+    .section {
+        #socialList {
+            &, & span {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-family: 'Rubik Variable', sans-serif;
             }
         }
     }
@@ -116,7 +124,6 @@ main {
     #projects, #experience {
 
         .listContainer {
-            padding-top: 1rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -133,7 +140,7 @@ main {
             display: flex;
             flex-flow: column;
             width: 100%;
-            padding-top: 3rem;
+            padding-top: 2.5rem;
         }
         
         .experience-data a {

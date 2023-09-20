@@ -8,6 +8,7 @@ import ExperienceBlock from '../components/ExperienceBlock';
 import SectionHeader from '../components/SectionHeader';
 
 import { customAlphabet } from 'nanoid';
+import SocialList from '../components/SocialList';
 
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 5);
 ---
@@ -94,7 +95,21 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 		</section>
 		<section id="contact" class="section">
 			<SectionHeader heading='contact'>
-				hello
+				<p>Don't hesitate! Feel free to reach out to me! Or else, check out my CV.</p>
+			</SectionHeader>
+		</section>
+		<section id="socials" class="section">
+			<SectionHeader heading='socials'>
+				<SocialList list={[
+					{
+						text: "GitHub",
+						link: "https://github.com/murtuzaalisurti"
+					},
+					{
+						text: "Mastodon",
+						link: "https://mastodon.social/@murtuzaalisurti"
+					}
+				]}></SocialList>
 			</SectionHeader>
 		</section>
 	</main>
