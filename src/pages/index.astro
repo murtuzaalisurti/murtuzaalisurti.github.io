@@ -9,6 +9,7 @@ import SectionHeader from '../components/SectionHeader';
 
 import { customAlphabet } from 'nanoid';
 import SocialList from '../components/SocialList';
+import Footer from '../components/Footer';
 
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 5);
 ---
@@ -32,8 +33,20 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 					},
 					{
 						id: nanoid() as unknown as number,
-						title: "Contact Card Generator",
-						desc: "A simple contact card generator!",
+						title: "Wavy",
+						desc: "A text animation library.",
+						url: "https://www.npmjs.com/package/@murtuzaalisurti/wavy"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "QR Codes",
+						desc: "A QR code generator.",
+						url: "https://github.com/murtuzaalisurti/qr"
+					},
+					{
+						id: nanoid() as unknown as number,
+						title: "Contact Card",
+						desc: "Get a digital business card!",
 						url: "https://contact-card.vercel.app"
 					}
 				]} />
@@ -95,7 +108,7 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 		</section>
 		<section id="contact" class="section">
 			<SectionHeader heading='contact'>
-				<p>Don't hesitate! Feel free to reach out to me! Or else, check out my CV.</p>
+				<p>Don't hesitate! Feel free to reach out to <a title="hey.murtuza@gmail.com" href="mailto:hey.murtuza@gmail.com">me</a>.</p>
 			</SectionHeader>
 		</section>
 		<section id="socials" class="section">
@@ -108,9 +121,18 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 					{
 						text: "Mastodon",
 						link: "https://mastodon.social/@murtuzaalisurti"
+					},
+					{
+						text: "LinkedIn",
+						link: "https://linkedin.com/in/murtuzaali-surti/"
+					},
+					{
+						text: "Twitter (X)",
+						link: "https://twitter.com/@murtuza_surti"
 					}
 				]}></SocialList>
 			</SectionHeader>
 		</section>
 	</main>
+	<Footer />
 </Layout>

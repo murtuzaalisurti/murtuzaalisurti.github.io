@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const List = ({ list }: TListPropsWithChildren) => {
     return (
         <div>
-            <motion.div
+            <motion.ol
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
@@ -13,14 +13,13 @@ const List = ({ list }: TListPropsWithChildren) => {
                 {
                     list.map(entry => {
                         return (
-                            <div key={entry.id} className="item">
-                                <a href={entry.url}>{entry.title}</a>
-                                <p>{entry.desc}</p>
-                            </div>
+                            <li key={entry.id} className="item">
+                                <a href={entry.url}>{entry.title}</a> - {entry.desc}
+                            </li>
                         )
                     })
                 }
-            </motion.div>
+            </motion.ol>
         </div>
     )
 }

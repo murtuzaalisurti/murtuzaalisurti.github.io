@@ -55,6 +55,12 @@ h5 {
 a {
     font-family: inherit;
     width: fit-content;
+    color: #000000;
+}
+
+li {
+    list-style-position: inside;
+    list-style-type: disc;
 }
 
 hr {
@@ -106,6 +112,7 @@ main {
         #socialList {
             &, & span {
                 display: flex;
+                flex-flow: row wrap;
                 align-items: center;
                 gap: 0.5rem;
                 font-family: 'Rubik Variable', sans-serif;
@@ -127,13 +134,7 @@ main {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 0.7rem;
-
-            .item {
-                display: flex;
-                flex-direction: column;
-                gap: 0.1rem;
-            }
+            gap: 1rem;
         }
 
         .experience-data {
@@ -255,5 +256,17 @@ main {
             width: 100%;
             transform: scale(1.25);
         }
+    }
+}
+
+footer {
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        text-align: center;
     }
 }
