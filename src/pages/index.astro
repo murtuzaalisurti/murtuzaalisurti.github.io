@@ -1,7 +1,4 @@
 ---
-import '@fontsource-variable/montserrat';
-import '@fontsource-variable/rubik';
-
 import Layout from '../layouts/Layout.astro';
 import List from '../components/List';
 import ExperienceBlock from '../components/ExperienceBlock';
@@ -9,7 +6,6 @@ import SectionHeader from '../components/SectionHeader';
 
 import { customAlphabet } from 'nanoid';
 import SocialList from '../components/SocialList';
-import Footer from '../components/Footer';
 
 const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 5);
 ---
@@ -134,5 +130,4 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 			</SectionHeader>
 		</section>
 	</main>
-	<Footer />
 </Layout>

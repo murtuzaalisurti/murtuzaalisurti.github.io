@@ -4,10 +4,7 @@ import { motion } from "framer-motion";
 const List = ({ list }: TListPropsWithChildren) => {
     return (
         <div>
-            <motion.ol
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+            <ol
                 className="listContainer"
             >
                 {
@@ -19,7 +16,7 @@ const List = ({ list }: TListPropsWithChildren) => {
                         )
                     })
                 }
-            </motion.ol>
+            </ol>
         </div>
     )
 }

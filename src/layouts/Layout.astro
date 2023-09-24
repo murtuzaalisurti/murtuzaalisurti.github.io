@@ -1,23 +1,133 @@
---- 
-import "../styles/app.scss"
+---
+
+/** 
+ * ? importing fonts from npm package using @fontsource
+*/
+import "@fontsource-variable/montserrat";
+import "@fontsource-variable/rubik";
+
+import Footer from "../components/Footer";
+import "../styles/app.scss";
+
 interface Props {
-	title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+
+        <title>{title}</title>
+
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-SE7F2MMEPG"
+        ></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+
+            gtag("config", "G-SE7F2MMEPG");
+        </script>
+
+        <script is:inline>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start": new Date().getTime(),
+                    event: "gtm.js",
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-M54GD84");
+        </script>
+
+        <meta name="author" content="Murtuzaali Surti" />
+        <meta
+            name="description"
+            content="A software engineer specializing in JavaScript, currently focusing on Reactjs, Node, PostgreSQL, Docker, serverless, content creation & blogging!"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Murtuzaali Surti" />
+        <meta
+            property="og:description"
+            content="A software engineer specializing in JavaScript, currently focusing on Reactjs, Node, PostgreSQL, Docker, serverless, content creation & blogging!"
+        />
+        <meta property="og:url" content="https://murtuzaalisurti.github.io" />
+        <meta
+            property="og:image"
+            content="https://murtuzaalisurti.github.io/assets/banner.jpg"
+        />
+        <!-- https://raw.githubusercontent.com/murtuzaalisurti/murtuzaalisurti.github.io/master/assets/banner.jpg -->
+        <meta
+            property="og:image:secure_url"
+            content="https://murtuzaalisurti.github.io/assets/banner.jpg"
+        />
+        <meta property="og:image:width" content="1920" />
+        <meta property="og:image:height" content="1005" />
+        <meta property="og:image:alt" content="Hey, I'm Murtuza" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Murtuzaali Surti" />
+        <meta name="twitter:site" content="@murtuza_surti" />
+        <meta name="twitter:creator" content="@murtuza_surti" />
+        <meta
+            name="twitter:description"
+            content="A software engineer specializing in JavaScript, currently focusing on Reactjs, Node, PostgreSQL, Docker, serverless, content creation & blogging!"
+        />
+        <meta name="twitter:image:alt" content="Hey, I'm Murtuza" />
+        <meta
+            name="twitter:image"
+            content="https://murtuzaalisurti.github.io/assets/banner.jpg"
+        />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "headline": "Murtuzaali Surti",
+                "description": "A software engineer specializing in JavaScript, currently focusing on Reactjs, Node, PostgreSQL, Docker, serverless, content creation & blogging!",
+                "image": "https://murtuzaalisurti.github.io/assets/banner.jpg",
+                "url": "https://murtuzaalisurti.github.io",
+                "author": {
+                    "@type": "Person",
+                    "name": "Murtuzaali Surti",
+                    "url": "https://murtuzaalisurti.github.io"
+                }
+            }
+        </script>
+        <meta
+            name="google-site-verification"
+            content="SEuC_uqoA0M4t9hSN84c_ejUf5YumN3t8RWchHAIeKE"
+        />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+        <link
+            rel="shortcut icon"
+            type="image/png"
+            href="./assets/favicon.png"
+        />
+        <link rel="me" href="https://mastodon.social/@murtuzaalisurti" />
+    </head>
+    <body>
+        <noscript
+            ><iframe
+                src="https://www.googletagmanager.com/ns.html?id=GTM-M54GD84"
+                height="0"
+                width="0"
+                style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <slot />
+		<Footer />
+    </body>
 </html>

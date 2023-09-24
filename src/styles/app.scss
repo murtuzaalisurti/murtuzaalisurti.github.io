@@ -11,6 +11,11 @@ html {
     --point-shadow-hover: 0rem 0rem 0rem 0.35rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 0.65rem rgba(0, 0, 0, 0.06);
     --point-border-line-bg: black;
     line-height: 1.5;
+
+    @media screen and (max-width: 45em) {
+        --max-heading-font-size: 2.2rem;
+        --content-font-size: 1.05rem;
+    }
 }
 
 html:focus-within {
@@ -22,7 +27,12 @@ code {
         Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Montserrat Variable', sans-serif;
     font-weight: 850;
 }
@@ -61,6 +71,10 @@ a {
 li {
     list-style-position: inside;
     list-style-type: disc;
+
+    @media screen and (max-width: 45em) {
+        list-style-type: none;
+    }
 }
 
 hr {
@@ -70,7 +84,9 @@ hr {
     height: 0.25rem;
 }
 
-p, .listContainer .item, #socialList a {
+p,
+.listContainer .item,
+#socialList a {
     font-family: 'Rubik Variable', sans-serif;
     font-weight: 400;
     font-size: var(--content-font-size);
@@ -81,9 +97,10 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 3.5rem;
-    padding: 4rem 2rem 2rem 2rem;
+    padding: 4rem 1.5rem 2rem 1.5rem;
 
-    #bio, .section {
+    #bio,
+    .section {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -96,7 +113,7 @@ main {
             align-items: center;
             gap: 1rem;
             padding-bottom: 1rem;
-    
+
             hr {
                 height: 0.25rem;
                 flex: 1 1 100%;
@@ -110,7 +127,9 @@ main {
 
     .section {
         #socialList {
-            &, & span {
+
+            &,
+            & span {
                 display: flex;
                 flex-flow: row wrap;
                 align-items: center;
@@ -128,7 +147,8 @@ main {
         }
     }
 
-    #projects, #experience {
+    #projects,
+    #experience {
 
         .listContainer {
             display: flex;
@@ -142,120 +162,138 @@ main {
             flex-flow: column;
             width: 100%;
             padding-top: 2.5rem;
+
+            @media screen and (max-width: 45em) {
+                padding-top: 2rem;   
+            }
+
+            a {
+                text-decoration: none;
+                color: #262626;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .data-box {
+                height: fit-content;
+                width: 100%;
+                display: flex;
+                color: black;
+
+                .data {
+                    display: flex;
+                    flex-flow: column;
+                    justify-content: flex-start;
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 2.5rem 2rem 1rem;
+                    transform: translateY(-3%);
+
+                    .role {
+                        font-size: var(--content-font-size);
+            
+                        h4 {
+                            font-family: 'Rubik Variable', sans-serif;
+                        }
+            
+                        &>h4,
+                        &>a {
+                            font-weight: 400;
+                        }
+                    }
+            
+                    .time {
+                        font-size: calc(var(--content-font-size) - 0.3rem);
+                        font-style: italic;
+                        font-family: 'Rubik Variable', sans-serif;
+                    }
+            
+                    .exp-desc {
+                        padding-top: 1.2rem;
+                        padding-right: 5%;
+                        font-size: calc(var(--content-font-size) - 0.1rem);
+                        font-family: 'Rubik Variable', sans-serif;
+                        font-weight: 400;
+                        line-height: 1.5em;
+                    }
+
+                    @media screen and (max-width: 45em) {
+                        padding-right: 0;
+                        padding-left: 1.2rem;
+                    }
+                }
+            }
+            
         }
-        
-        .experience-data a {
-            text-decoration: none;
-            color: #262626;
-        }
-        
-        .experience-data a:hover {
-            text-decoration: underline;
-        }
-        
-        .data-box {
-            height: fit-content;
-            width: 100%;
-            display: flex;
-            color: black;
-        }
-        
+
+
         .timeline {
             width: 10%;
             position: relative;
             display: flex;
             justify-content: center;
-        }
-        
-        .draw {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-        
-        .data {
-            display: flex;
-            flex-flow: column;
-            justify-content: flex-start;
-            width: 100%;
-            height: 100%;
-            padding: 0 2.5rem 2rem 1rem;
-            transform: translateY(-3%);
-        }
-        
-        .role {
-            font-size: var(--content-font-size);
 
-            h4 {
-                font-family: 'Rubik Variable', sans-serif;
+            .draw {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+    
+            .line,
+            .point {
+                background-color: rgb(52, 52, 52);
             }
 
-            & > h4, & > a {
-                font-weight: 400;
+            .line {
+                width: 0.35rem;
+                height: 100%;
+            }
+
+            .point {
+                position: absolute;
+                top: 0;
+                height: calc(var(--content-font-size) + 0.5rem);
+                width: calc(var(--content-font-size) + 0.5rem);
+                background-color: white;
+                border: 0.35rem solid;
+                border-color: rgb(52, 52, 52);
+                border-radius: 50%;
+                box-shadow: var(--point-box-shadow);
+
+                a {
+                    display: inline-block;
+                    height: 100%;
+                    width: 100%;
+                    transform: scale(1.25);
+                }
+
+                &:hover {
+                    background-color: var(--point-border-line-bg);
+                    animation: point_shadow 0.7s linear infinite alternate both;
+                }
+
+                @media screen and (max-width: 45em) {
+                    height: calc(var(--content-font-size) + 0.5rem);
+                    width: calc(var(--content-font-size) + 0.5rem);
+                }
             }
         }
-        
-        .time {
-            font-size: calc(var(--content-font-size) - 0.3rem);
-            font-style: italic;
-            font-family: 'Rubik Variable', sans-serif;
-        }
-        
-        .exp-desc {
-            padding-top: 1.2rem;
-            padding-right: 5%;
-            font-size: calc(var(--content-font-size) - 0.1rem);
-            font-family: 'Rubik Variable', sans-serif;
-            font-weight: 400;
-            line-height: 1.5em;
-        }
-        
-        .timeline .line,
-        .point {
-            background-color: rgb(52, 52, 52);
-        }
-        
-        .timeline .line {
-            width: 0.35rem;
-            height: 100%;
-        }
-        
-        .point {
-            position: absolute;
-            top: 0;
-            height: calc(var(--content-font-size) + 0.5rem);
-            width: calc(var(--content-font-size) + 0.5rem);
-            background-color: white;
-            border: 0.35rem solid;
-            border-color: rgb(52, 52, 52);
-            border-radius: 50%;
-            box-shadow: var(--point-box-shadow);
-        }
-        
-        .point:hover {
-            background-color: var(--point-border-line-bg);
-            animation: point_shadow 0.7s linear infinite alternate both;
-        }
-        
+
         @keyframes point_shadow {
             0% {
                 box-shadow: var(--point-box-shadow);
             }
-        
+
             100% {
                 box-shadow: var(--point-shadow-hover);
             }
-        
+
         }
-        
-        .point a {
-            display: inline-block;
-            height: 100%;
-            width: 100%;
-            transform: scale(1.25);
-        }
+
     }
 }
 
