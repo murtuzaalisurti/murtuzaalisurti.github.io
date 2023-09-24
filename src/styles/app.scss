@@ -4,22 +4,87 @@
     box-sizing: border-box;
 }
 
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 html {
     --max-heading-font-size: 2.5rem;
     --content-font-size: 1.2rem;
-    --point-box-shadow: 0rem 0rem 0rem 0.3rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 0.5rem rgba(0, 0, 0, 0.06);
-    --point-shadow-hover: 0rem 0rem 0rem 0.35rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 0.65rem rgba(0, 0, 0, 0.06);
-    --point-border-line-bg: black;
     line-height: 1.5;
 
+    /** 
+    * ! for firefox 
+    */
+    scrollbar-width: thin;
+    scrollbar-color: rgb(170, 170, 170) rgb(94, 94, 94);
+    
     @media screen and (max-width: 45em) {
         --max-heading-font-size: 2.2rem;
         --content-font-size: 1.05rem;
     }
 }
 
+body {
+    --point-box-shadow: 0rem 0rem 0rem 0.3rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 0.5rem rgba(0, 0, 0, 0.06);
+    --point-shadow-hover: 0rem 0rem 0rem 0.4rem rgba(0, 0, 0, 0.12), 0rem 0rem 0rem 0.75rem rgba(0, 0, 0, 0.06);
+    --point-border-line-bg: rgb(28, 28, 28);
+
+    --primary-text-color: rgb(28, 28, 28);
+    --primary-background-color: rgb(246, 246, 246);
+    --tertiary-color: rgba(0, 0, 0, 0.15);
+    --heading-text-color: rgb(20, 20, 20);
+
+    @media (prefers-color-scheme: dark) {
+        --point-box-shadow: 0rem 0rem 0rem 0.3rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 0.5rem rgba(255, 255, 255, 0.10);
+        --point-shadow-hover: 0rem 0rem 0rem 0.4rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 0.75rem rgba(255, 255, 255, 0.10);
+        --point-border-line-bg: rgb(190, 190, 190);
+        
+        --primary-text-color: rgb(190, 190, 190);
+        --primary-background-color: rgb(28, 28, 28);
+        --tertiary-color: rgba(255, 255, 255, 0.15);
+        --heading-text-color: rgb(198, 198, 198);
+    }
+
+    background-color: var(--primary-background-color);
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+
+    &::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--tertiary-color);
+        border-radius: 0.7rem;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: var(--primary-background-color);
+        border-radius: 0.7rem;
+    }
+
+}
+
 html:focus-within {
     scroll-behavior: smooth;
+}
+
+::selection {
+    color: var(--primary-background-color);
+    background-color: var(--primary-text-color);
 }
 
 code {
@@ -33,6 +98,7 @@ h3,
 h4,
 h5,
 h6 {
+    color: var(--heading-text-color);
     font-family: 'Montserrat Variable', sans-serif;
     font-weight: 850;
 }
@@ -65,7 +131,7 @@ h5 {
 a {
     font-family: inherit;
     width: fit-content;
-    color: #000000;
+    color: var(--primary-text-color);
 }
 
 li {
@@ -78,7 +144,7 @@ li {
 }
 
 hr {
-    background: rgba($color: #000000, $alpha: 0.15);
+    background: var(--tertiary-color);
     outline: none;
     border: none;
     height: 0.25rem;
@@ -87,6 +153,7 @@ hr {
 p,
 .listContainer .item,
 #socialList a {
+    color: var(--primary-text-color);
     font-family: 'Rubik Variable', sans-serif;
     font-weight: 400;
     font-size: var(--content-font-size);
@@ -169,7 +236,7 @@ main {
 
             a {
                 text-decoration: none;
-                color: #262626;
+                color: var(--primary-text-color);
 
                 &:hover {
                     text-decoration: underline;
@@ -180,7 +247,7 @@ main {
                 height: fit-content;
                 width: 100%;
                 display: flex;
-                color: black;
+                color: var(--primary-text-color);
 
                 .data {
                     display: flex;
@@ -245,7 +312,7 @@ main {
     
             .line,
             .point {
-                background-color: rgb(52, 52, 52);
+                background-color: var(--point-border-line-bg);
             }
 
             .line {
@@ -258,9 +325,9 @@ main {
                 top: 0;
                 height: calc(var(--content-font-size) + 0.5rem);
                 width: calc(var(--content-font-size) + 0.5rem);
-                background-color: white;
+                background-color: var(--primary-background-color);
                 border: 0.35rem solid;
-                border-color: rgb(52, 52, 52);
+                border-color: var(--point-border-line-bg);
                 border-radius: 50%;
                 box-shadow: var(--point-box-shadow);
 
