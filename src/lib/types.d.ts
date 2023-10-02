@@ -22,7 +22,8 @@ export interface TExperienceBlock {
 }
 
 export interface TSectionHeader {
-    heading: string
+    heading: string,
+    emoji: string
 }
 
 export interface TSocialList {

@@ -16,10 +16,10 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 			<h1>
 				Murtuzaali Surti
 			</h1>
-			<p>Breaking and fixing code as a software engineer. Bugs are on my most wanted list. I write a lot. Wanna <a href="https://syntackle.live/write/">join me</a>?</p>
+			<p>Breaking and fixing code as a software engineer. Bugs are on my most wanted list. I write a lot. Wanna <a href="https://syntackle.live/author/murtuzaalisurti/">join me</a>?</p>
 		</section>
 		<section id="projects" class="section">
-			<SectionHeader heading='projects'>
+			<SectionHeader heading='projects' emoji={'🚀'}>
 				<List client:visible section='projects' list={[
 					{
 						id: nanoid() as unknown as number,
@@ -49,7 +49,7 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 			</SectionHeader>
 		</section>
 		<section id="experience" class="section">
-			<SectionHeader heading='experience'>
+			<SectionHeader heading='experience' emoji={'🙃'}>
 				<ExperienceBlock client:visible list={[
 					{
 						id: nanoid() as unknown as number,
@@ -102,13 +102,36 @@ const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 				]} />
 			</SectionHeader>
 		</section>
+		<section id="uses" class="section">
+			<SectionHeader heading='uses' emoji={'🔮'}>
+				<p>What I use on a daily basis for software development:</p>
+				<div class="category">
+					<h4>Editor</h4>
+					<p>You guessed it right, it's VSCode! What I love about it is the capability to be simple yet powerful at the same time.</p>
+				</div>
+				<div class="category">
+					<h4>Terminal</h4>
+					<p>I use <em>bash</em> inside VSCode's integrated terminal for the most part but I also switch between <a href="https://github.com/vercel/hyper">Hyper</a> and the new Windows Terminal.</p>
+				</div>
+				<div class="category">
+					<h4>Themes</h4>
+					<p>For my editor, the award goes to <em>One Dark Pro Darker</em> for the most eye-pleasing color pallette.</p>
+					<p>For the terminal I went for Oh My Posh's <a href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json">stelbent minimal</a> theme. It's a pretty good theme displaying crucial information.</p>
+				</div>
+				<div class="category">
+					<h4>Fonts</h4>
+					<p>Personally I love Apple's SF Mono font, so I found a <a href="https://github.com/epk/SF-Mono-Nerd-Font">nerd font</a> for windows which is the patched SF Mono font.</p>
+					<p>JetBrains Mono takes the second place. I was using it for a long time before switching to SF Mono and by far it's the most compact monospace font I have ever used.</p>
+				</div>
+			</SectionHeader>
+		</section>
 		<section id="contact" class="section">
-			<SectionHeader heading='contact'>
-				<p>Don't hesitate! Feel free to reach out to <a title="hey.murtuza@gmail.com" href="mailto:hey.murtuza@gmail.com">me</a>.</p>
+			<SectionHeader heading='contact' emoji={'🤙'}>
+				<p>Don't hesitate! Feel free to reach out to <a title="hey.murtuza@gmail.com" href="mailto:hey.murtuza@gmail.com">me</a>. I also run a blog, so if you are interested in writing anything about web technologies, then <a href="https://syntackle.live/write/">pitch your ideas</a>!</p>
 			</SectionHeader>
 		</section>
 		<section id="socials" class="section">
-			<SectionHeader heading='socials'>
+			<SectionHeader heading='socials' emoji={'☕'}>
 				<SocialList list={[
 					{
 						text: "GitHub",
