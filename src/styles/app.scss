@@ -185,6 +185,11 @@ main {
                 height: 0.25rem;
                 flex: 1 1 100%;
             }
+
+            .headingAnchorLink {
+                font-size: var(--content-font-size);
+                align-self: flex-start;
+            }
         }
 
         @media screen and (max-width: 43em) {
