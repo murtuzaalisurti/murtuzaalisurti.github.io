@@ -1,162 +1,255 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import List from '../components/List';
-import ExperienceBlock from '../components/ExperienceBlock';
-import SectionHeader from '../components/SectionHeader';
+import Layout from "../layouts/Layout.astro";
+import List from "../components/List";
+import ExperienceBlock from "../components/ExperienceBlock.astro";
+import SectionHeader from "../components/SectionHeader";
 
-import { customAlphabet } from 'nanoid';
-import SocialList from '../components/SocialList';
+import { customAlphabet } from "nanoid";
+import SocialList from "../components/SocialList";
 
-const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 5);
+const nanoid = customAlphabet(
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    5
+);
 ---
 
 <Layout title="Murtuzaali Surti">
-	<main>
-		<section id="bio">
-			<h1>
-				Murtuzaali Surti
-			</h1>
-			<p>Breaking and fixing code as a software engineer. Bugs are on my most wanted list. I write a lot. Wanna <a href="https://syntackle.live/author/murtuzaalisurti/">join me</a>?</p>
-		</section>
-		<section id="projects" class="section">
-			<SectionHeader heading='projects' emoji={'🚀'}>
-				<List client:visible section='projects' list={[
-					{
-						id: nanoid() as unknown as number,
-						title: "Syntackle",
-						desc: "Developer blog",
-						url: "https://syntackle.live"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "Freed",
-						desc: "Collection of dev rss feeds",
-						url: "https://feedsfordevs.netlify.app/"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "Wavy",
-						desc: "Text animation library.",
-						url: "https://www.npmjs.com/package/@murtuzaalisurti/wavy"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "QR Codes",
-						desc: "QR code generator.",
-						url: "https://github.com/murtuzaalisurti/qr"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "Contact Card",
-						desc: "Get a digital business card!",
-						url: "https://contact-card.vercel.app?ref=portfolio"
-					}
-				]} />
-			</SectionHeader>
-		</section>
-		<section id="experience" class="section">
-			<SectionHeader heading='experience' emoji={'🙃'}>
-				<ExperienceBlock client:visible list={[
-					{
-						id: nanoid() as unknown as number,
-						title: "Software Engineer - Imriel",
-						role: "Working on an enterprise application related to legal entities. Using Docker, NestJS, PostgreSQL, leaning more towards the backend side.",
-						link: "https://imriel.com",
-						startDate: "May, 2023",
-						endDate: "Present"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "SWE Intern - Imriel",
-						role: "React, MUI, Jest as a frontend software engineer!",
-						link: "https://imriel.com",
-						startDate: "Jan, 2023",
-						endDate: "May, 2023"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "Creator - Syntackle",
-						role: "Building a developer blog covering topics & tutorials related to the web, javascript, jamstack, serverless and much more.",
-						link: "https://syntackle.live",
-						startDate: "Feb, 2022",
-						endDate: "Present"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "Content Creator - Aviyel",
-						role: "Technical Content Creator.",
-						link: "https://aviyel.com/@murtuzaalisurti",
-						startDate: "Oct, 2021",
-						endDate: "Jan, 2023"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "Author - CSS Tricks",
-						role: "Wrote articles related to Web Design and Development.",
-						link: "https://css-tricks.com/author/murtuzaalisurti/",
-						startDate: "Jul, 2021",
-						endDate: "Jun, 2023"
-					},
-					{
-						id: nanoid() as unknown as number,
-						title: "Technical Writer - Draft",
-						role: "Freelance Content Writer.",
-						link: "https://draft.dev",
-						startDate: "Sep, 2021",
-						endDate: "Jun, 2022"
-					}
-				]} />
-			</SectionHeader>
-		</section>
-		<section id="uses" class="section">
-			<SectionHeader heading='uses' emoji={'🔮'}>
-				<p>What I use on a daily basis for software development:</p>
-				<div class="category">
-					<h4>Editor</h4>
-					<p>You guessed it right, it's VSCode! What I love about it is the capability to be simple yet powerful at the same time.</p>
-				</div>
-				<div class="category">
-					<h4>Terminal</h4>
-					<p>I use <em>bash</em> inside VSCode's integrated terminal for the most part but I also switch between <a href="https://github.com/vercel/hyper">Hyper</a> and the new Windows Terminal.</p>
-				</div>
-				<div class="category">
-					<h4>Themes</h4>
-					<p>For my editor, the award goes to <em>One Dark Pro Darker</em> for the most eye-pleasing color pallette.</p>
-					<p>For the terminal I went for Oh My Posh's <a href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json">stelbent minimal</a> theme. It's a pretty good theme displaying crucial information.</p>
-				</div>
-				<div class="category">
-					<h4>Fonts</h4>
-					<p>Personally I love Apple's SF Mono font, so I found a <a href="https://github.com/epk/SF-Mono-Nerd-Font">nerd font</a> for windows which is the patched SF Mono font.</p>
-					<p>JetBrains Mono takes the second place. I was using it for a long time before switching to SF Mono and by far it's the most compact monospace font I have ever used.</p>
-				</div>
-			</SectionHeader>
-		</section>
-		<section id="contact" class="section">
-			<SectionHeader heading='contact' emoji={'🤙'}>
-				<p>Don't hesitate! Feel free to reach out to <a title="hey.murtuza@gmail.com" href="mailto:hey.murtuza@gmail.com">me</a>. I also run a blog, so if you are interested in writing anything about web technologies, then <a href="https://syntackle.live/write/">pitch your ideas</a>!</p>
-			</SectionHeader>
-		</section>
-		<section id="socials" class="section">
-			<SectionHeader heading='socials' emoji={'🥇'}>
-				<SocialList list={[
-					{
-						text: "GitHub",
-						link: "https://github.com/murtuzaalisurti"
-					},
-					{
-						text: "Mastodon",
-						link: "https://mastodon.social/@murtuzaalisurti"
-					},
-					{
-						text: "LinkedIn",
-						link: "https://linkedin.com/in/murtuzaali-surti/"
-					},
-					{
-						text: "Twitter (X)",
-						link: "https://twitter.com/@murtuza_surti"
-					}
-				]}></SocialList>
-			</SectionHeader>
-		</section>
-	</main>
+    <main>
+        <section id="bio">
+            <h1>Murtuzaali Surti</h1>
+            <p>
+                Breaking and fixing code as a software engineer. Bugs are on my
+                most wanted list. I write a lot. Wanna <a
+                    href="https://syntackle.live/author/murtuzaalisurti/"
+                    >join me</a
+                >?
+            </p>
+        </section>
+        <section id="projects" class="section">
+            <SectionHeader heading="projects" emoji={"🚀"}>
+                <List
+                    client:visible
+                    section="projects"
+                    list={[
+                        {
+                            id: nanoid() as unknown as number,
+                            title: "Syntackle",
+                            desc: "Developer blog",
+                            url: "https://syntackle.live",
+                        },
+                        {
+                            id: nanoid() as unknown as number,
+                            title: "Freed",
+                            desc: "Collection of dev rss feeds",
+                            url: "https://feedsfordevs.netlify.app/",
+                        },
+                        {
+                            id: nanoid() as unknown as number,
+                            title: "Wavy",
+                            desc: "Text animation library.",
+                            url: "https://www.npmjs.com/package/@murtuzaalisurti/wavy",
+                        },
+                        {
+                            id: nanoid() as unknown as number,
+                            title: "QR Codes",
+                            desc: "QR code generator.",
+                            url: "https://github.com/murtuzaalisurti/qr",
+                        },
+                        {
+                            id: nanoid() as unknown as number,
+                            title: "Contact Card",
+                            desc: "Get a digital business card!",
+                            url: "https://contact-card.vercel.app?ref=portfolio",
+                        },
+                    ]}
+                />
+            </SectionHeader>
+        </section>
+        <section id="experience" class="section">
+            <SectionHeader heading="experience" emoji={"🙃"}>
+                <ExperienceBlock
+                    list={[
+                        {
+                            id: nanoid(),
+                            title: "Software Engineer - Imriel",
+                            role: "Working on an enterprise application related to legal entities. Using Docker, NestJS, PostgreSQL, leaning more towards the backend side.",
+                            link: "https://imriel.com",
+                            startDate: "May, 2023",
+                            endDate: "Present"
+                        },
+                        {
+                            id: nanoid(),
+                            title: "SWE Intern - Imriel",
+                            role: "React, MUI, Jest as a frontend software engineer!",
+                            link: "https://imriel.com",
+                            startDate: "Jan, 2023",
+                            endDate: "May, 2023",
+							showcase: [
+								{
+									id: nanoid(),
+									link: "https://imriel.com",
+								}
+							]
+                        },
+                        {
+                            id: nanoid(),
+                            title: "Creator - Syntackle",
+                            role: "Building a developer blog covering topics & tutorials related to the web, javascript, jamstack, serverless and much more.",
+                            link: "https://syntackle.live",
+                            startDate: "Feb, 2022",
+                            endDate: "Present",
+                            showcase: [
+                                {
+                                    id: nanoid(),
+                                    link: "https://syntackle.live/author/murtuzaalisurti/",
+                                },
+								{
+									id: nanoid(),
+									link: "https://syntackle.live/blog/builder-io-s-partytown-with-11ty-lN6X2w/"
+								},
+								{
+									id: nanoid(),
+									link: "https://syntackle.live/blog/websockets-101-JiIrdn/"
+								}
+                            ],
+                        },
+                        {
+                            id: nanoid(),
+                            title: "Content Creator - Aviyel",
+                            role: "Gave a virtual talk and got featured in Coffee & Code event organized by Aviyel.",
+                            link: "https://aviyel.com/@murtuzaalisurti",
+                            startDate: "Oct, 2021",
+                            endDate: "Jan, 2023",
+							showcase: [
+								{
+									id: nanoid(),
+									link: "https://youtu.be/CFoJ5dpAZRc?feature=shared"
+								}
+							]
+                        },
+                        {
+                            id: nanoid(),
+                            title: "Author - CSS Tricks",
+                            role: "Wrote articles related to Web Design and Development.",
+                            link: "https://css-tricks.com/author/murtuzaalisurti/",
+                            startDate: "Jul, 2021",
+                            endDate: "Jun, 2023",
+							showcase: [
+								{
+									id: nanoid(),
+									link: "https://css-tricks.com/typewriter-animation-that-handles-anything-you-throw-at-it/"
+								},
+								{
+									id: nanoid(),
+									link: "https://css-tricks.com/author/murtuzaalisurti/"
+								}
+							]
+                        },
+                        {
+                            id: nanoid(),
+                            title: "Technical Writer - Draft",
+                            role: "Freelance Content Writer.",
+                            link: "https://draft.dev",
+                            startDate: "Sep, 2021",
+                            endDate: "Jun, 2022",
+							showcase: [
+								{
+									id: nanoid(),
+									link: "https://rewind.com/blog/how-to-restore-deleted-branch-commit-git-reflog/"
+								}
+							]
+                        },
+                    ]}
+                />
+            </SectionHeader>
+        </section>
+        <section id="uses" class="section">
+            <SectionHeader heading="uses" emoji={"🔮"}>
+                <p>What I use on a daily basis for software development:</p>
+                <div class="category">
+                    <h4>Editor</h4>
+                    <p>
+                        You guessed it right, it's VSCode! What I love about it
+                        is the capability to be simple yet powerful at the same
+                        time.
+                    </p>
+                </div>
+                <div class="category">
+                    <h4>Terminal</h4>
+                    <p>
+                        I use <em>bash</em> inside VSCode's integrated terminal
+                        for the most part but I also switch between <a
+                            href="https://github.com/vercel/hyper">Hyper</a
+                        > and the new Windows Terminal.
+                    </p>
+                </div>
+                <div class="category">
+                    <h4>Themes</h4>
+                    <p>
+                        For my editor, the award goes to <em
+                            >One Dark Pro Darker</em
+                        > for the most eye-pleasing color pallette.
+                    </p>
+                    <p>
+                        For the terminal I went for Oh My Posh's <a
+                            href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json"
+                            >stelbent minimal</a
+                        > theme. It's a pretty good theme displaying crucial
+                        information.
+                    </p>
+                </div>
+                <div class="category">
+                    <h4>Fonts</h4>
+                    <p>
+                        Personally I love Apple's SF Mono font, so I found a <a
+                            href="https://github.com/epk/SF-Mono-Nerd-Font"
+                            >nerd font</a
+                        > for windows which is the patched SF Mono font.
+                    </p>
+                    <p>
+                        JetBrains Mono takes the second place. I was using it
+                        for a long time before switching to SF Mono and by far
+                        it's the most compact monospace font I have ever used.
+                    </p>
+                </div>
+            </SectionHeader>
+        </section>
+        <section id="contact" class="section">
+            <SectionHeader heading="contact" emoji={"🤙"}>
+                <p>
+                    Don't hesitate! Feel free to reach out to <a
+                        title="hey.murtuza@gmail.com"
+                        href="mailto:hey.murtuza@gmail.com">me</a
+                    >. I also run a blog, so if you are interested in writing
+                    anything about web technologies, then <a
+                        href="https://syntackle.live/write/">pitch your ideas</a
+                    >!
+                </p>
+            </SectionHeader>
+        </section>
+        <section id="socials" class="section">
+            <SectionHeader heading="socials" emoji={"🥇"}>
+                <SocialList
+                    list={[
+                        {
+                            text: "GitHub",
+                            link: "https://github.com/murtuzaalisurti",
+                        },
+                        {
+                            text: "Mastodon",
+                            link: "https://mastodon.social/@murtuzaalisurti",
+                        },
+                        {
+                            text: "LinkedIn",
+                            link: "https://linkedin.com/in/murtuzaali-surti/",
+                        },
+                        {
+                            text: "Twitter (X)",
+                            link: "https://twitter.com/@murtuza_surti",
+                        },
+                    ]}
+                />
+            </SectionHeader>
+        </section>
+    </main>
 </Layout>

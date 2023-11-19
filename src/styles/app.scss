@@ -268,7 +268,7 @@ main {
                     width: 100%;
                     height: 100%;
                     padding: 0 2.5rem 2rem 1rem;
-                    transform: translateY(-3%);
+                    transform: translateY(-2%);
 
                     .role {
                         font-size: var(--content-font-size);
@@ -297,6 +297,58 @@ main {
                         font-weight: 400;
                         line-height: 1.5em;
                     }
+
+                    .showcase-container {
+                        display: flex;
+                        gap: 1rem;
+                        flex-flow: row wrap;
+                        padding: 1rem 0 0 0;
+
+                        @media screen and (max-width: 45em) {
+                            flex-flow: column;
+                        }
+                        
+                        .showcase {
+                            display: flex;
+                            flex-flow: column;
+                            width: 45%;
+
+                            @media screen and (max-width: 45em) {
+                                width: 90%;
+                            }
+    
+                            .link-preview {
+                                max-width: 16rem;
+                                overflow: hidden;
+                                border-radius: 0.5rem;
+                                background: var(--tertiary-color);
+    
+                                .link-text {
+                                    padding: 0.1rem 1rem 0.5rem 1rem;
+                                    font-family: 'Rubik Variable', sans-serif;
+                                    
+                                    @media screen and (max-width: 45em) {
+                                        padding: 0.3rem 1rem 0.8rem 1rem;
+                                    }
+
+                                    a {
+                                        font-size: calc(var(--content-font-size) - 0.4rem);
+                                        color: var(--primary-text-color);
+
+                                        @media screen and (max-width: 45em) {
+                                            font-size: calc(var(--content-font-size) - 0.3rem);
+                                        }
+                                    }
+                                }
+    
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                        }
+                    }
+
 
                     @media screen and (max-width: 45em) {
                         padding-right: 0;

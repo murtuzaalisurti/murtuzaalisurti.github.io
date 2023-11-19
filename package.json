@@ -33,6 +33,7 @@
     "luxon": "^3.4.4",
     "million": "^2.6.0-beta.12",
     "nanoid": "^5.0.1",
+    "open-graph-scraper": "^6.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.66.1"
