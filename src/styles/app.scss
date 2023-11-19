@@ -46,6 +46,7 @@ body {
     --primary-background-color: rgb(246, 246, 246);
     --tertiary-color: rgba(0, 0, 0, 0.15);
     --heading-text-color: rgb(20, 20, 20);
+    --og-card-bg: rgba(0, 0, 0, 0.10);
 
     @media (prefers-color-scheme: dark) {
         --point-box-shadow: 0rem 0rem 0rem 0.3rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 0.5rem rgba(255, 255, 255, 0.10);
@@ -56,6 +57,7 @@ body {
         --primary-background-color: rgb(28, 28, 28);
         --tertiary-color: rgba(255, 255, 255, 0.15);
         --heading-text-color: rgb(198, 198, 198);
+        --og-card-bg: rgba(255, 255, 255, 0.05);
     }
 
     background-color: var(--primary-background-color);
@@ -321,7 +323,7 @@ main {
                                 max-width: 16rem;
                                 overflow: hidden;
                                 border-radius: 0.5rem;
-                                background: var(--tertiary-color);
+                                background: var(--og-card-bg);
     
                                 .link-text {
                                     padding: 0.1rem 1rem 0.5rem 1rem;
