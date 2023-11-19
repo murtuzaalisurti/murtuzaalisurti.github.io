@@ -10,17 +10,6 @@ export interface TList {
     }[]
 }
 
-export interface TExperienceBlock {
-    list: {
-        id: number,
-        title: string,
-        link: string,
-        startDate: string,
-        endDate: string,
-        role: string
-    }[]
-}
-
 export interface TSectionHeader {
     heading: string,
     emoji: string
@@ -34,6 +23,5 @@ export interface TSocialList {
 }
 
 export type TListPropsWithChildren = PropsWithChildren<TList>
-export type TExperienceBlockWithChildren = PropsWithChildren<TExperienceBlock>
 export type TSectionHeaderWithChildren = PropsWithChildren<TSectionHeader>
 export type TSocialListWithChildren = PropsWithChildren<TSocialList>
