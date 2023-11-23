@@ -304,7 +304,7 @@ main {
                         display: flex;
                         gap: 1rem;
                         flex-flow: row wrap;
-                        padding: 1rem 0 0 0;
+                        padding: 1.2rem 0 0 0;
 
                         @media screen and (max-width: 45em) {
                             flex-flow: column;
@@ -328,6 +328,7 @@ main {
                                 .link-text {
                                     padding: 0.1rem 1rem 0.5rem 1rem;
                                     font-family: 'Rubik Variable', sans-serif;
+                                    line-height: normal;
                                     
                                     @media screen and (max-width: 45em) {
                                         padding: 0.3rem 1rem 0.8rem 1rem;
