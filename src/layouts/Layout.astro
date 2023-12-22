@@ -127,7 +127,18 @@ const { title } = Astro.props;
                 width="0"
                 style="display:none;visibility:hidden"></iframe>
         </noscript>
+        {
+            [10, 11, 0, 1].includes(new Date().getMonth()) && (
+                <snow-fall mode="page" style="--snow-fall-size: 10px;" count="70"></snow-fall>
+            )
+        }
         <slot />
 		<Footer />
     </body>
 </html>
+
+<script>
+    await import.meta.glob("../../node_modules/@zachleat/snow-fall/snow-fall.js", {
+        eager: true
+    })
+</script>
