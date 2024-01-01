@@ -144,5 +144,5 @@ const { title } = Astro.props;
 </script>
 
 <script>
-    (document.querySelector("footer span") as HTMLElement).innerText = new Date().getFullYear() as unknown as string
+    (document.querySelector("footer #currentYear") as HTMLElement).innerText = new Date().getFullYear() as unknown as string
 </script>
