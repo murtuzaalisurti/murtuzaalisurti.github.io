@@ -142,3 +142,7 @@ const { title } = Astro.props;
         eager: true
     })
 </script>
+
+<script>
+    (document.querySelector("footer span") as HTMLElement).innerText = new Date().getFullYear() as unknown as string
+</script>
