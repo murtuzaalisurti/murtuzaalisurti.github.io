@@ -25,12 +25,6 @@ html {
     --content-font-size: 1.2rem;
     line-height: 1.5;
 
-    /** 
-    * ! for firefox 
-    */
-    scrollbar-width: thin;
-    scrollbar-color: rgb(170, 170, 170) rgb(94, 94, 94);
-    
     @media screen and (max-width: 45em) {
         --max-heading-font-size: 2.2rem;
         --content-font-size: 1.05rem;
@@ -52,7 +46,7 @@ body {
         --point-box-shadow: 0rem 0rem 0rem 0.3rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 0.5rem rgba(255, 255, 255, 0.10);
         --point-shadow-hover: 0rem 0rem 0rem 0.4rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 0.75rem rgba(255, 255, 255, 0.10);
         --point-border-line-bg: rgb(190, 190, 190);
-        
+
         --primary-text-color: rgb(190, 190, 190);
         --primary-background-color: rgb(28, 28, 28);
         --tertiary-color: rgba(255, 255, 255, 0.15);
@@ -67,17 +61,28 @@ body {
     &::-webkit-scrollbar {
         width: 0.5rem;
     }
-    
+
     &::-webkit-scrollbar-thumb {
         background-color: var(--tertiary-color);
         border-radius: 0.7rem;
     }
-    
+
     &::-webkit-scrollbar-track {
         background-color: var(--primary-background-color);
         border-radius: 0.7rem;
     }
 
+}
+
+/* Browsers without `::-webkit-scrollbar-*` support */
+@supports (not selector(::-webkit-scrollbar)) {
+    html {
+        /** 
+        * ! for firefox 
+        */
+        scrollbar-width: thin;
+        scrollbar-color: rgb(170, 170, 170) rgb(94, 94, 94);
+    }
 }
 
 html:focus-within {
@@ -203,6 +208,7 @@ main {
         gap: 1.3rem;
 
         #socialList {
+
             &,
             & span {
                 display: flex;
@@ -245,7 +251,7 @@ main {
             padding-top: 2.5rem;
 
             @media screen and (max-width: 45em) {
-                padding-top: 2rem;   
+                padding-top: 2rem;
             }
 
             a {
@@ -274,23 +280,23 @@ main {
 
                     .role {
                         font-size: var(--content-font-size);
-            
+
                         h4 {
                             font-family: 'Rubik Variable', sans-serif;
                         }
-            
+
                         &>h4,
                         &>a {
                             font-weight: 400;
                         }
                     }
-            
+
                     .time {
                         font-size: calc(var(--content-font-size) - 0.3rem);
                         font-style: italic;
                         font-family: 'Rubik Variable', sans-serif;
                     }
-            
+
                     .exp-desc {
                         padding-top: 1.2rem;
                         padding-right: 5%;
@@ -309,7 +315,7 @@ main {
                         @media screen and (max-width: 45em) {
                             flex-flow: column;
                         }
-                        
+
                         .showcase {
                             display: flex;
                             flex-flow: column;
@@ -318,18 +324,18 @@ main {
                             @media screen and (max-width: 45em) {
                                 width: 90%;
                             }
-    
+
                             .link-preview {
                                 max-width: 16rem;
                                 overflow: hidden;
                                 border-radius: 0.5rem;
                                 background: var(--og-card-bg);
-    
+
                                 .link-text {
                                     padding: 0.1rem 1rem 0.5rem 1rem;
                                     font-family: 'Rubik Variable', sans-serif;
                                     line-height: normal;
-                                    
+
                                     @media screen and (max-width: 45em) {
                                         padding: 0.3rem 1rem 0.8rem 1rem;
                                     }
@@ -343,7 +349,7 @@ main {
                                         }
                                     }
                                 }
-    
+
                                 img {
                                     width: 100%;
                                     height: auto;
@@ -359,7 +365,7 @@ main {
                     }
                 }
             }
-            
+
         }
 
 
@@ -376,7 +382,7 @@ main {
                 left: 0;
                 right: 0;
             }
-    
+
             .line,
             .point {
                 background-color: var(--point-border-line-bg);
