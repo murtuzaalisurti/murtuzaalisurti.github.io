@@ -30,7 +30,6 @@
     "astro": "^4.2.6",
     "autoprefixer": "^10.4.17",
     "cssnano": "^6.0.3",
-    "framer-motion": "^11.0.3",
     "luxon": "^3.4.4",
     "million": "^2.6.4",
     "nanoid": "^5.0.4",

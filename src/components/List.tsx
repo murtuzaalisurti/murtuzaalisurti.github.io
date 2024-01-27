@@ -1,5 +1,4 @@
 import type { TListPropsWithChildren } from "../lib/types";
-import { motion } from "framer-motion";
 
 const List = ({ list }: TListPropsWithChildren) => {
     return (

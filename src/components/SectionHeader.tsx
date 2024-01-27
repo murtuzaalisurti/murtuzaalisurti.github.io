@@ -11,7 +11,7 @@ const SectionHeader = ({ children, heading, emoji }: TSectionHeaderWithChildren)
                 <hr />
                 <span>{emoji}</span>
             </h3>
-            {children}
+            { children }
         </>
     )
 }
