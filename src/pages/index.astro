@@ -19,7 +19,7 @@ const fetchPosts = async (url: string) => {
     }).parseURL(url);
 };
 
-const posts = await fetchPosts("https://syntackle.live/feed.xml");
+const posts = await fetchPosts("https://syntackle.com/feed.xml");
 const items = posts.items.slice(0, 5);
 
 items.sort((a, b) => {
@@ -39,7 +39,7 @@ items.sort((a, b) => {
             <p>
                 Breaking and fixing code as a software engineer. Bugs are on my
                 most wanted list. I write a lot. Wanna <a
-                    href="https://syntackle.live/author/murtuzaalisurti/"
+                    href="https://syntackle.com/author/murtuzaalisurti/"
                     >join me</a
                 >?
             </p>
@@ -54,7 +54,7 @@ items.sort((a, b) => {
                             id: nanoid(),
                             title: "Syntackle",
                             desc: "Developer blog",
-                            url: "https://syntackle.live",
+                            url: "https://syntackle.com",
                         },
                         {
                             id: nanoid(),
@@ -108,21 +108,21 @@ items.sort((a, b) => {
                             id: nanoid(),
                             title: "Creator - Syntackle",
                             role: "Building a developer blog covering topics & tutorials related to the web, javascript, jamstack, serverless and much more.",
-                            link: "https://syntackle.live",
+                            link: "https://syntackle.com",
                             startDate: "Feb, 2022",
                             endDate: "Present",
                             showcase: [
                                 {
                                     id: nanoid(),
-                                    link: "https://syntackle.live/author/murtuzaalisurti/",
+                                    link: "https://syntackle.com/author/murtuzaalisurti/",
                                 },
                                 {
                                     id: nanoid(),
-                                    link: "https://syntackle.live/blog/builder-io-s-partytown-with-11ty-lN6X2w/",
+                                    link: "https://syntackle.com/blog/builder-io-s-partytown-with-11ty-lN6X2w/",
                                 },
                                 {
                                     id: nanoid(),
-                                    link: "https://syntackle.live/blog/websockets-101-JiIrdn/",
+                                    link: "https://syntackle.com/blog/websockets-101-JiIrdn/",
                                 },
                             ],
                         },
@@ -249,7 +249,7 @@ items.sort((a, b) => {
                         href="mailto:hey.murtuza@gmail.com">me</a
                     >. I also run a blog, so if you are interested in writing
                     anything about web technologies, then <a
-                        href="https://syntackle.live/write/">pitch your ideas</a
+                        href="https://syntackle.com/write/">pitch your ideas</a
                     >!
                 </p>
             </SectionHeader>
