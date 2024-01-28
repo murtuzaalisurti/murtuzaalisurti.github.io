@@ -3,15 +3,16 @@ import type { PropsWithChildren } from "react"
 export interface TList {
     section: string,
     list: {
-        id: number,
+        id: string,
         title: string,
-        desc: string,
-        url: string | undefined
+        desc?: string,
+        url?: string
     }[]
 }
 
 export interface TSectionHeader {
     heading: string,
+    anchor: string,
     emoji: string
 }
 

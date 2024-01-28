@@ -187,6 +187,7 @@ main {
             align-items: center;
             gap: 1rem;
             padding-bottom: 0.2rem;
+            text-wrap: nowrap;
 
             hr {
                 height: 0.25rem;
@@ -235,6 +236,7 @@ main {
     }
 
     #projects,
+    #posts,
     #experience {
 
         .listContainer {
@@ -242,6 +244,16 @@ main {
             flex-direction: column;
             justify-content: center;
             gap: 1rem;
+        }
+
+        &#posts {
+            .listContainer {
+                .item {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
         }
 
         .experience-data {

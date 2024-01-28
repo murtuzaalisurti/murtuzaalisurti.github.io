@@ -5,12 +5,31 @@ import ExperienceBlock from "../components/ExperienceBlock.astro";
 import SectionHeader from "../components/SectionHeader";
 
 import { customAlphabet } from "nanoid";
+import Parser from "rss-parser";
 import SocialList from "../components/SocialList";
 
 const nanoid = customAlphabet(
     "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
     5
 );
+
+const fetchPosts = async (url: string) => {
+    return await new Parser({
+        timeout: 120000,
+    }).parseURL(url);
+};
+
+const posts = await fetchPosts("https://syntackle.live/feed.xml");
+const items = posts.items.slice(0, 5);
+
+items.sort((a, b) => {
+    return a.pubDate
+        ? new Date(b.pubDate as string).getTime() -
+              new Date(a.pubDate as string).getTime()
+        : new Date(b.isoDate as string).getTime() -
+              new Date(a.isoDate as string).getTime();
+});
+
 ---
 
 <Layout title="Murtuzaali Surti">
@@ -26,37 +45,37 @@ const nanoid = customAlphabet(
             </p>
         </section>
         <section id="projects" class="section">
-            <SectionHeader heading="projects" emoji={"🚀"}>
+            <SectionHeader anchor="projects" heading="Projects" emoji={"🚀"}>
                 <List
                     client:visible
                     section="projects"
                     list={[
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "Syntackle",
                             desc: "Developer blog",
                             url: "https://syntackle.live",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "rssed",
                             desc: "Collection of dev rss feeds",
                             url: "https://rssed.netlify.app/",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "Wavy",
                             desc: "Text animation library.",
                             url: "https://www.npmjs.com/package/@murtuzaalisurti/wavy",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "QR Codes",
                             desc: "QR code generator.",
                             url: "https://github.com/murtuzaalisurti/qr",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "Contact Card",
                             desc: "Get a digital business card!",
                             url: "https://contact-card.vercel.app?ref=portfolio",
@@ -66,7 +85,7 @@ const nanoid = customAlphabet(
             </SectionHeader>
         </section>
         <section id="experience" class="section">
-            <SectionHeader heading="experience" emoji={"🙃"}>
+            <SectionHeader anchor="experience" heading="Experience" emoji={"🙃"}>
                 <ExperienceBlock
                     list={[
                         {
@@ -75,7 +94,7 @@ const nanoid = customAlphabet(
                             role: "Working on an enterprise application related to legal entities. Using Docker, NestJS, PostgreSQL, leaning more towards the backend side.",
                             link: "https://imriel.com",
                             startDate: "May, 2023",
-                            endDate: "Present"
+                            endDate: "Present",
                         },
                         {
                             id: nanoid(),
@@ -83,7 +102,7 @@ const nanoid = customAlphabet(
                             role: "React, MUI, Jest as a frontend software engineer!",
                             link: "https://imriel.com",
                             startDate: "Jan, 2023",
-                            endDate: "May, 2023"
+                            endDate: "May, 2023",
                         },
                         {
                             id: nanoid(),
@@ -97,14 +116,14 @@ const nanoid = customAlphabet(
                                     id: nanoid(),
                                     link: "https://syntackle.live/author/murtuzaalisurti/",
                                 },
-								{
-									id: nanoid(),
-									link: "https://syntackle.live/blog/builder-io-s-partytown-with-11ty-lN6X2w/"
-								},
-								{
-									id: nanoid(),
-									link: "https://syntackle.live/blog/websockets-101-JiIrdn/"
-								}
+                                {
+                                    id: nanoid(),
+                                    link: "https://syntackle.live/blog/builder-io-s-partytown-with-11ty-lN6X2w/",
+                                },
+                                {
+                                    id: nanoid(),
+                                    link: "https://syntackle.live/blog/websockets-101-JiIrdn/",
+                                },
                             ],
                         },
                         {
@@ -114,12 +133,12 @@ const nanoid = customAlphabet(
                             link: "https://aviyel.com/@murtuzaalisurti",
                             startDate: "Oct, 2021",
                             endDate: "Jan, 2023",
-							showcase: [
-								{
-									id: nanoid(),
-									link: "https://youtu.be/CFoJ5dpAZRc?feature=shared"
-								}
-							]
+                            showcase: [
+                                {
+                                    id: nanoid(),
+                                    link: "https://youtu.be/CFoJ5dpAZRc?feature=shared",
+                                },
+                            ],
                         },
                         {
                             id: nanoid(),
@@ -128,16 +147,16 @@ const nanoid = customAlphabet(
                             link: "https://css-tricks.com/author/murtuzaalisurti/",
                             startDate: "Jul, 2021",
                             endDate: "Jun, 2023",
-							showcase: [
-								{
-									id: nanoid(),
-									link: "https://css-tricks.com/typewriter-animation-that-handles-anything-you-throw-at-it/"
-								},
-								{
-									id: nanoid(),
-									link: "https://css-tricks.com/author/murtuzaalisurti/"
-								}
-							]
+                            showcase: [
+                                {
+                                    id: nanoid(),
+                                    link: "https://css-tricks.com/typewriter-animation-that-handles-anything-you-throw-at-it/",
+                                },
+                                {
+                                    id: nanoid(),
+                                    link: "https://css-tricks.com/author/murtuzaalisurti/",
+                                },
+                            ],
                         },
                         {
                             id: nanoid(),
@@ -146,19 +165,34 @@ const nanoid = customAlphabet(
                             link: "https://draft.dev",
                             startDate: "Sep, 2021",
                             endDate: "Jun, 2022",
-							showcase: [
-								{
-									id: nanoid(),
-									link: "https://rewind.com/blog/how-to-restore-deleted-branch-commit-git-reflog/"
-								}
-							]
+                            showcase: [
+                                {
+                                    id: nanoid(),
+                                    link: "https://rewind.com/blog/how-to-restore-deleted-branch-commit-git-reflog/",
+                                },
+                            ],
                         },
                     ]}
                 />
             </SectionHeader>
         </section>
+        <section id="posts" class="section">
+            <SectionHeader anchor="posts" heading="Latest Posts" emoji={"📝"}>
+                <List
+                    section="posts"
+                    list={items.map((post) => {
+                        return {
+                            id: nanoid(),
+                            title: post.title as string,
+                            desc: post.summary,
+                            url: post.link,
+                        };
+                    })}
+                />
+            </SectionHeader>
+        </section>
         <section id="uses" class="section">
-            <SectionHeader heading="uses" emoji={"🔮"}>
+            <SectionHeader anchor="uses" heading="Uses" emoji={"🔮"}>
                 <p>What I use on a daily basis for software development:</p>
                 <div class="category">
                     <h4>Editor</h4>
@@ -171,8 +205,8 @@ const nanoid = customAlphabet(
                 <div class="category">
                     <h4>Terminal</h4>
                     <p>
-                        I use <em>bash</em> inside VSCode's integrated terminal
-                        for the most part but I also switch between <a
+                        I use <em>bash</em> inside VSCode's integrated terminal for
+                        the most part but I also switch between <a
                             href="https://github.com/vercel/hyper">Hyper</a
                         > and the new Windows Terminal.
                     </p>
@@ -188,8 +222,7 @@ const nanoid = customAlphabet(
                         For the terminal I went for Oh My Posh's <a
                             href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json"
                             >stelbent minimal</a
-                        > theme. It's a pretty good theme displaying crucial
-                        information.
+                        > theme. It's a pretty good theme displaying crucial information.
                     </p>
                 </div>
                 <div class="category">
@@ -209,7 +242,7 @@ const nanoid = customAlphabet(
             </SectionHeader>
         </section>
         <section id="contact" class="section">
-            <SectionHeader heading="contact" emoji={"🤙"}>
+            <SectionHeader anchor="contact" heading="Contact" emoji={"🤙"}>
                 <p>
                     Don't hesitate! Feel free to reach out to <a
                         title="hey.murtuza@gmail.com"
@@ -222,7 +255,7 @@ const nanoid = customAlphabet(
             </SectionHeader>
         </section>
         <section id="socials" class="section">
-            <SectionHeader heading="socials" emoji={"🥇"}>
+            <SectionHeader anchor="socials" heading="Socials" emoji={"🥇"}>
                 <SocialList
                     list={[
                         {
