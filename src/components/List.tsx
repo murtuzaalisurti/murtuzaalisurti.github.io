@@ -10,7 +10,7 @@ const List = ({ list }: TListPropsWithChildren) => {
                     list.map(entry => {
                         return (
                             <li key={entry.id} className="item">
-                                <a href={entry.url}>{entry.title}</a> - {entry.desc}
+                                <a href={entry.url}>{entry.title}</a> {entry.desc && (`- ${entry.desc}`)}
                             </li>
                         )
                     })

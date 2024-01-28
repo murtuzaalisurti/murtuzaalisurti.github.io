@@ -5,13 +5,14 @@ export interface TList {
     list: {
         id: number,
         title: string,
-        desc: string,
-        url: string | undefined
+        desc?: string,
+        url?: string
     }[]
 }
 
 export interface TSectionHeader {
     heading: string,
+    anchor: string,
     emoji: string
 }
 
