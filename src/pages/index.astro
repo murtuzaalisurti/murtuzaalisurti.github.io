@@ -51,31 +51,31 @@ items.sort((a, b) => {
                     section="projects"
                     list={[
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "Syntackle",
                             desc: "Developer blog",
                             url: "https://syntackle.live",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "rssed",
                             desc: "Collection of dev rss feeds",
                             url: "https://rssed.netlify.app/",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "Wavy",
                             desc: "Text animation library.",
                             url: "https://www.npmjs.com/package/@murtuzaalisurti/wavy",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "QR Codes",
                             desc: "QR code generator.",
                             url: "https://github.com/murtuzaalisurti/qr",
                         },
                         {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: "Contact Card",
                             desc: "Get a digital business card!",
                             url: "https://contact-card.vercel.app?ref=portfolio",
@@ -182,7 +182,7 @@ items.sort((a, b) => {
                     section="posts"
                     list={items.map((post) => {
                         return {
-                            id: nanoid() as unknown as number,
+                            id: nanoid(),
                             title: post.title as string,
                             desc: post.summary,
                             url: post.link,
