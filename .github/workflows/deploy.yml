@@ -21,7 +21,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4          
       - name: Install, build, and upload your site
-        uses: withastro/action@v1.0.6
+        uses: withastro/action@v2.0.0
         with:
           node-version: 20
             # path: . # The root location of your Astro project inside the repository. (optional)
@@ -38,4 +38,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
