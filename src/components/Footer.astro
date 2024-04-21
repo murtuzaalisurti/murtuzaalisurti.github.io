@@ -1,0 +1,11 @@
+<footer>
+    <p>
+        &copy;<span id="currentYear"></span>. Made with 💖 by <a
+            href="https://github.com/murtuzaalisurti">Murtuzaali</a
+        >.
+    </p>
+</footer>
+
+<script>
+    (document.querySelector("footer #currentYear") as HTMLElement).innerText = new Date().getFullYear().toString()
+</script>

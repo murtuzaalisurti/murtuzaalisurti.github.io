@@ -1,0 +1,17 @@
+---
+import type { TSocialList } from "../lib/types"
+type Props = TSocialList
+
+const { list } = Astro.props
+---
+
+<div id="socialList">
+    {
+        list.map((social, i) => {
+            return <span>
+                <a href={social.link}>{social.text}</a>
+                {i !== list.length - 1 ? <p>•</p> : <></>}
+            </span>
+        })
+    }
+</div>
