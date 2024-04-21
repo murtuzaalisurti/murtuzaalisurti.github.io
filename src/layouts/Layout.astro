@@ -1,8 +1,7 @@
 ---
-
-/** 
+/**
  * ? importing fonts from npm package using @fontsource
-*/
+ */
 import "@fontsource-variable/montserrat";
 import "@fontsource-variable/rubik";
 
@@ -16,16 +15,15 @@ interface Props {
 const { title } = Astro.props;
 
 let fontPreloadUrls = null;
-import.meta.env.PROD ?
-    fontPreloadUrls = [
-        "/_astro/montserrat-latin-wght-normal.QwOtvNGk.woff2",
-        "/_astro/rubik-latin-wght-normal.n6XkZcdn.woff2"
-    ] : 
-    fontPreloadUrls = [
-        "/node_modules/@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2",
-        "/node_modules/@fontsource-variable/rubik/files/rubik-latin-wght-normal.woff2"
-    ];
-
+import.meta.env.PROD
+    ? (fontPreloadUrls = [
+          "/_astro/montserrat-latin-wght-normal.BDA6280a.woff2",
+          "/_astro/rubik-latin-wght-normal.CfpeRlx2.woff2",
+      ])
+    : (fontPreloadUrls = [
+          "/node_modules/@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2",
+          "/node_modules/@fontsource-variable/rubik/files/rubik-latin-wght-normal.woff2",
+      ]);
 ---
 
 <!doctype html>
@@ -38,10 +36,16 @@ import.meta.env.PROD ?
         <title>{title}</title>
 
         {
-            fontPreloadUrls.map(url => {
+            fontPreloadUrls.map((url) => {
                 return (
-                    <link rel="preload" href={url} as="font" type="font/woff2" crossorigin="anonymous">
-                )
+                    <link
+                        rel="preload"
+                        href={url}
+                        as="font"
+                        type="font/woff2"
+                        crossorigin="anonymous"
+                    />
+                );
             })
         }
 
@@ -149,20 +153,28 @@ import.meta.env.PROD ?
         </noscript>
         {
             [10, 11, 0, 1].includes(new Date().getMonth()) && (
-                <snow-fall mode="page" style="--snow-fall-size: 10px;" count="70"></snow-fall>
+                <snow-fall
+                    mode="page"
+                    style="--snow-fall-size: 10px;"
+                    count="70"
+                />
             )
         }
         <slot />
-		<Footer />
+        <Footer />
     </body>
 </html>
 
 <script>
-    await import.meta.glob("../../node_modules/@zachleat/snow-fall/snow-fall.js", {
-        eager: true
-    })
+    await import.meta.glob(
+        "../../node_modules/@zachleat/snow-fall/snow-fall.js",
+        {
+            eager: true,
+        }
+    );
 </script>
 
 <script>
-    (document.querySelector("footer #currentYear") as HTMLElement).innerText = new Date().getFullYear() as unknown as string
+    (document.querySelector("footer #currentYear") as HTMLElement).innerText =
+        new Date().getFullYear() as unknown as string;
 </script>
