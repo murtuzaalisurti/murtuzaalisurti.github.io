@@ -1,5 +1,3 @@
-import type { PropsWithChildren } from "react"
-
 export interface TList {
     section: string,
     list: {
@@ -22,7 +20,3 @@ export interface TSocialList {
         text: string
     }[]
 }
-
-export type TListPropsWithChildren = PropsWithChildren<TList>
-export type TSectionHeaderWithChildren = PropsWithChildren<TSectionHeader>
-export type TSocialListWithChildren = PropsWithChildren<TSocialList>

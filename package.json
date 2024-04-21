@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^3.3.0",
     "@astrojs/sitemap": "^3.1.4",
     "@fontsource-variable/alexandria": "^5.0.12",
     "@fontsource-variable/cormorant": "^5.0.13",
@@ -24,18 +23,13 @@
     "@fontsource/poppins": "^5.0.13",
     "@fontsource/proza-libre": "^5.0.12",
     "@types/luxon": "^3.4.2",
-    "@types/react": "^18.2.79",
-    "@types/react-dom": "^18.2.25",
     "@zachleat/snow-fall": "^1.0.2",
     "astro": "^4.6.3",
     "autoprefixer": "^10.4.19",
     "cssnano": "^6.1.2",
     "luxon": "^3.4.4",
-    "million": "^3.0.6",
     "nanoid": "^5.0.7",
     "open-graph-scraper": "^6.5.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rss-parser": "^3.13.0",
     "sass": "^1.75.0"
   },
