@@ -1,0 +1,18 @@
+---
+import type { TSectionHeader } from "../lib/types";
+type Props = TSectionHeader;
+
+const { heading, emoji, anchor } = Astro.props;
+---
+
+<>
+    <h3 class="section-heading">
+        <span class="headingAnchorLink">
+            <a href={`#${anchor}`}><sup>🔗</sup></a>
+        </span>
+        {heading}
+        <hr />
+        <span>{emoji}</span>
+    </h3>
+    <slot />
+</>

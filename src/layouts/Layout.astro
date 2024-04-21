@@ -6,7 +6,7 @@
 import "@fontsource-variable/montserrat";
 import "@fontsource-variable/rubik";
 
-import Footer from "../components/Footer";
+import Footer from "../components/Footer.astro";
 import "../styles/app.scss";
 
 interface Props {
@@ -161,8 +161,4 @@ import.meta.env.PROD ?
     await import.meta.glob("../../node_modules/@zachleat/snow-fall/snow-fall.js", {
         eager: true
     })
-</script>
-
-<script>
-    (document.querySelector("footer #currentYear") as HTMLElement).innerText = new Date().getFullYear() as unknown as string
 </script>

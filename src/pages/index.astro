@@ -1,12 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import List from "../components/List";
+import List from "../components/List.astro";
 import ExperienceBlock from "../components/ExperienceBlock.astro";
-import SectionHeader from "../components/SectionHeader";
+import SectionHeader from "../components/SectionHeader.astro";
 
 import { customAlphabet } from "nanoid";
 import Parser from "rss-parser";
-import SocialList from "../components/SocialList";
+import SocialList from "../components/SocialList.astro";
 
 const nanoid = customAlphabet(
     "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -47,7 +47,6 @@ items.sort((a, b) => {
         <section id="projects" class="section">
             <SectionHeader anchor="projects" heading="Projects" emoji={"🚀"}>
                 <List
-                    client:visible
                     section="projects"
                     list={[
                         {

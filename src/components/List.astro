@@ -1,0 +1,21 @@
+---
+import type { TList } from "../lib/types";
+type Props = TList
+
+const { section, list } = Astro.props
+---
+
+<div>
+    <ol class="listContainer">
+        {
+            list.map((entry) => {
+                return (
+                    <li class="item">
+                        <a href={entry.url}>{entry.title}</a>{" "}
+                        {entry.desc && `- ${entry.desc}`}
+                    </li>
+                );
+            })
+        }
+    </ol>
+</div>
