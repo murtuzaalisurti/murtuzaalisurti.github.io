@@ -24,14 +24,14 @@
     "@fontsource/proza-libre": "^5.0.13",
     "@types/luxon": "^3.4.2",
     "@zachleat/snow-fall": "^1.0.2",
-    "astro": "^4.7.1",
+    "astro": "^4.8.2",
     "autoprefixer": "^10.4.19",
     "cssnano": "^7.0.1",
     "luxon": "^3.4.4",
     "nanoid": "^5.0.7",
     "open-graph-scraper": "^6.5.1",
     "rss-parser": "^3.13.0",
-    "sass": "^1.76.0"
+    "sass": "^1.77.1"
   },
   "engines": {
     "node": ">=20.9.0"
