@@ -1,6 +1,6 @@
 ---
-import { DateTime } from "luxon";
 import ogs from "open-graph-scraper";
+import { calcDuration } from "../utils/calcDuration"
 
 interface Props {
     list: {
@@ -43,42 +43,10 @@ for (const [i, block] of list.entries()) {
 }
 ---
 
-<div class="experience-data">
+<div class="experience-data" data-experiences={JSON.stringify(list)}>
     {
         list.map((block) => {
-            const ArrayStartDate = block.startDate
-                .split(",")
-                .filter((i) => i !== " ")
-                .map((e) => e.trim());
-
-            const ArrayEndDate =
-                block.endDate === "Present"
-                    ? `${new Date().toLocaleString("default", {
-                          month: "short",
-                      })}, ${new Date().getFullYear()}`
-                          .split(",")
-                          .filter((i) => i !== " ")
-                          .map((e) => e.trim())
-                    : block.endDate
-                          .split(",")
-                          .filter((i) => i !== " ")
-                          .map((e) => e.trim());
-
-            ArrayStartDate.unshift("1");
-            ArrayEndDate.unshift("1");
-
-            const EndDate = DateTime.fromFormat(
-                ArrayEndDate.join(" "),
-                "d MMM yyyy"
-            );
-            const StartDate = DateTime.fromFormat(
-                ArrayStartDate.join(" "),
-                "d MMM yyyy"
-            );
-
-            const diffObject = EndDate.diff(StartDate, ["years", "months"]);
-            const diffYears = diffObject.years;
-            const diffMonths = diffObject.months;
+            const duration = calcDuration(block.startDate, block.endDate);
             return (
                 <div id={`${block.id}`}>
                     <div class="data-box">
@@ -102,10 +70,8 @@ for (const [i, block] of list.entries()) {
                                     <h4>{block.title}</h4>
                                 )}
                             </div>
-                            <p class="time">
-                                {block.startDate} - {block.endDate} •{" "}
-                                {diffYears ? `${diffYears} yr` : ""}
-                                {diffMonths ? ` ${diffMonths} mos` : ""}
+                            <p class="time" id="duration">
+                                {duration.html}
                             </p>
                             <p class="exp-desc">{block.role}</p>
                             <div class="showcase-container">
@@ -143,3 +109,19 @@ for (const [i, block] of list.entries()) {
         })
     }
 </div>
+
+<script>
+    /**
+     * ? client side script to update the experience duration on every page load
+     */
+    import { calcDuration } from "../utils/calcDuration";
+
+    const experienceListStringified = (document.querySelector(".experience-data") as HTMLElement).dataset.experiences;
+    const experienceList = experienceListStringified && JSON.parse(experienceListStringified);
+
+    for (const exp of experienceList) {
+        const duration = calcDuration(exp.startDate, exp.endDate);
+        const durationHTML = document.querySelector(`#${exp.id} #duration`) as HTMLElement;
+        durationHTML.innerHTML = duration.html;
+    }
+</script>
