@@ -460,3 +460,28 @@ footer {
         text-align: center;
     }
 }
+
+.back-to-top, a.back-to-top-fallback {
+    bottom: 2rem;
+    right: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--primary-text-color);
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 0 3rem 0.5rem black;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+    &.back-to-top-fallback {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    svg {
+        height: 65%;
+        fill: var(--primary-background-color);
+    }
+}
