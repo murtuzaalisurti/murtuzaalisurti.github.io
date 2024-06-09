@@ -169,15 +169,16 @@ import.meta.env.PROD
         </back-to-top>
         <slot />
         <Footer />
+        <script src="../components/webComponents/back-to-top.js"></script>
     </body>
 </html>
 
 <script>
     // web components
-    import.meta.glob("../../node_modules/@zachleat/snow-fall/snow-fall.js", {
+    import.meta.glob([
+        "../../node_modules/@zachleat/snow-fall/snow-fall.js",
+        // "../../node_modules/@murtuzaalisurti/back-to-top/public/main.js"
+    ], {
         eager: true
     });
-    import.meta.glob("../../node_modules/@murtuzaalisurti/back-to-top/public/main.js", {
-        eager: true
-    })
 </script>
