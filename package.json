@@ -22,7 +22,7 @@
     "@fontsource/gentium-plus": "^5.0.13",
     "@fontsource/poppins": "^5.0.14",
     "@fontsource/proza-libre": "^5.0.13",
-    "@murtuzaalisurti/back-to-top": "^3.0.1",
+    "@murtuzaalisurti/back-to-top": "^3.0.2",
     "@types/luxon": "^3.4.2",
     "@zachleat/snow-fall": "^1.0.2",
     "astro": "^4.8.7",
