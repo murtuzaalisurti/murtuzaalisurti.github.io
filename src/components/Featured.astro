@@ -1,0 +1,62 @@
+---
+import ogs, { type SuccessResult } from "open-graph-scraper";
+
+type BaseItem = {
+    id: string;
+    link: string;
+};
+
+type Item = BaseItem & SuccessResult["result"];
+
+interface Props {
+    list: Item[];
+}
+
+const { list } = Astro.props;
+
+for (let [_, item] of list.entries()) {
+    const { error, result } = await ogs({
+        url: item.link,
+    });
+
+    if (error) {
+        console.log(error);
+        return;
+    }
+
+    if (result.success) {
+        Object.keys(result).forEach((key) => {
+            const typedKey = key as keyof typeof item & keyof typeof result;
+            item = {
+                ...item,
+                [typedKey]: result[typedKey],
+            };
+        });
+        list[_] = item;
+    }
+}
+---
+
+<div class="showcase-container">
+    {
+        list.map((item) => {
+            return (
+                <div class="showcase">
+                    <div class="link-preview">
+                        <img
+                            class="link-preview-img"
+                            src={item.ogImage?.[0].url}
+                            alt={item.ogTitle}
+                        />
+                        <div class="link-text">
+                            <a href={item.link}>
+                                {item.ogTitle}
+                            </a>
+                            <p class="host">{new URL(item.link).host.replaceAll(new RegExp("w", "gi"), "").slice(1)}</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        })
+    }
+</div>

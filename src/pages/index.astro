@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import List from "../components/List.astro";
 import ExperienceBlock from "../components/ExperienceBlock.astro";
 import SectionHeader from "../components/SectionHeader.astro";
+import Featured from "../components/Featured.astro";
 
 import { customAlphabet } from "nanoid";
 import Parser from "rss-parser";
@@ -85,6 +86,22 @@ items.sort((a, b) => {
                             desc: "Get a digital business card!",
                             url: "https://contact-card.vercel.app?ref=portfolio",
                         },
+                    ]}
+                />
+            </SectionHeader>
+        </section>
+        <section id="featured" class="section">
+            <SectionHeader anchor="featured" heading="Featured" emoji={"✨"}>
+                <Featured
+                    list={[
+                        {
+                            id: nanoid(),
+                            link: "https://www.youtube.com/watch?v=2Oxu4y-RLrs"
+                        },
+                        {
+                            id: nanoid(),
+                            link: "https://www.youtube.com/watch?v=7nG-x3Fs3oY"
+                        }
                     ]}
                 />
             </SectionHeader>
