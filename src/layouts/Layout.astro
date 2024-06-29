@@ -138,9 +138,26 @@ import.meta.env.PROD
         <link rel="sitemap" href="/sitemap-index.xml" />
         <link
             rel="shortcut icon"
-            type="image/png"
-            href="./assets/favicon.png"
+            href="./assets/favicon.ico"
         />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <link rel="me" href="https://mastodon.social/@murtuzaalisurti" />
     </head>
     <body>
@@ -163,7 +180,9 @@ import.meta.env.PROD
         <back-to-top throttle="370">
             <a class="back-to-top-fallback" href="#" style="position: fixed;">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                    <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+                    <path
+                        d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+                    ></path>
                 </svg>
             </a>
         </back-to-top>
@@ -174,10 +193,13 @@ import.meta.env.PROD
 
 <script>
     // web components
-    import.meta.glob([
-        "../../node_modules/@zachleat/snow-fall/snow-fall.js",
-        "../../node_modules/@murtuzaalisurti/back-to-top/public/main.js"
-    ], {
-        eager: true
-    });
+    import.meta.glob(
+        [
+            "../../node_modules/@zachleat/snow-fall/snow-fall.js",
+            "../../node_modules/@murtuzaalisurti/back-to-top/public/main.js",
+        ],
+        {
+            eager: true,
+        }
+    );
 </script>
