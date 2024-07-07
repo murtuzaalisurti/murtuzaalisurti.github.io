@@ -9,7 +9,7 @@ interface Props {
         link: string;
         startDate: string;
         endDate: string;
-        role: string;
+        role: string[];
         showcase?: {
             id: string;
             link: string;
@@ -73,7 +73,13 @@ for (const [i, block] of list.entries()) {
                             <p class="time" id="duration">
                                 {duration.html}
                             </p>
-                            <p class="exp-desc">{block.role}</p>
+                            {
+                                block.role.map(point => {
+                                    return (
+                                        <p class="exp-desc">{point}</p>
+                                    )
+                                })
+                            }
                             <div class="showcase-container">
                                 {block.showcase &&
                                     block.showcase.map((item) => {
