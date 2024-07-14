@@ -10,6 +10,7 @@ interface Props {
         startDate: string;
         endDate: string;
         role: string[];
+        company: string;
         showcase?: {
             id: string;
             link: string;
@@ -41,73 +42,91 @@ for (const [i, block] of list.entries()) {
         }
     }
 }
+
+const groupByCompany = list.reduce((acc: Record<string, any>, exp) => {
+  const company = exp.company;
+  if (!acc[company]) {
+    acc[company] = [];
+  }
+  acc[company].push(exp);
+  return acc;
+}, {});
 ---
 
 <div class="experience-data" data-experiences={JSON.stringify(list)}>
     {
-        list.map((block) => {
-            const duration = calcDuration(block.startDate, block.endDate);
+        Object.keys(groupByCompany).map((company) => {
+            const expByCompany = groupByCompany[company];
             return (
-                <div id={`${block.id}`}>
+                <div id={company}>
                     <div class="data-box">
                         <div class="timeline">
                             <div class="line" />
                             <div class="point" />
                         </div>
                         <div class="data">
-                            <div class="role">
-                                {block.link ? (
-                                    <h4>
-                                        <a
-                                            rel="noreferrer"
-                                            target="_blank"
-                                            href={block.link}
-                                        >
-                                            {block.title}
-                                        </a>
-                                    </h4>
-                                ) : (
-                                    <h4>{block.title}</h4>
-                                )}
-                            </div>
-                            <p class="time" id="duration">
-                                {duration.html}
-                            </p>
-                            {
-                                block.role.map(point => {
-                                    return (
-                                        <p class="exp-desc">{point}</p>
-                                    )
-                                })
-                            }
-                            <div class="showcase-container">
-                                {block.showcase &&
-                                    block.showcase.map((item) => {
-                                        return (
-                                            <div class="showcase">
-                                                {item.image && (
-                                                    <div class="link-preview">
-                                                        <img
-                                                            class="link-preview-img"
-                                                            src={item.image[0]}
-                                                            alt={item.title}
-                                                        />
-                                                        <div class="link-text">
-                                                            <a href={item.link}>
-                                                                {item.title} -{" "}
-                                                                {
-                                                                    new URL(
-                                                                        item.link
-                                                                    ).host
-                                                                }
-                                                            </a>
+                        {
+                            expByCompany.map((block: Props["list"][0]) => {
+                                const duration = calcDuration(block.startDate, block.endDate);
+                                return (
+                                    <div id={block.id} class="experience">
+                                        <div class="role">
+                                            {block.link ? (
+                                                <h4>
+                                                    <a
+                                                        rel="noreferrer"
+                                                        target="_blank"
+                                                        href={block.link}
+                                                    >
+                                                        {block.title}
+                                                    </a>
+                                                </h4>
+                                            ) : (
+                                                <h4>{block.title}</h4>
+                                            )}
+                                        </div>
+                                        <p class="time" id="duration">
+                                            {duration.html}
+                                        </p>
+                                        {
+                                            block.role.map(point => {
+                                                return (
+                                                    <p class="exp-desc">{point}</p>
+                                                )
+                                            })
+                                        }
+                                        <div class="showcase-container">
+                                            {block.showcase &&
+                                                block.showcase.map((item) => {
+                                                    return (
+                                                        <div class="showcase">
+                                                            {item.image && (
+                                                                <div class="link-preview">
+                                                                    <img
+                                                                        class="link-preview-img"
+                                                                        src={item.image[0]}
+                                                                        alt={item.title}
+                                                                    />
+                                                                    <div class="link-text">
+                                                                        <a href={item.link}>
+                                                                            {item.title} -{" "}
+                                                                            {
+                                                                                new URL(
+                                                                                    item.link
+                                                                                ).host
+                                                                            }
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            )}
                                                         </div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        );
-                                    })}
-                            </div>
+                                                    );
+                                                })}
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
                         </div>
                     </div>
                 </div>

@@ -375,7 +375,12 @@ main {
                     width: 100%;
                     height: 100%;
                     padding: 0 2.5rem 2rem 1rem;
-                    transform: translateY(-2%);
+
+                    .experience {
+                        &:not(:first-child) {
+                            padding-top: 1.3rem;
+                        }
+                    }
 
                     .role {
                         font-size: var(--content-font-size);
@@ -422,6 +427,7 @@ main {
             position: relative;
             display: flex;
             justify-content: center;
+            transform: translateY(.5rem);
 
             .draw {
                 position: absolute;
