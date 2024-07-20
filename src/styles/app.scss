@@ -374,11 +374,17 @@ main {
                     justify-content: flex-start;
                     width: 100%;
                     height: 100%;
-                    padding: 0 2.5rem 2rem 1rem;
+                    padding: 0 2.5rem 3rem 1rem;
 
                     .experience {
                         &:not(:first-child) {
-                            padding-top: 1.3rem;
+                            padding-top: 2rem;
+                        }
+
+                        .companyDuration {
+                            p {
+                                font-size: calc(var(--content-font-size) - .3rem);
+                            }
                         }
                     }
 

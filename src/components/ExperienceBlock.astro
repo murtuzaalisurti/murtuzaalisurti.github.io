@@ -1,24 +1,10 @@
 ---
 import ogs from "open-graph-scraper";
-import { calcDuration } from "../utils/calcDuration"
+import { groupExperienceByCompany } from "../utils/groupExperienceByCompany";
+import { capitalize } from "../utils/common";
+import { type Experiences } from "../types/common";
 
-interface Props {
-    list: {
-        id: string;
-        title: string;
-        link: string;
-        startDate: string;
-        endDate: string;
-        role: string[];
-        company: string;
-        showcase?: {
-            id: string;
-            link: string;
-            image?: string[];
-            title?: string;
-        }[];
-    }[];
-}
+interface Props extends Experiences {}
 
 const { list } = Astro.props;
 
@@ -43,14 +29,7 @@ for (const [i, block] of list.entries()) {
     }
 }
 
-const groupByCompany = list.reduce((acc: Record<string, any>, exp) => {
-  const company = exp.company;
-  if (!acc[company]) {
-    acc[company] = [];
-  }
-  acc[company].push(exp);
-  return acc;
-}, {});
+const groupByCompany = groupExperienceByCompany(list);
 ---
 
 <div class="experience-data" data-experiences={JSON.stringify(list)}>
@@ -58,18 +37,29 @@ const groupByCompany = list.reduce((acc: Record<string, any>, exp) => {
         Object.keys(groupByCompany).map((company) => {
             const expByCompany = groupByCompany[company];
             return (
-                <div id={company}>
+                <div id={company} data-company={company}>
                     <div class="data-box">
                         <div class="timeline">
                             <div class="line" />
                             <div class="point" />
                         </div>
                         <div class="data">
-                        {
-                            expByCompany.map((block: Props["list"][0]) => {
-                                const duration = calcDuration(block.startDate, block.endDate);
+                            {expByCompany.map((block: Props["list"][0], i) => {
                                 return (
                                     <div id={block.id} class="experience">
+                                        {i === 0 && expByCompany.length > 1 && (
+                                            <div class="companyDuration">
+                                                <p>
+                                                    {
+                                                        expByCompany[0]
+                                                            .companyDuration
+                                                            ?.html
+                                                    }
+                                                    -{" "}
+                                                    {capitalize(block.company)}
+                                                </p>
+                                            </div>
+                                        )}
                                         <div class="role">
                                             {block.link ? (
                                                 <h4>
@@ -86,34 +76,46 @@ const groupByCompany = list.reduce((acc: Record<string, any>, exp) => {
                                             )}
                                         </div>
                                         <p class="time" id="duration">
-                                            {duration.html}
+                                            {block.roleDuration &&
+                                                block.roleDuration.html}
                                         </p>
-                                        {
-                                            block.role.map(point => {
-                                                return (
-                                                    <p class="exp-desc">{point}</p>
-                                                )
-                                            })
-                                        }
-                                        <div class="showcase-container">
-                                            {block.showcase &&
-                                                block.showcase.map((item) => {
+                                        {block.role.map((point) => {
+                                            return (
+                                                <p class="exp-desc">{point}</p>
+                                            );
+                                        })}
+                                        {block.showcase && (
+                                            <div class="showcase-container">
+                                                {block.showcase.map((item) => {
                                                     return (
                                                         <div class="showcase">
                                                             {item.image && (
                                                                 <div class="link-preview">
                                                                     <img
                                                                         class="link-preview-img"
-                                                                        src={item.image[0]}
-                                                                        alt={item.title}
+                                                                        src={
+                                                                            item
+                                                                                .image[0]
+                                                                        }
+                                                                        alt={
+                                                                            item.title
+                                                                        }
                                                                     />
                                                                     <div class="link-text">
-                                                                        <a href={item.link}>
-                                                                            {item.title} -{" "}
+                                                                        <a
+                                                                            href={
+                                                                                item.link
+                                                                            }
+                                                                        >
+                                                                            {
+                                                                                item.title
+                                                                            }{" "}
+                                                                            -{" "}
                                                                             {
                                                                                 new URL(
                                                                                     item.link
-                                                                                ).host
+                                                                                )
+                                                                                    .host
                                                                             }
                                                                         </a>
                                                                     </div>
@@ -122,11 +124,11 @@ const groupByCompany = list.reduce((acc: Record<string, any>, exp) => {
                                                         </div>
                                                     );
                                                 })}
-                                        </div>
+                                            </div>
+                                        )}
                                     </div>
-                                )
-                            })
-                        }
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -140,13 +142,44 @@ const groupByCompany = list.reduce((acc: Record<string, any>, exp) => {
      * ? client side script to update the experience duration on every page load
      */
     import { calcDuration } from "../utils/calcDuration";
+    import { groupExperienceByCompany } from "../utils/groupExperienceByCompany";
+    import { capitalize } from "../utils/common";
 
-    const experienceListStringified = (document.querySelector(".experience-data") as HTMLElement).dataset.experiences;
-    const experienceList = experienceListStringified && JSON.parse(experienceListStringified);
+    const experienceListStringified = (
+        document.querySelector(".experience-data") as HTMLElement
+    ).dataset.experiences;
+    const experienceList =
+        experienceListStringified && JSON.parse(experienceListStringified);
 
-    for (const exp of experienceList) {
-        const duration = calcDuration(exp.startDate, exp.endDate);
-        const durationHTML = document.querySelector(`#${exp.id} #duration`) as HTMLElement;
-        durationHTML.innerHTML = duration.html;
+    const expListAfterRecalculatingRoleDuration = experienceList.map(
+        (exp: Record<string, any>) => {
+            const roleDuration = calcDuration(exp.startDate, exp.endDate);
+            return {
+                ...exp,
+                roleDuration,
+            };
+        }
+    );
+
+    for (const exp of expListAfterRecalculatingRoleDuration) {
+        const durationHTML = document.querySelector(
+            `#${exp.id} #duration`
+        ) as HTMLElement;
+        durationHTML.innerHTML = exp.roleDuration.html;
+    }
+
+    const groupByCompany = groupExperienceByCompany(
+        expListAfterRecalculatingRoleDuration
+    );
+
+    for (const company in groupByCompany) {
+        const expByCompany = groupByCompany[company];
+        const companyDuration = document.querySelector(
+            `div[data-company="${company}"] .companyDuration p`
+        ) as HTMLElement;
+        if (!companyDuration) continue;
+        companyDuration.innerHTML = expByCompany[0].companyDuration
+            ? `${expByCompany[0].companyDuration.html} - ${capitalize(company)}`
+            : "";
     }
 </script>
