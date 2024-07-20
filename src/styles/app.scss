@@ -42,6 +42,10 @@ body {
     --heading-text-color: rgb(20, 20, 20);
     --og-card-bg: rgba(0, 0, 0, 0.10);
 
+    background-color: var(--primary-background-color);
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+
     @media (prefers-color-scheme: dark) {
         --point-box-shadow: 0rem 0rem 0rem 0.3rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 0.5rem rgba(255, 255, 255, 0.10);
         --point-shadow-hover: 0rem 0rem 0rem 0.4rem rgba(255, 255, 255, 0.15), 0rem 0rem 0rem 0.75rem rgba(255, 255, 255, 0.10);
@@ -53,10 +57,6 @@ body {
         --heading-text-color: rgb(198, 198, 198);
         --og-card-bg: rgba(255, 255, 255, 0.05);
     }
-
-    background-color: var(--primary-background-color);
-    min-height: 100vh;
-    text-rendering: optimizeSpeed;
 
     &::-webkit-scrollbar {
         width: 0.5rem;
