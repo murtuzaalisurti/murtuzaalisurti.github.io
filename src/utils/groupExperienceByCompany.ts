@@ -1,6 +1,13 @@
 import { calcDuration } from "./calcDuration";
 import { type Experiences } from "../types/common";
+import { getDurationString } from "./common";
 
+/**
+ * Function that groups experiences by company and calculates company durations.
+ *
+ * @param {Experiences["list"]} list - The list of experiences to be grouped.
+ * @return {Record<string, any>} An object containing experiences grouped by company.
+ */
 export const groupExperienceByCompany = (list: Experiences["list"]) => {
     const groupByCompanyRaw = list.reduce((acc: Record<string, any>, exp) => {
         const roleDuration = calcDuration(exp.startDate, exp.endDate);
@@ -25,7 +32,7 @@ export const groupExperienceByCompany = (list: Experiences["list"]) => {
                 companyDuration.diffMonths += months as number;
             });
 
-            companyDuration.html = `${companyDuration.diffYears ? `${companyDuration.diffYears} yr` : ""} ${companyDuration.diffMonths ? ` ${companyDuration.diffMonths} mos` : ""}`;
+            companyDuration.html = getDurationString(companyDuration.diffYears, companyDuration.diffMonths);
 
             roles.forEach((role) => (role.companyDuration = companyDuration));
             return { [company]: roles };
