@@ -1,5 +1,5 @@
 import { calcDuration } from "./calcDuration";
-import { type Experiences } from "../types/common";
+import type { Experiences } from "../types";
 import { getDurationString } from "./common";
 
 /**

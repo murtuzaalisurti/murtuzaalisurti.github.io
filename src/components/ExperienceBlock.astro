@@ -1,8 +1,8 @@
 ---
 import ogs from "open-graph-scraper";
-import { groupExperienceByCompany } from "../utils/groupExperienceByCompany";
-import { capitalize } from "../utils/common";
-import { type Experiences } from "../types/common";
+import { groupExperienceByCompany } from "../lib/utils/groupExperienceByCompany";
+import { capitalize } from "../lib/utils/common";
+import type { Experiences } from "../lib/types";
 
 interface Props extends Experiences {}
 
@@ -141,9 +141,9 @@ const groupByCompany = groupExperienceByCompany(list);
     /**
      * ? client side script to update the experience duration on every page load
      */
-    import { calcDuration } from "../utils/calcDuration";
-    import { groupExperienceByCompany } from "../utils/groupExperienceByCompany";
-    import { capitalize } from "../utils/common";
+    import { calcDuration } from "../lib/utils/calcDuration";
+    import { groupExperienceByCompany } from "../lib/utils/groupExperienceByCompany";
+    import { capitalize } from "../lib/utils/common";
 
     const experienceListStringified = (
         document.querySelector(".experience-data") as HTMLElement
