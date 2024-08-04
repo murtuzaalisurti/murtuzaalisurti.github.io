@@ -555,3 +555,7 @@ a.back-to-top-fallback {
         fill: var(--primary-background-color);
     }
 }
+
+[data-cal-link] {
+    cursor: pointer;
+}
