@@ -1,4 +1,5 @@
 ---
+import { google } from "googleapis";
 import ogs from "open-graph-scraper";
 import type { SuccessResult } from "open-graph-scraper/types";
 
@@ -18,7 +19,13 @@ const { list } = Astro.props;
 // console.log(`beginning....`, list.length)
 
 for (let [_, item] of list.entries()) {
-    console.log('item ', item.link);
+    console.log('item ', import.meta.env.GOOGLE_API_KEY);
+    const youtubeAPI = await google.youtube("v3").videos.list({
+        key: import.meta.env.GOOGLE_API_KEY,
+        id: ["2Oxu4y-RLrs"],
+        part: ["snippet", "contentDetails"],
+    });
+    console.log(youtubeAPI.data.items?.[0].snippet);
     const { error, result } = await ogs({
         url: item.link,
         fetchOptions: {
