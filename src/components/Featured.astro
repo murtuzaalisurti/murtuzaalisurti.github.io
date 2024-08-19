@@ -29,7 +29,8 @@ for (let [_, item] of list.entries()) {
 
     if (result.success) {
         Object.keys(result).forEach((key) => {
-            console.log('key ', key)
+            // @ts-ignore
+            console.log('key ', key, ' value ', result[key]);
             // const typedKey = key as keyof typeof item & keyof typeof result;
             item = {
                 ...item,
