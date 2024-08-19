@@ -1,4 +1,5 @@
 ---
+import { URL } from "node:url";
 import { google } from "googleapis";
 import ogs from "open-graph-scraper";
 import type { SuccessResult } from "open-graph-scraper/types";
@@ -16,58 +17,64 @@ interface Props {
 
 const { list } = Astro.props;
 
-// console.log(`beginning....`, list.length)
+const youtubeFeaturedItems = list.filter((item) =>
+    item.link.includes("youtube.com")
+);
 
-for (let [_, item] of list.entries()) {
-    console.log('item ', import.meta.env.GOOGLE_API_KEY);
-    const youtubeAPI = await google.youtube("v3").videos.list({
-        key: import.meta.env.GOOGLE_API_KEY,
-        id: ["2Oxu4y-RLrs"],
-        part: ["snippet", "contentDetails"],
-    });
-    console.log(youtubeAPI.data.items?.[0].snippet);
+const youtubeAPI = await google.youtube("v3").videos.list({
+    key: import.meta.env.GOOGLE_API_KEY,
+    id: youtubeFeaturedItems
+        .map((item) => new URL(item.link).searchParams.get("v"))
+        .filter((item) => item) as string[],
+    part: ["snippet"],
+});
+
+for (let [_, item] of youtubeFeaturedItems.entries()) {
+    const snippet = youtubeAPI.data.items?.find((i) =>
+        item.link.includes(i.id as string)
+    )?.snippet;
+    item = {
+        ...item,
+        ogTitle: snippet?.title as string,
+        ogImage: [
+            {
+                url: snippet?.thumbnails?.medium?.url as string,
+            },
+        ],
+    };
+    youtubeFeaturedItems[_] = item;
+}
+
+const otherItems = list.filter((item) => !item.link.includes("youtube.com"));
+
+for (let [_, item] of otherItems.entries()) {
     const { error, result } = await ogs({
         url: item.link,
-        fetchOptions: {
-            headers: {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
-            }
-        }
     });
 
     if (error) {
-        console.log('there was an error', error);
+        console.log(error);
         return;
     }
 
     if (result.success) {
         Object.keys(result).forEach((key) => {
-            // @ts-ignore
-            console.log('key ', key, ' value ', result[key]);
-            // const typedKey = key as keyof typeof item & keyof typeof result;
+            const typedKey = key as keyof typeof item & keyof typeof result;
             item = {
                 ...item,
-                // @ts-ignore
-                [key]: result[key],
+                [typedKey]: result[typedKey],
             };
-            console.log('item ', JSON.stringify(item, null, 4));
         });
-        list[_] = item;
+        otherItems[_] = item;
     }
-    console.log((JSON.stringify(item)));
 }
 
-// console.log(list.forEach((item) => {
-//     // console.log('logging item-----');
-//     // console.log(JSON.stringify(item.ogImage, null, 2))
-// }));
-// console.log(list.length, list);
+const parsedList = youtubeFeaturedItems.concat(otherItems);
 ---
 
 <div class="showcase-container">
     {
-        list.map((item) => {
-            console.log(JSON.stringify(item, null, 2))
+        parsedList.map((item) => {
             return (
                 <div class="showcase">
                     <div class="link-preview">
@@ -77,10 +84,12 @@ for (let [_, item] of list.entries()) {
                             alt={item.ogTitle}
                         />
                         <div class="link-text">
-                            <a href={item.link}>
-                                {item.ogTitle}
-                            </a>
-                            <p class="host">{new URL(item.link).host.replaceAll(new RegExp("w", "gi"), "").slice(1)}</p>
+                            <a href={item.link}>{item.ogTitle}</a>
+                            <p class="host">
+                                {new URL(item.link).host
+                                    .replaceAll(new RegExp("w", "gi"), "")
+                                    .slice(1)}
+                            </p>
                         </div>
                     </div>
                 </div>
