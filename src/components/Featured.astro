@@ -29,10 +29,11 @@ for (let [_, item] of list.entries()) {
 
     if (result.success) {
         Object.keys(result).forEach((key) => {
-            const typedKey = key as keyof typeof item & keyof typeof result;
+            // const typedKey = key as keyof typeof item & keyof typeof result;
             item = {
                 ...item,
-                [typedKey]: result[typedKey],
+                // @ts-ignore
+                [key]: result[key],
             };
         });
         list[_] = item;
