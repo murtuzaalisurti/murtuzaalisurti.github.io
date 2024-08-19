@@ -18,6 +18,7 @@ const { list } = Astro.props;
 // console.log(`beginning....`, list.length)
 
 for (let [_, item] of list.entries()) {
+    console.log('item ', item.link);
     const { error, result } = await ogs({
         url: item.link,
     });
