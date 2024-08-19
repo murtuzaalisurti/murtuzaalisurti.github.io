@@ -29,12 +29,14 @@ for (let [_, item] of list.entries()) {
 
     if (result.success) {
         Object.keys(result).forEach((key) => {
+            console.log('key ', key)
             // const typedKey = key as keyof typeof item & keyof typeof result;
             item = {
                 ...item,
                 // @ts-ignore
                 [key]: result[key],
             };
+            console.log('item ', JSON.stringify(item, null, 4));
         });
         list[_] = item;
     }
