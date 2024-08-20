@@ -38,7 +38,7 @@ for (let [_, item] of youtubeFeaturedItems.entries()) {
         ogTitle: snippet?.title as string,
         ogImage: [
             {
-                url: snippet?.thumbnails?.medium?.url as string,
+                url: snippet?.thumbnails?.maxres?.url as string,
             },
         ],
     };
