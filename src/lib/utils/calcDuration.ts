@@ -32,11 +32,8 @@ export const calcDuration = (startDate: string, endDate: string) => {
     ArrayStartDate.unshift("1");
     ArrayEndDate.unshift("1");
 
-    const EndDate = DateTime.fromFormat(ArrayEndDate.join(" "), "d MMM yyyy");
-    const StartDate = DateTime.fromFormat(
-        ArrayStartDate.join(" "),
-        "d MMM yyyy"
-    );
+    const EndDate = (DateTime.fromJSDate(new Date(ArrayEndDate.join(" "))));
+    const StartDate = (DateTime.fromJSDate(new Date(ArrayStartDate.join(" "))));
 
     const diffObject = EndDate.diff(StartDate, ["years", "months"]);
     const diffYears = diffObject.years;
