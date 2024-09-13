@@ -1,0 +1,33 @@
+name: Code Review
+on:
+    pull_request:
+        types: [opened, reopened, synchronize, ready_for_review]
+        branches:
+            - revamp # change this to your target branch
+    workflow_dispatch: # Allows you to run the workflow manually from the Actions tab
+
+permissions: # necessary permissions
+    pull-requests: write
+    contents: read
+
+jobs:
+    code-review:
+        runs-on: ubuntu-latest
+        name: Code Review
+        steps:
+            - name: Run @murtuzaalisurti/better
+              id: better
+              uses: murtuzaalisurti/better@main # this is the ref of the github action - https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_iduses
+              with:
+                repo-token: ${{ secrets.GITHUB_TOKEN }} # this is auto generated
+                ai-model-api-key: ${{ secrets.ANTHROPIC_API_KEY }} # make sure to set this in your repository secrets - /settings/secrets/actions (Settings > Secrets and Variables > Actions > Secrets Tab)
+                platform: 'anthropic'
+                delete-existing-review-by-bot: false #default is true
+                rules: |- # Rules to consider for code review
+                    -- It must follow industry standard best practices
+                    -- It should be idiomatic
+                    -- It should be readable
+                    -- It should not contain any security related vulnerabilities
+                    -- It should not contain any sensitive data
+                    -- It should be well structured
+                    -- It should not contain bad patterns
