@@ -11,19 +11,19 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.1.6",
-    "@fontsource-variable/montserrat": "^5.0.20",
-    "@fontsource-variable/rubik": "^5.0.23",
+    "@fontsource-variable/montserrat": "^5.1.0",
+    "@fontsource-variable/rubik": "^5.1.0",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.2",
-    "astro": "^4.15.1",
+    "astro": "4.15.5",
     "autoprefixer": "^10.4.20",
-    "cssnano": "^7.0.5",
+    "cssnano": "^7.0.6",
     "dayjs": "^1.11.13",
-    "googleapis": "^143.0.0",
+    "googleapis": "^144.0.0",
     "nanoid": "^5.0.7",
     "open-graph-scraper": "^6.8.1",
     "rss-parser": "^3.13.0",
-    "sass": "^1.77.8"
+    "sass": "^1.78.0"
   },
   "engines": {
     "node": ">=20.9.0"
