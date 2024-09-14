@@ -14,7 +14,6 @@
     "@fontsource-variable/montserrat": "^5.0.20",
     "@fontsource-variable/rubik": "^5.0.23",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
-    "@types/luxon": "^3.4.2",
     "@zachleat/snow-fall": "^1.0.2",
     "astro": "^4.15.1",
     "autoprefixer": "^10.4.20",
