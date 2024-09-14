@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { getDurationString, getMonthAndYearArray } from "./common";
+import { CONSTANTS, getDurationString, getMonthAndYearArray } from "./common";
 
 const formatDayjs = (date: dayjs.Dayjs, format: string) => {
     return date.format(format);
@@ -18,7 +18,7 @@ export const calcDuration = (startDate: string, endDate: string) => {
     const ArrayStartDate = getMonthAndYearArray(startDate);
 
     const ArrayEndDate =
-        endDate === "Present"
+        endDate === CONSTANTS.PRESENT
             ? getMonthAndYearArray(`${new Date().getMonth() + 1}/${new Date().getFullYear()}`, true)
             : getMonthAndYearArray(endDate);
 
@@ -32,7 +32,7 @@ export const calcDuration = (startDate: string, endDate: string) => {
     return {
         diffYears,
         diffMonths,
-        html: `${formatDayjs(StartDate, "MMM, YYYY")} - ${endDate === "Present" ? "Present" : formatDayjs(EndDate, "MMM, YYYY")} • 
+        html: `${formatDayjs(StartDate, "MMM, YYYY")} - ${endDate === CONSTANTS.PRESENT ? CONSTANTS.PRESENT : formatDayjs(EndDate, "MMM, YYYY")} • 
         ${getDurationString(diffYears, diffMonths)}`
     };
 };

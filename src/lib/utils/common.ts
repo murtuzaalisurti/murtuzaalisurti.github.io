@@ -53,3 +53,7 @@ export const getMonthAndYearArray = (dateString: string, present: boolean = fals
             return k;
         });
 }
+
+export const CONSTANTS = {
+    PRESENT: "Present"
+}

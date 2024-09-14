@@ -1,13 +1,15 @@
 ---
+import { customAlphabet } from "nanoid";
+import Parser from "rss-parser";
+
 import Layout from "../layouts/Layout.astro";
 import List from "../components/List.astro";
 import ExperienceBlock from "../components/ExperienceBlock.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import Featured from "../components/Featured.astro";
-
-import { customAlphabet } from "nanoid";
-import Parser from "rss-parser";
 import SocialList from "../components/SocialList.astro";
+
+import { CONSTANTS } from "../lib/utils/common";
 
 const nanoid = customAlphabet(
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -129,7 +131,7 @@ items.sort((a, b) => {
                             company: "imriel",
                             link: "https://imriel.com",
                             startDate: "05/23",
-                            endDate: "Present",
+                            endDate: CONSTANTS.PRESENT,
                         },
                         {
                             id: nanoid(),
@@ -152,7 +154,7 @@ items.sort((a, b) => {
                             company: "syntackle",
                             link: "https://syntackle.com",
                             startDate: "02/22",
-                            endDate: "Present",
+                            endDate: CONSTANTS.PRESENT,
                             showcase: [
                                 {
                                     id: nanoid(),
