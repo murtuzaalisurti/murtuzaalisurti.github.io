@@ -15,15 +15,15 @@
     "@fontsource-variable/rubik": "^5.1.0",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.2",
-    "astro": "4.15.5",
+    "astro": "4.15.9",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "dayjs": "^1.11.13",
     "googleapis": "^144.0.0",
     "nanoid": "^5.0.7",
-    "open-graph-scraper": "^6.8.1",
+    "open-graph-scraper": "^6.8.2",
     "rss-parser": "^3.13.0",
-    "sass": "^1.78.0"
+    "sass": "^1.79.4"
   },
   "engines": {
     "node": ">=20.9.0"
