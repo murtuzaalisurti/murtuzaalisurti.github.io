@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/sitemap": "^3.2.0",
     "@fontsource-variable/montserrat": "^5.1.0",
     "@fontsource-variable/rubik": "^5.1.0",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.2",
-    "astro": "4.15.9",
+    "astro": "4.16.0",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "dayjs": "^1.11.13",
