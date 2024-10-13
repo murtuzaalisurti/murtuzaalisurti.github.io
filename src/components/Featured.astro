@@ -7,6 +7,7 @@ import type { SuccessResult } from "open-graph-scraper/types";
 type BaseItem = {
     id: string;
     link: string;
+    customTitle?: string;
 };
 
 type Item = BaseItem & SuccessResult["result"];
@@ -84,7 +85,7 @@ const parsedList = youtubeFeaturedItems.concat(otherItems);
                             alt={item.ogTitle}
                         />
                         <div class="link-text">
-                            <a href={item.link}>{item.ogTitle}</a>
+                            <a href={item.link}>{item.customTitle || item.ogTitle}</a>
                             <p class="host">
                                 {new URL(item.link).host
                                     .replaceAll(new RegExp("w", "gi"), "")
