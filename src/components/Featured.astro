@@ -83,6 +83,7 @@ const parsedList = youtubeFeaturedItems.concat(otherItems);
                             class="link-preview-img"
                             src={item.ogImage?.[0].url}
                             alt={item.ogTitle}
+                            onerror="this.src='/assets/featured.png';this.onerror=null;"
                         />
                         <div class="link-text">
                             <a href={item.link}>{item.customTitle || item.ogTitle}</a>
