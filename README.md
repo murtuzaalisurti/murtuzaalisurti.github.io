@@ -1,6 +1,6 @@
 # Murtuzaali Surti
 
-A [site](https://murtuzaalisurti.github.io) about professional me!
+A [site](https://murtuzaalisurti.github.io) about professional me.
 
 ---
 
