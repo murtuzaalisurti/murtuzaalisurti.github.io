@@ -87,10 +87,13 @@ const groupByCompany = groupExperienceByCompany(list);
                                         {block.showcase && (
                                             <div class="showcase-container">
                                                 {block.showcase.map((item) => {
-                                                    console.log('item ----', item);
+                                                    console.log(
+                                                        "item ----",
+                                                        item
+                                                    );
                                                     return (
                                                         <div class="showcase">
-                                                            {item.image && (
+                                                            {item.image ? (
                                                                 <div class="link-preview">
                                                                     <img
                                                                         class="link-preview-img"
@@ -102,6 +105,36 @@ const groupByCompany = groupExperienceByCompany(list);
                                                                             item.title
                                                                         }
                                                                         onerror="this.src='/assets/banner-byline.png';this.onerror=null;"
+                                                                    />
+                                                                    <div class="link-text">
+                                                                        <a
+                                                                            href={
+                                                                                item.link
+                                                                            }
+                                                                        >
+                                                                            {
+                                                                                item.title
+                                                                            }{" "}
+                                                                            -{" "}
+                                                                            {
+                                                                                new URL(
+                                                                                    item.link
+                                                                                )
+                                                                                    .host
+                                                                            }
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            ) : (
+                                                                <div class="link-preview">
+                                                                    <img
+                                                                        class="link-preview-img"
+                                                                        src={
+                                                                            "/assets/banner-byline.png"
+                                                                        }
+                                                                        alt={
+                                                                            item.title
+                                                                        }
                                                                     />
                                                                     <div class="link-text">
                                                                         <a
