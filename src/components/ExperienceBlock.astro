@@ -21,7 +21,9 @@ for (const [i, block] of list.entries()) {
             }
 
             if (result.success) {
-                obj.title = result.ogTitle;
+                if (!obj.title) {
+                    obj.title = result.ogTitle;
+                }
                 obj.image =
                     result.ogImage && result.ogImage.map((img) => img.url);
             }
