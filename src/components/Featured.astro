@@ -81,7 +81,9 @@ const parsedList = youtubeFeaturedItems.concat(otherItems);
                     <div class="link-preview">
                         <img
                             class="link-preview-img"
-                            src={item.ogImage?.[0].url}
+                            src={item.ogImage && (
+                                item.ogImage[0].url.includes("linkedin-bug-color") ? item.ogImage[item.ogImage.length - 1].url : item.ogImage[0].url
+                            )}
                             alt={item.ogTitle}
                             onerror="this.src='/assets/featured.png';this.onerror=null;"
                         />
