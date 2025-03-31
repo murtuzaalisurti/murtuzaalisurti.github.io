@@ -20,7 +20,7 @@
     "cssnano": "^7.0.6",
     "dayjs": "^1.11.13",
     "googleapis": "^148.0.0",
-    "lucide-static": "^0.484.0",
+    "lucide-static": "^0.485.0",
     "nanoid": "^5.1.5",
     "open-graph-scraper": "^6.9.0",
     "rss-parser": "^3.13.0",
