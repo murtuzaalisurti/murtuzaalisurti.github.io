@@ -50,7 +50,7 @@ items.sort((a, b) => {
                     >join me</a
                 >?
             </p>
-            <p >Ah yes, <a href="/resume.pdf">resume <ArrowUpRight width={18} height={18} /></a></p>
+            <!-- <p>Ah yes, <a href="/resume.pdf">resume <ArrowUpRight width={18} height={18} /></a></p> -->
         </section>
         <section id="projects" class="section">
             <SectionHeader anchor="projects" heading="Projects" emoji={"🚀"}>
@@ -141,8 +141,11 @@ items.sort((a, b) => {
                             id: nanoid(),
                             title: "Software Engineer - Imriel (Allata)",
                             role: [
-                                "Working on an enterprise application related to legal entities. Using Docker, NestJS, PostgreSQL, leaning more towards the backend side.",
+                                "Working on an enterprise application related to the management of legal entities of a business. Mainly working with React, Node, NestJS, PostgreSQL and Docker leaning more towards the backend side.",
                                 "Re-designed the backend architecture to support storing multiple client data into a single PostgreSQL database instance in a multi-tenant architecture. Tackled massive performance issues due to this change.",
+                                "Worked a little bit on a micro-frontend (MFE) built in React of the same application and improved it. Implemented AG Grid virtualization to allow asynchronous data exports using the AG Grid excel export API.",
+                                "Explored Azure functions by replacing an in-house job scheduler with Azure functions.",
+                                "Migrated a lot of vulnerable and outdated packages including the upgrade of react-router from v5 to v6 which was a fairly big change considering the amount of legacy APIs used in the project, and the migration of the logging architecture from Bunyan to Winston for application-wide logging.",
                             ],
                             company: "imriel",
                             link: "https://imriel.com",
