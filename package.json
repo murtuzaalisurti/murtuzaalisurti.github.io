@@ -15,16 +15,16 @@
     "@fontsource-variable/rubik": "^5.2.5",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.3",
-    "astro": "^5.7.12",
+    "astro": "^5.7.13",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.7",
     "dayjs": "^1.11.13",
     "googleapis": "^148.0.0",
-    "lucide-static": "^0.510.0",
+    "lucide-static": "^0.511.0",
     "nanoid": "^5.1.5",
     "open-graph-scraper": "^6.10.0",
     "rss-parser": "^3.13.0",
-    "sass": "^1.88.0"
+    "sass": "^1.89.0"
   },
   "engines": {
     "node": ">=20.9.0"
