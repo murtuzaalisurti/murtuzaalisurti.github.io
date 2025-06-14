@@ -1,9 +1,10 @@
+import type { APIRoute } from 'astro'
 import { readFileSync } from 'fs'
 import path from 'node:path'
 
-export async function GET(req: Request) {
+export const GET: APIRoute = async ({ request }) => {
     const pdf = readFileSync(
-        path.join(process.cwd(), 'public', 'resume-murtuzaalisurti.pdf'),
+        path.join(process.cwd(), 'public', 'resume-murtuzaali-surti.pdf'),
         {
             encoding: 'binary'
         }
@@ -11,7 +12,7 @@ export async function GET(req: Request) {
     const pdfBuffer = Buffer.from(pdf, 'binary')
 
     return new Response(
-        pdfBuffer,
+        Uint8Array.from(pdfBuffer).buffer,
         {
             headers: {
                 "Content-Type": "application/pdf"
