@@ -11,21 +11,26 @@ const { list } = Astro.props;
 for (const [i, block] of list.entries()) {
     if (block.showcase) {
         for (const [j, obj] of block.showcase.entries()) {
-            const { error, result } = await ogs({
-                url: obj.link,
-            });
-
-            if (error) {
-                console.log(error);
-                return;
-            }
-
-            if (result.success) {
-                if (!obj.title) {
-                    obj.title = result.ogTitle;
+            try {
+                const { error, result } = await ogs({
+                    url: obj.link,
+                });
+    
+                if (error) {
+                    console.error(error);
+                    continue;
                 }
-                obj.image =
-                    result.ogImage && result.ogImage.map((img) => img.url);
+    
+                if (result.success) {
+                    if (!obj.title) {
+                        obj.title = result.ogTitle;
+                    }
+                    obj.image =
+                        result.ogImage && result.ogImage.map((img) => img.url);
+                }
+            } catch (error) {
+                console.error(`Error processing showcase item ${j} in block ${i}:`, error);
+                continue;
             }
         }
     }
