@@ -10,21 +10,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.5.1",
-    "@fontsource-variable/montserrat": "^5.2.7",
-    "@fontsource-variable/rubik": "^5.2.7",
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/montserrat": "^5.2.8",
+    "@fontsource-variable/rubik": "^5.2.8",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.3",
-    "astro": "^5.13.7",
+    "astro": "^5.13.9",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.1.1",
     "dayjs": "^1.11.18",
-    "googleapis": "^159.0.0",
+    "googleapis": "^160.0.0",
     "lucide-static": "^0.544.0",
     "nanoid": "^5.1.5",
     "open-graph-scraper": "^6.10.0",
     "rss-parser": "^3.13.0",
-    "sass": "^1.92.1"
+    "sass": "^1.93.0"
   },
   "engines": {
     "node": ">=20.9.0"
