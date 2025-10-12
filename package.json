@@ -15,7 +15,7 @@
     "@fontsource-variable/rubik": "^5.2.8",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.3",
-    "astro": "^5.14.3",
+    "astro": "^5.14.4",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.1.1",
     "dayjs": "^1.11.18",
