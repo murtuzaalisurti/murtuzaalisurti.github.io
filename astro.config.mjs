@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://murtuzaalisurti.github.io",
+  site: "https://murtuzaalisurti.com",
   integrations: [
     sitemap({
       changefreq: "monthly",
