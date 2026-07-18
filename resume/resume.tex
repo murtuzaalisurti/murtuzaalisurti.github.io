@@ -1,0 +1,201 @@
+%-------------------------
+% Author : Murtuzaali Surti
+% License : MIT
+%-------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+% glyphtounicode is a pdfTeX feature (makes the PDF ATS-parsable).
+% Guard it so the file also compiles under XeTeX engines (e.g. tectonic).
+\ifdefined\pdfgentounicode
+  \input{glyphtounicode}
+\fi
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\ifdefined\pdfgentounicode
+  \pdfgentounicode=1
+\fi
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Murtuzaali Surti} \\ \vspace{1pt}
+    \small Software Engineer $|$ Vadodara, India $|$ +91 8160465102 \\ \vspace{1pt}
+    \href{mailto:hey@murtuzaalisurti.com}{\underline{hey@murtuzaalisurti.com}} $|$
+    \href{https://murtuzaalisurti.com}{\underline{murtuzaalisurti.com}} \\
+    GitHub: \href{https://github.com/murtuzaalisurti}{\underline{murtuzaalisurti}},
+    LinkedIn: \href{https://www.linkedin.com/in/murtuzaali-surti/}{\underline{https://www.linkedin.com/in/murtuzaali-surti/}}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\small{Software Engineer with 3+ years of experience building scalable web applications. Specialized in full-stack (React, Node.js, and PostgreSQL) and AI-assisted development using Claude Code/OpenCode. Active technical writer with publications on CSS-Tricks and freeCodeCamp. Maintainer of open-source projects.}
+
+%-----------EXPERIENCE----------
+\section{Work Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Software Engineer}{May, 2023 -- Present}
+      {Allata}{}
+      \resumeItemListStart
+        \resumeItem{Redesigned a PostgreSQL backend for multi-tenancy, scaling one database instance to 5,000 clients.}
+        \resumeItem{Implemented AG Grid virtualization and asynchronous Excel exports for 20K+ records.}
+        \resumeItem{Led 3 migrations: AWS jobs to Azure Functions, React Router v5 to v6, and Bunyan to Winston.}
+        \resumeItem{Currently working on an AI Accelerator for 3 use cases: business users, developer coding assistance, and advanced document analysis.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {SWE Intern}{Jan, 2023 -- May, 2023}
+      {Allata}{}
+      \resumeItemListStart
+        \resumeItem{Built 1 ATS with 4 frontend technologies - React, TypeScript, MUI, and Jest - while applying Agile methodology.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Creator}{Feb, 2022 -- Present}
+      {Syntackle}{}
+      \resumeItemListStart
+        \resumeItem{Built \href{https://syntackle.com}{\underline{syntackle.com}} with 11ty, Gulp, Rollup, and PostCSS, generating 5M impressions on Google.}
+        \resumeItem{Published community-driven tutorials on web development, CSS, JavaScript, Jamstack, serverless, and developer tools.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeItemListStart
+    \resumeItem{\href{https://github.com/murtuzaalisurti/better}{\underline{Better}} -- A code reviewer GitHub action powered by AI}
+    \resumeItem{\href{https://www.npmjs.com/package/@murtuzaalisurti/back-to-top}{\underline{back-to-top}} -- A web component}
+    \resumeItem{\href{https://rssed.murtuzaalisurti.com/}{\underline{rssed}} -- A collection of RSS feeds of hundreds of independent developers as well as publications which updates itself everyday}
+    \resumeItem{\href{https://mbuffs.murtuzaalisurti.com/}{\underline{mbuffs}} -- A collaborative movie recommendation web app built using AI}
+  \resumeItemListEnd
+
+%-----------ACHIEVEMENTS-----------
+\section{Talks \& Achievements}
+  \resumeItemListStart
+    \resumeItem{\href{https://www.linkedin.com/posts/imriel-technology-solutions-private-limited_imriel-allata-aihackathon-activity-7249290910922924032-Mqgj}{\underline{AI Hackathon Winner at Imriel}} (An Allata Company)}
+    \resumeItem{\href{https://youtu.be/2Oxu4y-RLrs}{\underline{The voice of simplicity}} -- What the JAM podcast (Featured Talk)}
+    \resumeItem{\href{https://youtu.be/7nG-x3Fs3oY}{\underline{Building Projects \& Learning Mindset as a Developer}} -- Ganesh Patil's Podcast (Featured Talk)}
+    \resumeItem{Wrote for developer publications such as \href{https://www.freecodecamp.org/news/author/murtuza/}{\underline{freeCodeCamp}} and \href{https://css-tricks.com/author/murtuzaalisurti/}{\underline{CSS Tricks}}}
+    \resumeItem{\href{https://dev.to/devteam/the-7-most-popular-dev-posts-from-the-past-week-5g5c}{\underline{Top 7 Author Of the Week on DEV.to}}}
+    \resumeItem{Gave a \href{https://www.linkedin.com/posts/murtuzaali-surti_hacktoberfest2021-activity-6857932326245023744-7M9_}{\underline{talk at HacktoberFest 2021}} at Navrachana University.}
+  \resumeItemListEnd
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Computer Languages}{: JavaScript/TypeScript, HTML/CSS, YAML, Markdown, SQL (PostgreSQL, MSSQL), Bash } \\
+     \textbf{Frameworks/Tools/Libraries/Database}{: React, NextJS, NestJS, NodeJS, Express, Docker, DynamoDB, MongoDB, Neon, CosmosDB, Terraform, Astro, 11ty, EJS, Git} \\
+     \textbf{Cloud Platforms}{: Azure, AWS} \\
+     \textbf{Soft Skills}{: Technical Writing (syntackle.com)}
+    }}
+ \end{itemize}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Bachelor of Computer Applications - Navrachana University}{July, 2020 -- May, 2023}
+      {Grade: 8.99 (CGPA)}{}
+  \resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+  \resumeItemListStart
+    \resumeItem{\href{https://www.credly.com/badges/3d5ccd15-bd46-400d-a533-a42c5456f8b8}{\underline{AWS Certified Cloud Practitioner}}}
+  \resumeItemListEnd
+
+%-------------------------------------------
+\end{document}

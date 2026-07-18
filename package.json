@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build:resume": "node scripts/build-resume.mjs",
+    "build": "npm run build:resume && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
