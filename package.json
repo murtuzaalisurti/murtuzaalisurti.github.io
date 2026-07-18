@@ -12,26 +12,32 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource-variable/rubik": "^5.2.8",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.3",
-    "astro": "^6.0.8",
-    "autoprefixer": "^10.4.27",
-    "cssnano": "^7.1.3",
-    "dayjs": "^1.11.20",
-    "googleapis": "^171.4.0",
-    "lucide-static": "^0.577.0",
-    "nanoid": "^5.1.7",
-    "open-graph-scraper": "^6.11.0",
+    "astro": "^7.1.1",
+    "autoprefixer": "^10.5.4",
+    "cssnano": "^8.0.2",
+    "dayjs": "^1.11.21",
+    "googleapis": "^173.0.0",
+    "lucide-static": "^1.25.0",
+    "nanoid": "^6.0.0",
+    "open-graph-scraper": "^6.12.0",
     "rss-parser": "^3.13.0",
-    "sass": "^1.98.0"
+    "sass": "^1.101.0"
   },
   "engines": {
     "node": ">=24.11.0"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": true,
+    "sharp@0.34.3": true,
+    "@parcel/watcher@2.5.6": true
   }
 }
