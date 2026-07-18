@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Install TeX Live (to compile the LaTeX resume)
+      - name: Install TeX Live + poppler (compile & verify the LaTeX resume)
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
@@ -28,7 +28,8 @@ jobs:
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-fonts-recommended \
-            texlive-fonts-extra
+            texlive-fonts-extra \
+            poppler-utils
       - name: Creating an .env file
         run: |
           touch .env

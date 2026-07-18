@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build:resume": "node scripts/build-resume.mjs",
-    "build": "npm run build:resume && astro build",
+    "verify:resume": "node scripts/verify-resume.mjs",
+    "build": "npm run build:resume && npm run verify:resume && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

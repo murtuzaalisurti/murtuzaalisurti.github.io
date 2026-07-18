@@ -8,23 +8,10 @@ const pdfUrl = "/resume.pdf";
 
 <Layout title="Resume — Murtuzaali Surti">
     <main id="resume">
-        <header class="resume-header">
-            <div>
-                <h1>Resume</h1>
-                <p>
-                    Compiled from LaTeX. <a href="/">Back home</a>
-                </p>
-            </div>
-            <a class="download" href={pdfUrl} download="resume-murtuzaali-surti.pdf">
-                Download PDF
-            </a>
-        </header>
-
         <object class="resume-viewer" data={pdfUrl} type="application/pdf">
             <iframe class="resume-viewer" src={pdfUrl} title="Resume PDF"></iframe>
             <p class="resume-fallback">
-                Your browser can't display the embedded PDF.
-                <a href={pdfUrl}>Open the resume in a new tab</a>.
+                <a href={pdfUrl}>Open the resume</a>
             </p>
         </object>
     </main>
@@ -37,35 +24,9 @@ const pdfUrl = "/resume.pdf";
         padding: 2rem 1.25rem 3rem;
     }
 
-    .resume-header {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-bottom: 1.25rem;
-    }
-
-    .resume-header h1 {
-        margin: 0;
-    }
-
-    .resume-header p {
-        margin: 0.25rem 0 0;
-    }
-
-    .download {
-        display: inline-block;
-        padding: 0.55rem 1rem;
-        border: 1px solid currentColor;
-        border-radius: 6px;
-        text-decoration: none;
-        white-space: nowrap;
-    }
-
     .resume-viewer {
         width: 100%;
-        height: 85vh;
+        height: 90vh;
         min-height: 600px;
         border: 1px solid rgba(128, 128, 128, 0.35);
         border-radius: 6px;
