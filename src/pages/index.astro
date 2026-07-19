@@ -1,16 +1,12 @@
 ---
 import { customAlphabet } from "nanoid";
 import Parser from "rss-parser";
-
-/**
- * ? importing lucide icons
- */
-// import ArrowUpRight from "lucide-static/icons/square-arrow-out-up-right.svg"; // https://docs.astro.build/en/reference/experimental-flags/svg/
+import dayjs from "dayjs";
 
 import Layout from "../layouts/Layout.astro";
-import List from "../components/List.astro";
-import ExperienceBlock from "../components/ExperienceBlock.astro";
-import SectionHeader from "../components/SectionHeader.astro";
+import Header from "../components/Header.astro";
+import LinkTable from "../components/LinkTable.astro";
+import Experience from "../components/Experience.astro";
 import Featured from "../components/Featured.astro";
 import SocialList from "../components/SocialList.astro";
 
@@ -22,9 +18,7 @@ const nanoid = customAlphabet(
 );
 
 const fetchPosts = async (url: string) => {
-    return await new Parser({
-        timeout: 120000,
-    }).parseURL(url);
+    return await new Parser({ timeout: 120000 }).parseURL(url);
 };
 
 const posts = await fetchPosts("https://syntackle.com/feed.xml");
@@ -37,342 +31,371 @@ items.sort((a, b) => {
         : new Date(b.isoDate as string).getTime() -
               new Date(a.isoDate as string).getTime();
 });
+
+const projects = [
+    {
+        id: nanoid(),
+        title: "better",
+        meta: "AI · GitHub Action",
+        url: "https://github.com/murtuzaalisurti/better",
+    },
+    {
+        id: nanoid(),
+        title: "syntackle",
+        meta: "Developer blog",
+        url: "https://syntackle.com",
+    },
+    {
+        id: nanoid(),
+        title: "mbuffs",
+        meta: "AI · Movie lists",
+        url: "https://mbuffs.murtuzaalisurti.com",
+    },
+    {
+        id: nanoid(),
+        title: "back-to-top",
+        meta: "Web Component",
+        url: "https://www.npmjs.com/package/@murtuzaalisurti/back-to-top",
+    },
+    {
+        id: nanoid(),
+        title: "rssed",
+        meta: "RSS feeds",
+        url: "https://rssed.murtuzaalisurti.com",
+    },
+    {
+        id: nanoid(),
+        title: "wavy",
+        meta: "Text Animation",
+        url: "https://www.npmjs.com/package/@murtuzaalisurti/wavy",
+    },
+];
+
+const postItems = items.map((post) => ({
+    id: nanoid(),
+    title: post.title as string,
+    url: post.link,
+    meta: dayjs(post.pubDate || post.isoDate).format("MMM YYYY"),
+}));
 ---
 
 <Layout title="Murtuzaali Surti">
     <main>
-        <section id="bio">
-            <h1>Murtuzaali Surti</h1>
+        <Header
+            name="Murtuzaali Surti"
+            role="Software Engineer"
+            avatar="/assets/avatar.jpg"
+        />
+
+        <section class="bio">
+            <p class="bio-lead">
+                A software engineer, building <a href="https://syntackle.com"
+                    >syntackle.com</a
+                >
+            </p>
             <p>
-                Breaking and fixing code as a software engineer. Bugs are on my
-                most wanted list. I write a lot. Wanna <a
+                I break and fix code as a software engineer. Bugs are on my most
+                wanted list. I write a lot (wanna <a
                     href="https://syntackle.com/author/murtuzaalisurti/"
                     >join me</a
-                >?
+                >?) and have published articles on several publications
+                including <a href="https://css-tricks.com/author/murtuzaalisurti/"
+                    >css-tricks</a
+                > and <a href="https://www.freecodecamp.org/news/author/murtuza/"
+                    >freeCodeCamp</a
+                >.
             </p>
-            <!-- <p>Ah yes, <a href="/resume">my resume</a>.</p> -->
-        </section>
-        <section id="projects" class="section">
-            <SectionHeader anchor="projects" heading="Projects" emoji={"🚀"}>
-                <List
-                    section="projects"
-                    list={[
-                        {
-                            id: nanoid(),
-                            title: "Better",
-                            desc: "A code reviewer github action powered by AI.",
-                            url: "https://github.com/murtuzaalisurti/better",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "Syntackle",
-                            desc: "Developer blog.",
-                            url: "https://syntackle.com",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "mbuffs",
-                            desc: "A collaborative movie list built using AI.",
-                            url: "https://mbuffs.murtuzaalisurti.com",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "back-to-top",
-                            desc: "A Web Component.",
-                            url: "https://www.npmjs.com/package/@murtuzaalisurti/back-to-top",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "rssed",
-                            desc: "Collection of dev RSS feeds.",
-                            url: "https://rssed.murtuzaalisurti.com",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "Wavy",
-                            desc: "Text animation library.",
-                            url: "https://www.npmjs.com/package/@murtuzaalisurti/wavy",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "QR Codes",
-                            desc: "QR code generator.",
-                            url: "https://github.com/murtuzaalisurti/qr",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "Contact Card",
-                            desc: "Get a digital business card.",
-                            url: "https://contact-card.murtuzaalisurti.com?ref=portfolio",
-                        },
-                    ]}
-                />
-            </SectionHeader>
-        </section>
-        <section id="featured" class="section">
-            <SectionHeader anchor="featured" heading="Featured" emoji={"✨"}>
-                <Featured
-                    list={[
-                        {
-                            id: nanoid(),
-                            link: "https://www.youtube.com/watch?v=2Oxu4y-RLrs",
-                        },
-                        {
-                            id: nanoid(),
-                            link: "https://www.youtube.com/watch?v=7nG-x3Fs3oY",
-                        },
-                        {
-                            id: nanoid(),
-                            customTitle: "AI Hackathon Winner at Imriel (Allata)",
-                            link: "https://www.linkedin.com/posts/imriel-technology-solutions-private-limited_imriel-allata-aihackathon-activity-7249290910922924032-Mqgj?utm_source=share&utm_medium=member_desktop",
-                        },
-                        {
-                            id: nanoid(),
-                            customTitle: "Celebrating 50 articles on syntackle.com",
-                            link: "https://www.linkedin.com/posts/murtuzaali-surti_celebrating-50-articles-on-syntacklecom-activity-7284169434166923264-eQIw?utm_source=share&utm_medium=member_desktop",
-                        },
-                    ]}
-                />
-            </SectionHeader>
-        </section>
-        <section id="experience" class="section">
-            <SectionHeader
-                anchor="experience"
-                heading="Experience"
-                emoji={"🙃"}
+            <p>
+                Javascript is one of my favs and it's even better with
+                Typescript. You can find me coding on my projects such as <a
+                    href="https://rssed.murtuzaalisurti.com">rssed</a
+                > and <a href="https://github.com/murtuzaalisurti/better">better</a
+                >, or writing on my <a href="https://syntackle.com">blog</a>.
+            </p>
+            <p>You can also find me on your terminal:</p>
+            <button
+                type="button"
+                class="command"
+                data-copy="npx murtuzaalisurti"
+                title="Click to copy"
             >
-                <ExperienceBlock
-                    list={[
-                        {
-                            id: nanoid(),
-                            title: "Software Engineer - Imriel (Allata)",
-                            role: [
-                                "Delivered an e-commerce application built using React + Vite + Node + MSSQL for an AV event experience company. The main purpose was to automate a lot of manual processes and integrate tightly with their orders and payments platform.",
-                                "Worked on an enterprise application related to the management of legal entities of a business. Mainly working with React, Node, NestJS, PostgreSQL and Docker leaning more towards the backend side.",
-                                "Re-designed the backend architecture to support storing multiple client data into a single PostgreSQL database instance in a multitenant architecture. Tackled massive performance issues and improved scalability to support 5000 clients on a single database instance.",
-                                "Worked on a micro-frontend (MFE) built in React of the same application and improved it in terms of usability. Implemented AG Grid virtualization to allow asynchronous data exports of 20K+ records using the AG Grid excel export API.",
-                                "Worked with Azure functions by replacing an in-house job scheduler with Azure functions and successfully migrated multiple jobs. It was a part of the move of replacing AWS with Azure.",
-                                "Migrated a lot of vulnerable and outdated packages including the upgrade of react-router from v5 to v6 which was a fairly big change considering the amount of legacy APIs used in the project, and the migration of the logging architecture from Bunyan to Winston for application-wide logging. Ensured application stability and maintainability by migrating vulnerable packages.",
-                            ],
-                            company: "allata",
-                            link: "https://allata.com",
-                            startDate: "05/23",
-                            endDate: CONSTANTS.PRESENT,
-                        },
-                        {
-                            id: nanoid(),
-                            title: "SWE Intern - Imriel (Allata)",
-                            role: [
-                                "Worked on an Applicant Tracking System (ATS) built with React, Typescript, MUI and Jest as a Frontend Software Engineer. Developed an understanding of the Agile methodology in software development.",
-                            ],
-                            company: "allata",
-                            link: "https://allata.com",
-                            startDate: "01/23",
-                            endDate: "05/23",
-                        },
-                        {
-                            id: nanoid(),
-                            title: "Creator - Syntackle",
-                            role: [
-                                "Built a blog from scratch using 11ty with some progressive JS and vanilla CSS with PostCSS as a post-processor. Gulp and Rollup are also a part of the build process.",
-                                "It's mainly a software development blog covering news, topics & tutorials related to the web, javascript, jamstack, serverless, developer tools, AI and much more. It encourages community engagement by allowing users to contribute content, thus fostering a collaborative environment for knowledge sharing.",
-                            ],
-                            company: "syntackle",
-                            link: "https://syntackle.com",
-                            startDate: "02/22",
-                            endDate: CONSTANTS.PRESENT,
-                            showcase: [
-                                {
-                                    id: nanoid(),
-                                    link: "https://syntackle.com/author/murtuzaalisurti/",
-                                },
-                                {
-                                    id: nanoid(),
-                                    link: "https://syntackle.com/blog/vibe-coding/",
-                                },
-                                {
-                                    id: nanoid(),
-                                    link: "https://syntackle.com/blog/best-places-to-learn-react/",
-                                },
-                                {
-                                    id: nanoid(),
-                                    link: "https://syntackle.com/blog/the-problem-with-ai-generated-code/",
-                                },
-                            ],
-                        },
-                        {
-                            id: nanoid(),
-                            title: "Content Creator - Aviyel",
-                            role: [
-                                "Gave a virtual talk and got featured in Coffee & Code event organized by Aviyel.",
-                            ],
-                            company: "aviyel",
-                            link: "https://aviyel.com/@murtuzaalisurti",
-                            startDate: "10/21",
-                            endDate: "01/23",
-                            showcase: [
-                                {
-                                    id: nanoid(),
-                                    link: "https://www.youtube.com/watch?v=CFoJ5dpAZRc",
-                                    title: "Chatbot for websites using Chatwoot | Murtuzaali Surti",
-                                },
-                            ],
-                        },
-                        {
-                            id: nanoid(),
-                            title: "Author - CSS Tricks",
-                            role: [
-                                "Wrote articles related to Web Design and Development.",
-                            ],
-                            company: "css tricks",
-                            link: "https://css-tricks.com/author/murtuzaalisurti/",
-                            startDate: "07/21",
-                            endDate: "06/23",
-                            showcase: [
-                                {
-                                    id: nanoid(),
-                                    link: "https://css-tricks.com/typewriter-animation-that-handles-anything-you-throw-at-it/",
-                                },
-                                {
-                                    id: nanoid(),
-                                    link: "https://css-tricks.com/author/murtuzaalisurti/",
-                                },
-                            ],
-                        },
-                        {
-                            id: nanoid(),
-                            title: "Technical Writer - Draft",
-                            role: ["Freelance Content Writer."],
-                            company: "draft",
-                            link: "https://draft.dev",
-                            startDate: "09/21",
-                            endDate: "06/22",
-                            showcase: [
-                                {
-                                    id: nanoid(),
-                                    link: "https://fingerprint.com/blog/browser-fingerprinting-react/",
-                                },
-                                {
-                                    id: nanoid(),
-                                    link: "https://rewind.com/blog/how-to-restore-deleted-branch-commit-git-reflog/",
-                                },
-                            ],
-                        },
-                    ]}
-                />
-            </SectionHeader>
+                <span class="command-text">npx murtuzaalisurti</span>
+                <span class="command-hint">copy</span>
+            </button>
         </section>
-        <section id="posts" class="section">
-            <SectionHeader anchor="posts" heading="Latest Posts" emoji={"📝"}>
-                <List
-                    section="posts"
-                    list={items.map((post) => {
-                        return {
-                            id: nanoid(),
-                            title: post.title as string,
-                            desc: post.summary,
-                            url: post.link,
-                        };
-                    })}
-                />
-            </SectionHeader>
+
+        <script>
+            document
+                .querySelectorAll<HTMLButtonElement>(".command[data-copy]")
+                .forEach((btn) => {
+                    btn.addEventListener("click", async () => {
+                        try {
+                            await navigator.clipboard.writeText(
+                                btn.dataset.copy || ""
+                            );
+                            const hint = btn.querySelector(".command-hint");
+                            if (hint) {
+                                const prev = hint.textContent;
+                                hint.textContent = "copied";
+                                setTimeout(() => (hint.textContent = prev), 1500);
+                            }
+                        } catch (e) {}
+                    });
+                });
+        </script>
+
+        <section class="section" id="projects">
+            <span class="section-label">Projects</span>
+            <LinkTable items={projects} />
         </section>
-        <section id="uses" class="section">
-            <SectionHeader anchor="uses" heading="Uses" emoji={"🔮"}>
-                <p>What I use on a daily basis for software development:</p>
-                <div class="category">
-                    <h4>Editor</h4>
-                    <p>
-                        You guessed it right, it's VSCode! What I love about it
-                        is the capability to be simple yet powerful at the same
-                        time. I go to <a href="https://www.cursor.com/">Cursor</a> for AI stuff, and <a href="https://zed.dev/">Zed</a> for trying something fast and new sometimes.
-                    </p>
-                </div>
-                <div class="category">
-                    <h4>Terminal</h4>
-                    <p>
-                        When I'm on Windows, I use <em>bash</em> inside VSCode's integrated terminal for
-                        the most part, but I also switch between <a
-                            href="https://github.com/vercel/hyper">Hyper</a
-                        > and the new Windows Terminal. On a Mac, I prefer the default zsh terminal with <a href="https://syntackle.com/blog/mac-setup-for-developers/#:~:text=1.-,Oh%20My%20Zsh,-True%20power%20of">oh-my-zsh</a>, and sometimes switch to <a href="https://syntackle.com/blog/mac-setup-for-developers/#:~:text=2.-,Warp,-If%20you%20don%27t">warp</a> for fancy stuff.
-                    </p>
-                </div>
-                <div class="category">
-                    <h4>Themes</h4>
-                    <p>
-                        For my editor, the award goes to <em
-                            >One Dark Pro Darker</em
-                        > for the most eye-pleasing color pallette.
-                    </p>
-                    <p>
-                        For the windows terminal, I went for Oh My Posh's <a
-                            href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json"
-                            >stelbent minimal</a
-                        > theme. It's a pretty good theme displaying crucial information.
-                    </p>
-                    <p>
-                        On MacOS' terminal, I prefer the <a href="https://github.com/romkatv/powerlevel10k">powerlevel10k</a> theme of oh-my-zsh.
-                    </p>
-                </div>
-                <div class="category">
-                    <h4>Fonts</h4>
-                    <p>
-                        Personally I love Apple's SF Mono font, so I found a <a
-                            href="https://github.com/epk/SF-Mono-Nerd-Font"
-                            >nerd font</a
-                        > for windows which is the patched SF Mono font.
-                    </p>
-                    <p>
-                        JetBrains Mono takes the second place. I was using it
-                        for a long time before switching to SF Mono and by far
-                        it's the most compact monospace font I have ever used.
-                    </p>
-                </div>
-            </SectionHeader>
+
+        <section class="section" id="experience">
+            <span class="section-label">Experience</span>
+            <Experience
+                list={[
+                    {
+                        id: nanoid(),
+                        title: "Software Engineer - Imriel (Allata)",
+                        role: [
+                            "Delivered an e-commerce application built using React + Vite + Node + MSSQL for an AV event experience company. The main purpose was to automate a lot of manual processes and integrate tightly with their orders and payments platform.",
+                            "Worked on an enterprise application related to the management of legal entities of a business. Mainly working with React, Node, NestJS, PostgreSQL and Docker leaning more towards the backend side.",
+                            "Re-designed the backend architecture to support storing multiple client data into a single PostgreSQL database instance in a multitenant architecture. Tackled massive performance issues and improved scalability to support 5000 clients on a single database instance.",
+                            "Worked on a micro-frontend (MFE) built in React of the same application and improved it in terms of usability. Implemented AG Grid virtualization to allow asynchronous data exports of 20K+ records using the AG Grid excel export API.",
+                            "Worked with Azure functions by replacing an in-house job scheduler with Azure functions and successfully migrated multiple jobs. It was a part of the move of replacing AWS with Azure.",
+                            "Migrated a lot of vulnerable and outdated packages including the upgrade of react-router from v5 to v6 which was a fairly big change considering the amount of legacy APIs used in the project, and the migration of the logging architecture from Bunyan to Winston for application-wide logging. Ensured application stability and maintainability by migrating vulnerable packages.",
+                        ],
+                        company: "allata",
+                        link: "https://allata.com",
+                        startDate: "05/23",
+                        endDate: CONSTANTS.PRESENT,
+                    },
+                    {
+                        id: nanoid(),
+                        title: "SWE Intern - Imriel (Allata)",
+                        role: [
+                            "Worked on an Applicant Tracking System (ATS) built with React, Typescript, MUI and Jest as a Frontend Software Engineer. Developed an understanding of the Agile methodology in software development.",
+                        ],
+                        company: "allata",
+                        link: "https://allata.com",
+                        startDate: "01/23",
+                        endDate: "05/23",
+                    },
+                    {
+                        id: nanoid(),
+                        title: "Creator - Syntackle",
+                        role: [
+                            "Built a blog from scratch using 11ty with some progressive JS and vanilla CSS with PostCSS as a post-processor. Gulp and Rollup are also a part of the build process.",
+                            "It's mainly a software development blog covering news, topics & tutorials related to the web, javascript, jamstack, serverless, developer tools, AI and much more. It encourages community engagement by allowing users to contribute content, thus fostering a collaborative environment for knowledge sharing.",
+                        ],
+                        company: "syntackle",
+                        link: "https://syntackle.com",
+                        startDate: "02/22",
+                        endDate: CONSTANTS.PRESENT,
+                        showcase: [
+                            {
+                                id: nanoid(),
+                                link: "https://syntackle.com/author/murtuzaalisurti/",
+                            },
+                            {
+                                id: nanoid(),
+                                link: "https://syntackle.com/blog/vibe-coding/",
+                            },
+                            {
+                                id: nanoid(),
+                                link: "https://syntackle.com/blog/best-places-to-learn-react/",
+                            },
+                            {
+                                id: nanoid(),
+                                link: "https://syntackle.com/blog/the-problem-with-ai-generated-code/",
+                            },
+                        ],
+                    },
+                    {
+                        id: nanoid(),
+                        title: "Content Creator - Aviyel",
+                        role: [
+                            "Gave a virtual talk and got featured in Coffee & Code event organized by Aviyel.",
+                        ],
+                        company: "aviyel",
+                        link: "https://aviyel.com/@murtuzaalisurti",
+                        startDate: "10/21",
+                        endDate: "01/23",
+                        showcase: [
+                            {
+                                id: nanoid(),
+                                link: "https://www.youtube.com/watch?v=CFoJ5dpAZRc",
+                                title: "Chatbot for websites using Chatwoot | Murtuzaali Surti",
+                            },
+                        ],
+                    },
+                    {
+                        id: nanoid(),
+                        title: "Author - CSS Tricks",
+                        role: [
+                            "Wrote articles related to Web Design and Development.",
+                        ],
+                        company: "css tricks",
+                        link: "https://css-tricks.com/author/murtuzaalisurti/",
+                        startDate: "07/21",
+                        endDate: "06/23",
+                        showcase: [
+                            {
+                                id: nanoid(),
+                                link: "https://css-tricks.com/typewriter-animation-that-handles-anything-you-throw-at-it/",
+                            },
+                            {
+                                id: nanoid(),
+                                link: "https://css-tricks.com/author/murtuzaalisurti/",
+                            },
+                        ],
+                    },
+                    {
+                        id: nanoid(),
+                        title: "Technical Writer - Draft",
+                        role: ["Freelance Content Writer."],
+                        company: "draft",
+                        link: "https://draft.dev",
+                        startDate: "09/21",
+                        endDate: "06/22",
+                        showcase: [
+                            {
+                                id: nanoid(),
+                                link: "https://fingerprint.com/blog/browser-fingerprinting-react/",
+                            },
+                            {
+                                id: nanoid(),
+                                link: "https://rewind.com/blog/how-to-restore-deleted-branch-commit-git-reflog/",
+                            },
+                        ],
+                    },
+                ]}
+            />
         </section>
-        <section id="contact" class="section">
-            <SectionHeader anchor="contact" heading="Contact" emoji={"🤙"}>
+
+        <section class="section" id="featured">
+            <span class="section-label">Featured</span>
+            <Featured
+                list={[
+                    {
+                        id: nanoid(),
+                        link: "https://www.youtube.com/watch?v=2Oxu4y-RLrs",
+                    },
+                    {
+                        id: nanoid(),
+                        link: "https://www.youtube.com/watch?v=7nG-x3Fs3oY",
+                    },
+                    {
+                        id: nanoid(),
+                        customTitle: "AI Hackathon Winner at Imriel (Allata)",
+                        link: "https://www.linkedin.com/posts/imriel-technology-solutions-private-limited_imriel-allata-aihackathon-activity-7249290910922924032-Mqgj?utm_source=share&utm_medium=member_desktop",
+                    },
+                    {
+                        id: nanoid(),
+                        customTitle: "Celebrating 50 articles on syntackle.com",
+                        link: "https://www.linkedin.com/posts/murtuzaali-surti_celebrating-50-articles-on-syntacklecom-activity-7284169434166923264-eQIw?utm_source=share&utm_medium=member_desktop",
+                    },
+                ]}
+            />
+        </section>
+
+        <section class="section" id="posts">
+            <span class="section-label">Writing</span>
+            <LinkTable items={postItems} />
+        </section>
+
+        <section class="section uses" id="uses">
+            <span class="section-label">Uses</span>
+            <p>What I use on a daily basis for software development:</p>
+            <div class="category">
+                <h4>Editor</h4>
                 <p>
-                    Don't hesitate! Feel free to reach out to <a
-                        title="hey.murtuza@gmail.com"
-                        href="mailto:hey.murtuza@gmail.com">me</a
-                    >. If you are up for a quick chat, <u
-                        ><span
-                            data-cal-link="murtuzaalisurti/15min"
-                            data-cal-namespace="15min"
-                            data-cal-config='{"layout":"month_view"}'
-                            >book your slot</span
-                        ></u
-                    > on my calendar. I also run a blog, so if you are interested
-                    in writing anything about web technologies, then <a
-                        href="https://syntackle.com/write/">pitch your ideas</a
-                    >!
+                    You guessed it right, it's VSCode! What I love about it
+                    is the capability to be simple yet powerful at the same
+                    time. I go to <a href="https://www.cursor.com/">Cursor</a> for AI stuff, and <a href="https://zed.dev/">Zed</a> for trying something fast and new sometimes.
                 </p>
-            </SectionHeader>
+            </div>
+            <div class="category">
+                <h4>Terminal</h4>
+                <p>
+                    When I'm on Windows, I use <em>bash</em> inside VSCode's integrated terminal for
+                    the most part, but I also switch between <a
+                        href="https://github.com/vercel/hyper">Hyper</a
+                    > and the new Windows Terminal. On a Mac, I prefer the default zsh terminal with <a href="https://syntackle.com/blog/mac-setup-for-developers/#:~:text=1.-,Oh%20My%20Zsh,-True%20power%20of">oh-my-zsh</a>, and sometimes switch to <a href="https://syntackle.com/blog/mac-setup-for-developers/#:~:text=2.-,Warp,-If%20you%20don%27t">warp</a> for fancy stuff.
+                </p>
+            </div>
+            <div class="category">
+                <h4>Themes</h4>
+                <p>
+                    For my editor, the award goes to <em
+                        >One Dark Pro Darker</em
+                    > for the most eye-pleasing color pallette.
+                </p>
+                <p>
+                    For the windows terminal, I went for Oh My Posh's <a
+                        href="https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/stelbent.minimal.omp.json"
+                        >stelbent minimal</a
+                    > theme. It's a pretty good theme displaying crucial information.
+                </p>
+                <p>
+                    On MacOS' terminal, I prefer the <a href="https://github.com/romkatv/powerlevel10k">powerlevel10k</a> theme of oh-my-zsh.
+                </p>
+            </div>
+            <div class="category">
+                <h4>Fonts</h4>
+                <p>
+                    Personally I love Apple's SF Mono font, so I found a <a
+                        href="https://github.com/epk/SF-Mono-Nerd-Font"
+                        >nerd font</a
+                    > for windows which is the patched SF Mono font.
+                </p>
+                <p>
+                    JetBrains Mono takes the second place. I was using it
+                    for a long time before switching to SF Mono and by far
+                    it's the most compact monospace font I have ever used.
+                </p>
+            </div>
         </section>
-        <section id="socials" class="section">
-            <SectionHeader anchor="socials" heading="Socials" emoji={"🥇"}>
-                <SocialList
-                    list={[
-                        {
-                            text: "GitHub",
-                            link: "https://github.com/murtuzaalisurti",
-                        },
-                        {
-                            text: "Mastodon",
-                            link: "https://mastodon.social/@murtuzaalisurti",
-                        },
-                        {
-                            text: "LinkedIn",
-                            link: "https://linkedin.com/in/murtuzaali-surti/",
-                        },
-                        {
-                            text: "Twitter (X)",
-                            link: "https://twitter.com/@murtuza_surti",
-                        },
-                    ]}
-                />
-            </SectionHeader>
+
+        <section class="section" id="contact">
+            <span class="section-label">Contact</span>
+            <p>
+                Don't hesitate! Feel free to reach out to <a
+                    title="hey.murtuza@gmail.com"
+                    href="mailto:hey.murtuza@gmail.com">me</a
+                >. If you are up for a quick chat, <a
+                    data-cal-link="murtuzaalisurti/15min"
+                    data-cal-namespace="15min"
+                    data-cal-config='{"layout":"month_view"}'
+                    >book your slot</a
+                > on my calendar. I also run a blog, so if you are interested
+                in writing anything about web technologies, then <a
+                    href="https://syntackle.com/write/">pitch your ideas</a
+                >!
+            </p>
+        </section>
+
+        <section class="section" id="socials">
+            <span class="section-label">Elsewhere</span>
+            <SocialList
+                list={[
+                    {
+                        text: "GitHub",
+                        link: "https://github.com/murtuzaalisurti",
+                    },
+                    {
+                        text: "Twitter (X)",
+                        link: "https://twitter.com/@murtuza_surti",
+                    },
+                    {
+                        text: "LinkedIn",
+                        link: "https://linkedin.com/in/murtuzaali-surti/",
+                    },
+                    {
+                        text: "Mastodon",
+                        link: "https://mastodon.social/@murtuzaalisurti",
+                    },
+                ]}
+            />
         </section>
     </main>
 </Layout>

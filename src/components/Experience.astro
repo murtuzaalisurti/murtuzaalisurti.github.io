@@ -1,0 +1,155 @@
+---
+import ogs from "open-graph-scraper";
+import { calcDuration } from "../lib/utils/calcDuration";
+import type { Experiences } from "../lib/types";
+
+interface Props extends Experiences {}
+
+const { list } = Astro.props;
+
+// resolve concise titles for showcase links (no images, minimal)
+for (const block of list) {
+    if (!block.showcase) continue;
+    for (const obj of block.showcase) {
+        if (obj.title) continue;
+        try {
+            const { error, result } = await ogs({ url: obj.link });
+            if (error) continue;
+            if (result.success) obj.title = result.ogTitle;
+        } catch {
+            continue;
+        }
+    }
+}
+---
+
+<div class="experience" data-experiences={JSON.stringify(list)}>
+    {
+        list.map((block) => {
+            const duration = calcDuration(block.startDate, block.endDate);
+            return (
+                <div id={block.id} class="exp">
+                    <div class="exp-head">
+                        <span class="exp-role">
+                            {block.link ? (
+                                <a
+                                    href={block.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    {block.title}
+                                </a>
+                            ) : (
+                                block.title
+                            )}
+                        </span>
+                        <span class="exp-time" set:html={duration.html} />
+                    </div>
+                    {block.role.map((point) => (
+                        <p class="exp-desc">{point}</p>
+                    ))}
+                    {block.showcase && block.showcase.length === 1 && (
+                        <div class="exp-links">
+                            <a href={block.showcase[0].link} rel="noreferrer">
+                                {block.showcase[0].title ||
+                                    new URL(block.showcase[0].link).host}
+                            </a>
+                        </div>
+                    )}
+                    {block.showcase && block.showcase.length > 1 && (
+                        <div class="exp-slider" data-interval="3800">
+                            <div class="exp-slides">
+                                {block.showcase.map((item, i) => (
+                                    <div
+                                        class={`exp-slide${i === 0 ? " is-active" : ""}`}
+                                    >
+                                        <a href={item.link} rel="noreferrer">
+                                            {item.title ||
+                                                new URL(item.link).host}
+                                        </a>
+                                    </div>
+                                ))}
+                            </div>
+                            <div class="exp-dots">
+                                {block.showcase.map((_, i) => (
+                                    <button
+                                        type="button"
+                                        class={`exp-dot${i === 0 ? " is-active" : ""}`}
+                                        data-index={i}
+                                        aria-label={`Show link ${i + 1}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        })
+    }
+</div>
+
+<script>
+    // refresh "Present" durations on the client so they never go stale
+    import { calcDuration } from "../lib/utils/calcDuration";
+
+    const el = document.querySelector(".experience") as HTMLElement | null;
+    const raw = el?.dataset.experiences;
+    if (raw) {
+        const experiences = JSON.parse(raw) as Array<Record<string, any>>;
+        for (const exp of experiences) {
+            const time = document.querySelector(
+                `#${exp.id} .exp-time`
+            ) as HTMLElement | null;
+            if (time) time.innerHTML = calcDuration(exp.startDate, exp.endDate).html;
+        }
+    }
+</script>
+
+<script>
+    // minimal auto-rotating slider for showcase links
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    document.querySelectorAll<HTMLElement>(".exp-slider").forEach((slider) => {
+        const slides = Array.from(
+            slider.querySelectorAll<HTMLElement>(".exp-slide")
+        );
+        const dots = Array.from(
+            slider.querySelectorAll<HTMLElement>(".exp-dot")
+        );
+        if (slides.length < 2) return;
+
+        const interval = Number(slider.dataset.interval) || 3800;
+        let idx = 0;
+        let timer: number | undefined;
+
+        const show = (n: number) => {
+            idx = (n + slides.length) % slides.length;
+            slides.forEach((s, i) => s.classList.toggle("is-active", i === idx));
+            dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+        };
+        const stop = () => {
+            if (timer) {
+                clearInterval(timer);
+                timer = undefined;
+            }
+        };
+        const start = () => {
+            if (reduceMotion) return;
+            stop();
+            timer = window.setInterval(() => show(idx + 1), interval);
+        };
+
+        dots.forEach((dot) =>
+            dot.addEventListener("click", () => {
+                show(Number(dot.dataset.index));
+                start();
+            })
+        );
+        slider.addEventListener("mouseenter", stop);
+        slider.addEventListener("mouseleave", start);
+
+        start();
+    });
+</script>

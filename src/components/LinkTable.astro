@@ -1,0 +1,37 @@
+---
+interface Item {
+    id: string;
+    title: string;
+    url?: string;
+    meta?: string;
+    year?: string;
+}
+
+interface Props {
+    items: Item[];
+    /** show a leading year column */
+    withYear?: boolean;
+}
+
+const { items, withYear = false } = Astro.props;
+---
+
+<div class={`table ${withYear ? "cols-3" : "cols-2"}`}>
+    {
+        items.map((item) => (
+            <div class="row">
+                {withYear && <span class="cell-year">{item.year}</span>}
+                <span class="cell-title">
+                    {item.url ? (
+                        <a href={item.url} rel="noreferrer">
+                            {item.title}
+                        </a>
+                    ) : (
+                        item.title
+                    )}
+                </span>
+                {item.meta && <span class="cell-meta">{item.meta}</span>}
+            </div>
+        ))
+    }
+</div>

@@ -1,0 +1,79 @@
+---
+interface Props {
+    name: string;
+    role: string;
+    avatar: string;
+}
+
+const { name, role, avatar } = Astro.props;
+---
+
+<header class="site-header">
+    <div class="identity">
+        <img class="avatar" src={avatar} alt={name} width="44" height="44" />
+        <div>
+            <div class="name">{name}</div>
+            <div class="role">{role}</div>
+        </div>
+    </div>
+
+    <div class="theme-toggle" role="group" aria-label="Color theme">
+        <button type="button" data-theme-set="light" aria-label="Light theme" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+        </button>
+        <button type="button" data-theme-set="dark" aria-label="Dark theme" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<script>
+    const root = document.documentElement;
+
+    function currentTheme(): "light" | "dark" {
+        const explicit = root.dataset.theme;
+        if (explicit === "light" || explicit === "dark") return explicit;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    }
+
+    function sync() {
+        const theme = currentTheme();
+        document
+            .querySelectorAll<HTMLButtonElement>(".theme-toggle button")
+            .forEach((btn) => {
+                btn.setAttribute(
+                    "aria-pressed",
+                    String(btn.dataset.themeSet === theme)
+                );
+            });
+    }
+
+    document
+        .querySelectorAll<HTMLButtonElement>(".theme-toggle button")
+        .forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const next = btn.dataset.themeSet as "light" | "dark";
+                root.dataset.theme = next;
+                try {
+                    localStorage.setItem("theme", next);
+                } catch (e) {}
+                sync();
+            });
+        });
+
+    // keep UI in sync with OS changes when no explicit choice is stored
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+            if (!root.dataset.theme) sync();
+        });
+
+    sync();
+</script>

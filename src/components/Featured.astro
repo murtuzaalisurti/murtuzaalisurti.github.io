@@ -71,33 +71,26 @@ for (let [_, item] of otherItems.entries()) {
 }
 
 const parsedList = youtubeFeaturedItems.concat(otherItems);
+
+const sourceLabel = (link: string) => {
+    const host = new URL(link).host.replace(/^www\./, "");
+    if (host.includes("youtube")) return "YouTube";
+    if (host.includes("linkedin")) return "LinkedIn";
+    return host;
+};
 ---
 
-<div class="showcase-container">
+<div class="table cols-2">
     {
-        parsedList.map((item) => {
-            return (
-                <div class="showcase">
-                    <div class="link-preview">
-                        <img
-                            class="link-preview-img"
-                            src={item.ogImage && (
-                                item.ogImage[0].url.includes("linkedin-bug-color") ? item.ogImage[item.ogImage.length - 1].url : item.ogImage[0].url
-                            )}
-                            alt={item.ogTitle}
-                            onerror="this.src='/assets/featured.png';this.onerror=null;"
-                        />
-                        <div class="link-text">
-                            <a href={item.link}>{item.customTitle || item.ogTitle}</a>
-                            <p class="host">
-                                {new URL(item.link).host
-                                    .replaceAll(new RegExp("w", "gi"), "")
-                                    .slice(1)}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            );
-        })
+        parsedList.map((item) => (
+            <div class="row">
+                <span class="cell-title">
+                    <a href={item.link} rel="noreferrer">
+                        {item.customTitle || item.ogTitle}
+                    </a>
+                </span>
+                <span class="cell-meta">{sourceLabel(item.link)}</span>
+            </div>
+        ))
     }
 </div>
