@@ -46,6 +46,8 @@
     --hairline: rgba(0, 0, 0, 0.09);
     --surface: rgba(0, 0, 0, 0.035);
     --surface-strong: rgba(0, 0, 0, 0.06);
+    /* snowflakes: darker & soft so they read on the light bg */
+    --snow-fall-color: rgba(70, 90, 120, 0.28);
 }
 
 /* explicit dark selection */
@@ -59,6 +61,7 @@
     --hairline: rgba(255, 255, 255, 0.1);
     --surface: rgba(255, 255, 255, 0.045);
     --surface-strong: rgba(255, 255, 255, 0.08);
+    --snow-fall-color: rgba(255, 255, 255, 0.5);
 }
 
 /* follow OS when no explicit choice was made */
@@ -73,6 +76,7 @@
         --hairline: rgba(255, 255, 255, 0.1);
         --surface: rgba(255, 255, 255, 0.045);
         --surface-strong: rgba(255, 255, 255, 0.08);
+        --snow-fall-color: rgba(255, 255, 255, 0.5);
     }
 }
 

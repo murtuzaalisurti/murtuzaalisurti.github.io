@@ -193,3 +193,40 @@ const { title } = Astro.props;
         <Footer />
     </body>
 </html>
+
+<script>
+    // web components
+    await import.meta.glob(
+        ["../../node_modules/@zachleat/snow-fall/snow-fall.js"],
+        {
+            eager: true,
+        }
+    );
+</script>
+
+<script>
+    function addSnowFallWebComponentAsFirstChildOfBody() {
+        const snow = document.createElement("snow-fall");
+
+        setMultipleAttributes(snow, {
+            mode: "page",
+            count: "70",
+            style: "--snow-fall-size: 10px;",
+        });
+
+        document.body.prepend(snow);
+
+        function setMultipleAttributes(
+            ele: HTMLElement,
+            attrs: Record<string, string>
+        ) {
+            Object.entries(attrs).forEach(([key, value]) => {
+                ele.setAttribute(key, value);
+            });
+        }
+    }
+
+    if ([10, 11, 0, 1].includes(new Date().getMonth())) {
+        addSnowFallWebComponentAsFirstChildOfBody();
+    }
+</script>
