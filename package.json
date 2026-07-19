@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-    "@fontsource-variable/montserrat": "^5.2.8",
-    "@fontsource-variable/rubik": "^5.2.8",
+    "@fontsource-variable/montserrat": "^5.3.0",
+    "@fontsource-variable/rubik": "^5.3.0",
     "@murtuzaalisurti/back-to-top": "^3.0.4",
     "@zachleat/snow-fall": "^1.0.3",
     "astro": "^7.1.1",
