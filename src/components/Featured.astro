@@ -34,14 +34,17 @@ for (let [_, item] of youtubeFeaturedItems.entries()) {
     const snippet = youtubeAPI.data.items?.find((i) =>
         item.link.includes(i.id as string)
     )?.snippet;
+    const thumbs = snippet?.thumbnails;
+    const thumbUrl =
+        thumbs?.maxres?.url ||
+        thumbs?.standard?.url ||
+        thumbs?.high?.url ||
+        thumbs?.medium?.url ||
+        thumbs?.default?.url;
     item = {
         ...item,
         ogTitle: snippet?.title as string,
-        ogImage: [
-            {
-                url: snippet?.thumbnails?.maxres?.url as string,
-            },
-        ],
+        ogImage: thumbUrl ? [{ url: thumbUrl }] : undefined,
     };
     youtubeFeaturedItems[_] = item;
 }
@@ -78,19 +81,156 @@ const sourceLabel = (link: string) => {
     if (host.includes("linkedin")) return "LinkedIn";
     return host;
 };
+
+const pickImage = (item: (typeof parsedList)[number]) => {
+    const imgs = item.ogImage;
+    if (!imgs || !imgs.length) return null;
+    // some sites (e.g. LinkedIn) return a brand bug first — prefer a real image
+    const real = imgs.find(
+        (i) => i.url && !i.url.includes("linkedin-bug-color")
+    );
+    return (real || imgs[imgs.length - 1] || imgs[0]).url;
+};
+
+const cards = parsedList.map((item) => ({
+    link: item.link,
+    title: (item.customTitle || item.ogTitle) as string,
+    image: pickImage(item),
+    source: sourceLabel(item.link),
+}));
+
+// duplicate the list so the marquee can loop seamlessly
+const loop = [...cards, ...cards];
 ---
 
-<div class="table cols-2">
-    {
-        parsedList.map((item) => (
-            <div class="row">
-                <span class="cell-title">
-                    <a href={item.link} rel="noreferrer">
-                        {item.customTitle || item.ogTitle}
+<div class="featured-marquee" data-featured>
+    <div class="featured-track">
+        {
+            loop.map((card, i) => {
+                const isClone = i >= cards.length;
+                return (
+                    <a
+                        class="featured-item"
+                        href={card.link}
+                        rel="noreferrer"
+                        aria-hidden={isClone ? "true" : undefined}
+                        tabindex={isClone ? -1 : undefined}
+                    >
+                        <div class="featured-card">
+                            <img
+                                class="featured-thumb"
+                                src={card.image || "/assets/featured.png"}
+                                alt={card.title}
+                                loading="lazy"
+                                onerror="this.src='/assets/featured.png';this.onerror=null;"
+                            />
+                            <div class="featured-overlay">
+                                <span class="featured-card-title">
+                                    {card.title}
+                                </span>
+                            </div>
+                        </div>
+                        <span class="featured-card-source">{card.source}</span>
                     </a>
-                </span>
-                <span class="cell-meta">{sourceLabel(item.link)}</span>
-            </div>
-        ))
-    }
+                );
+            })
+        }
+    </div>
 </div>
+
+<script>
+    const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    document
+        .querySelectorAll<HTMLElement>("[data-featured]")
+        .forEach((marquee) => {
+            const track = marquee.querySelector<HTMLElement>(".featured-track");
+            if (!track || track.children.length < 2) return;
+
+            const speed = 0.5; // px per frame (~30px/s)
+            const resumeDelay = 2600; // ms of inactivity before auto resumes
+            const dupIndex = Math.floor(track.children.length / 2);
+
+            let auto = !reduceMotion;
+            let hovering = false;
+            let resumeTimer: number | undefined;
+            // keep our own position so we never depend on the (rounded) scrollLeft getter
+            let pos = marquee.scrollLeft;
+
+            // exact loop distance = distance from the first real card to its clone
+            const first = track.children[0] as HTMLElement;
+            const wrapAt = () =>
+                (track.children[dupIndex] as HTMLElement).offsetLeft -
+                first.offsetLeft;
+
+            const tick = () => {
+                const w = wrapAt();
+                if (auto && !hovering) {
+                    pos += speed;
+                    if (pos >= w) pos -= w;
+                    marquee.scrollLeft = pos;
+                } else {
+                    // while paused, follow the user's manual scroll position
+                    pos = marquee.scrollLeft;
+                }
+                requestAnimationFrame(tick);
+            };
+
+            const pauseForUser = () => {
+                auto = false;
+                if (resumeTimer) clearTimeout(resumeTimer);
+                resumeTimer = window.setTimeout(() => {
+                    auto = !reduceMotion;
+                }, resumeDelay);
+            };
+
+            marquee.addEventListener("mouseenter", () => (hovering = true));
+            marquee.addEventListener("mouseleave", () => (hovering = false));
+
+            // only react to horizontal wheel intent — ignore vertical page scroll
+            marquee.addEventListener(
+                "wheel",
+                (e) => {
+                    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) pauseForUser();
+                },
+                { passive: true }
+            );
+
+            // track touch direction so vertical swipes don't pause the marquee
+            let touchX = 0;
+            let touchY = 0;
+            marquee.addEventListener(
+                "touchstart",
+                (e) => {
+                    touchX = e.touches[0].clientX;
+                    touchY = e.touches[0].clientY;
+                },
+                { passive: true }
+            );
+            marquee.addEventListener(
+                "touchmove",
+                (e) => {
+                    const dx = Math.abs(e.touches[0].clientX - touchX);
+                    const dy = Math.abs(e.touches[0].clientY - touchY);
+                    if (dx > dy && dx > 6) pauseForUser();
+                },
+                { passive: true }
+            );
+
+            // keep the infinite feel while the user scrolls manually
+            marquee.addEventListener(
+                "scroll",
+                () => {
+                    if (auto) return; // auto wrapping handled in tick
+                    const w = wrapAt();
+                    if (marquee.scrollLeft >= w) marquee.scrollLeft -= w;
+                    else if (marquee.scrollLeft <= 0) marquee.scrollLeft += w;
+                },
+                { passive: true }
+            );
+
+            if (!reduceMotion) requestAnimationFrame(tick);
+        });
+</script>

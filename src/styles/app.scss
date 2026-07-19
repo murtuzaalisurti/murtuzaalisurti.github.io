@@ -30,6 +30,7 @@
         "Liberation Mono", monospace;
 
     --max-width: 42rem;
+    --card-radius: 0.6rem;
     /* type scale: prose/titles/links | meta | labels */
     --content-size: 0.9375rem;
     --small-size: 0.8125rem;
@@ -375,6 +376,18 @@ main {
         }
     }
 
+    /* writing/posts: keep each title on a single line with ellipsis */
+    #posts & .cell-title {
+        min-width: 0;
+
+        a {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
     .cell-meta {
         color: var(--text-muted);
         font-size: var(--small-size);
@@ -390,6 +403,105 @@ main {
             white-space: normal;
             max-width: none;
             margin-top: 0.1rem;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Featured (auto-scrolling marquee of OG thumbnails)
+ * ------------------------------------------------------------------ */
+.featured-marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-radius: var(--card-radius);
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.featured-track {
+    position: relative;
+    display: flex;
+    gap: 0.85rem;
+    width: max-content;
+}
+
+.featured-item {
+    flex: 0 0 auto;
+    width: 17rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    text-decoration: none;
+
+    @media (max-width: 34em) {
+        width: 14rem;
+    }
+
+    .featured-card {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        border-radius: var(--card-radius);
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+    }
+
+    .featured-thumb {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .featured-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: flex-end;
+        padding: 1.75rem 0.85rem 0.7rem;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.88) 0%,
+            rgba(0, 0, 0, 0.5) 45%,
+            rgba(0, 0, 0, 0) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .featured-card-title {
+        color: #fff;
+        font-size: var(--small-size);
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .featured-card-source {
+        color: var(--text-muted);
+        font-size: var(--small-size);
+    }
+
+    &:hover,
+    &:focus-visible {
+        .featured-overlay {
+            opacity: 1;
+        }
+
+        .featured-thumb {
+            transform: scale(1.04);
         }
     }
 }
