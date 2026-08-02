@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Install TeX Live + poppler (compile & verify the LaTeX resume)
         run: |
           sudo apt-get update
@@ -35,7 +35,7 @@ jobs:
           touch .env
           echo GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }} >> .env          
       - name: Install, build, and upload your site
-        uses: withastro/action@v2.0.0
+        uses: withastro/action@v6
         with:
           node-version: 24
             # path: . # The root location of your Astro project inside the repository. (optional)
