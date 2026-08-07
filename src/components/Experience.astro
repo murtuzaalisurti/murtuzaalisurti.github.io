@@ -1,6 +1,7 @@
 ---
 import ogs from "open-graph-scraper";
-import { calcDuration } from "../lib/utils/calcDuration";
+import { calcDuration, calcCombinedDuration } from "../lib/utils/calcDuration";
+import { capitalize } from "../lib/utils/common";
 import type { Experiences } from "../lib/types";
 
 interface Props extends Experiences {}
@@ -21,67 +22,154 @@ for (const block of list) {
         }
     }
 }
+
+// title-case the passed company slug for display, e.g. "css tricks" -> "Css Tricks"
+const companyName = (company: string) =>
+    company
+        .split(" ")
+        .map((w) => capitalize(w))
+        .join(" ");
+
+// role title without the trailing company, used inside grouped companies
+// e.g. "Senior Software Engineer - Imriel (Allata)" -> "Senior Software Engineer"
+const roleName = (title: string) => title.split(" - ")[0];
+
+// group consecutive positions that share the same company, preserving order
+type Block = (typeof list)[number];
+const groups: { company: string; name: string; link: string; positions: Block[] }[] = [];
+for (const block of list) {
+    const last = groups[groups.length - 1];
+    if (last && last.company === block.company) {
+        last.positions.push(block);
+    } else {
+        groups.push({
+            company: block.company,
+            name: companyName(block.company),
+            link: block.link,
+            positions: [block],
+        });
+    }
+}
 ---
 
 <div class="experience" data-experiences={JSON.stringify(list)}>
     {
-        list.map((block) => {
-            const duration = calcDuration(block.startDate, block.endDate);
+        groups.map((group) => {
+            const multi = group.positions.length > 1;
+            const combined = calcCombinedDuration(group.positions);
             return (
-                <div id={block.id} class="exp">
-                    <div class="exp-head">
-                        <span class="exp-role">
-                            {block.link ? (
-                                <a
-                                    href={block.link}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    {block.title}
-                                </a>
-                            ) : (
-                                block.title
-                            )}
-                        </span>
-                        <span class="exp-time" set:html={duration.html} />
-                    </div>
-                    {block.role.map((point) => (
-                        <p class="exp-desc">{point}</p>
-                    ))}
-                    {block.showcase && block.showcase.length === 1 && (
-                        <div class="exp-links">
-                            <a href={block.showcase[0].link} rel="noreferrer">
-                                {block.showcase[0].title ||
-                                    new URL(block.showcase[0].link).host}
-                            </a>
-                        </div>
-                    )}
-                    {block.showcase && block.showcase.length > 1 && (
-                        <div class="exp-slider" data-interval="3800">
-                            <div class="exp-slides">
-                                {block.showcase.map((item, i) => (
-                                    <div
-                                        class={`exp-slide${i === 0 ? " is-active" : ""}`}
+                <div class={`exp-group${multi ? " exp-group--multi" : ""}`}>
+                    {multi && (
+                        <div class="exp-company-head">
+                            <span class="exp-company">
+                                {group.link ? (
+                                    <a
+                                        href={group.link}
+                                        target="_blank"
+                                        rel="noreferrer"
                                     >
-                                        <a href={item.link} rel="noreferrer">
-                                            {item.title ||
-                                                new URL(item.link).host}
-                                        </a>
-                                    </div>
-                                ))}
-                            </div>
-                            <div class="exp-dots">
-                                {block.showcase.map((_, i) => (
-                                    <button
-                                        type="button"
-                                        class={`exp-dot${i === 0 ? " is-active" : ""}`}
-                                        data-index={i}
-                                        aria-label={`Show link ${i + 1}`}
-                                    />
-                                ))}
-                            </div>
+                                        {group.name}
+                                    </a>
+                                ) : (
+                                    group.name
+                                )}
+                            </span>
+                            <span
+                                class="exp-company-time"
+                                id={`ctime-${group.positions[0].id}`}
+                                set:html={combined.html}
+                            />
                         </div>
                     )}
+                    {group.positions.map((block) => {
+                        const duration = calcDuration(
+                            block.startDate,
+                            block.endDate
+                        );
+                        const title = multi
+                            ? roleName(block.title)
+                            : block.title;
+                        return (
+                            <div
+                                id={block.id}
+                                class={`exp${multi ? " exp--sub" : ""}`}
+                            >
+                                <div class="exp-head">
+                                    <span class="exp-role">
+                                        {!multi && block.link ? (
+                                            <a
+                                                href={block.link}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                {title}
+                                            </a>
+                                        ) : (
+                                            title
+                                        )}
+                                    </span>
+                                    <span
+                                        class="exp-time"
+                                        set:html={duration.html}
+                                    />
+                                </div>
+                                {block.role.map((point) => (
+                                    <p class="exp-desc">{point}</p>
+                                ))}
+                                {block.showcase &&
+                                    block.showcase.length === 1 && (
+                                        <div class="exp-links">
+                                            <a
+                                                href={block.showcase[0].link}
+                                                rel="noreferrer"
+                                            >
+                                                {block.showcase[0].title ||
+                                                    new URL(
+                                                        block.showcase[0].link
+                                                    ).host}
+                                            </a>
+                                        </div>
+                                    )}
+                                {block.showcase &&
+                                    block.showcase.length > 1 && (
+                                        <div
+                                            class="exp-slider"
+                                            data-interval="3800"
+                                        >
+                                            <div class="exp-slides">
+                                                {block.showcase.map(
+                                                    (item, i) => (
+                                                        <div
+                                                            class={`exp-slide${i === 0 ? " is-active" : ""}`}
+                                                        >
+                                                            <a
+                                                                href={item.link}
+                                                                rel="noreferrer"
+                                                            >
+                                                                {item.title ||
+                                                                    new URL(
+                                                                        item.link
+                                                                    ).host}
+                                                            </a>
+                                                        </div>
+                                                    )
+                                                )}
+                                            </div>
+                                            <div class="exp-dots">
+                                                {block.showcase.map((_, i) => (
+                                                    <button
+                                                        type="button"
+                                                        class={`exp-dot${i === 0 ? " is-active" : ""}`}
+                                                        data-index={i}
+                                                        aria-label={`Show link ${i + 1}`}
+                                                    />
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                            </div>
+                        );
+                    })}
                 </div>
             );
         })
@@ -90,17 +178,43 @@ for (const block of list) {
 
 <script>
     // refresh "Present" durations on the client so they never go stale
-    import { calcDuration } from "../lib/utils/calcDuration";
+    import {
+        calcDuration,
+        calcCombinedDuration,
+    } from "../lib/utils/calcDuration";
 
     const el = document.querySelector(".experience") as HTMLElement | null;
     const raw = el?.dataset.experiences;
     if (raw) {
-        const experiences = JSON.parse(raw) as Array<Record<string, any>>;
+        type Position = {
+            id: string;
+            company: string;
+            startDate: string;
+            endDate: string;
+        };
+        const experiences = JSON.parse(raw) as Position[];
+
+        // per-position durations
         for (const exp of experiences) {
             const time = document.querySelector(
                 `#${exp.id} .exp-time`
             ) as HTMLElement | null;
             if (time) time.innerHTML = calcDuration(exp.startDate, exp.endDate).html;
+        }
+
+        // combined company durations (grouped by consecutive company)
+        const groups: Array<Array<Position>> = [];
+        for (const exp of experiences) {
+            const last = groups[groups.length - 1];
+            if (last && last[0].company === exp.company) last.push(exp);
+            else groups.push([exp]);
+        }
+        for (const positions of groups) {
+            if (positions.length < 2) continue;
+            const time = document.querySelector(
+                `#ctime-${positions[0].id}`
+            ) as HTMLElement | null;
+            if (time) time.innerHTML = calcCombinedDuration(positions).html;
         }
     }
 </script>

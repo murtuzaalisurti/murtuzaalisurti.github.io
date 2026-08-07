@@ -515,17 +515,64 @@ main {
     flex-direction: column;
     gap: 1.75rem;
 
+    .exp-group {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+    }
+
+    /* companies with multiple positions get a shared header + tighter stack */
+    .exp-group--multi {
+        gap: 1.1rem;
+    }
+
+    .exp-company-head {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+    }
+
+    .exp-company {
+        font-size: var(--content-size);
+        font-weight: 600;
+
+        a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--text);
+            text-underline-offset: 0.18em;
+        }
+    }
+
+    .exp-company-time {
+        color: var(--text-faint);
+        font-size: var(--small-size);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+
     .exp {
         display: flex;
         flex-direction: column;
         gap: 0.4rem;
     }
 
+    /* individual positions nested under a company header */
+    .exp--sub {
+        padding-left: 1rem;
+        border-left: 1px solid var(--hairline);
+    }
+
     .exp-head {
         display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
     }
 
     .exp-role {
@@ -549,7 +596,7 @@ main {
         font-size: var(--small-size);
         font-variant-numeric: tabular-nums;
         white-space: nowrap;
-        text-align: right;
+        text-align: left;
     }
 
     .exp-desc {

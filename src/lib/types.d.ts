@@ -30,8 +30,6 @@ export interface Experiences {
         endDate: string;
         role: string[];
         company: string;
-        roleDuration?: Record<string, string | number>;
-        companyDuration?: Record<string, string | number>;
         showcase?: {
             id: string;
             link: string;

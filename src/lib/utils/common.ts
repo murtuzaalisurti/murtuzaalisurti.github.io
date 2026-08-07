@@ -29,7 +29,7 @@ export const getDurationSuffix = (duration: number) => {
  * @return {string} The string representation of the duration.
  */
 export const getDurationString = (years: number, months: number): string => {
-    return `${years ? `${years} ${getDurationSuffix(years).years}` : ""} ${months ? `${months} ${getDurationSuffix(months).months}` : ""}`
+    return `${years || months ? `${years ? `${years} ${getDurationSuffix(years).years}` : ""} ${months ? `${months} ${getDurationSuffix(months).months}` : ""}` : "1 mo"}`
 }
 
 /**
