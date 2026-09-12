@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "unslop": {
+      "source": "cursor/plugins",
+      "sourceType": "github",
+      "skillPath": "pstack/skills/unslop/SKILL.md",
+      "computedHash": "3b8676e7461f44026b4d555ff0f3369a761df6033b9b9e2cd5152693cb20fbb2"
+    }
+  }
+}
