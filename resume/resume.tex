@@ -45,8 +45,8 @@
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.35in}
 
 \urlstyle{same}
 
@@ -56,8 +56,9 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
+  \vspace{-4pt}\scshape\raggedright\normalsize
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\titlespacing*{\section}{0pt}{10pt}{9pt}
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \ifdefined\pdfgentounicode
@@ -73,7 +74,7 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+  \vspace{0pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
@@ -88,10 +89,10 @@
 }
 
 \newcommand{\resumeProjectHeading}[2]{
-    \item
+    \vspace{2pt}\item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-3pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
@@ -114,9 +115,9 @@
     \textbf{\Huge \scshape Murtuzaali Surti} \\ \vspace{1pt}
     \small Senior Software Engineer $|$ Vadodara, India $|$ +91 8160465102 \\ \vspace{1pt}
     \href{mailto:hey@murtuzaalisurti.com}{\underline{hey@murtuzaalisurti.com}} $|$
-    \href{https://murtuzaalisurti.com}{\underline{murtuzaalisurti.com}} \\
-    GitHub: \href{https://github.com/murtuzaalisurti}{\underline{murtuzaalisurti}},
-    LinkedIn: \href{https://www.linkedin.com/in/murtuzaali-surti/}{\underline{linkedin.com/in/murtuzaali-surti}} \\
+    \href{https://murtuzaalisurti.com}{\underline{murtuzaalisurti.com}} $|$
+    \href{https://github.com/murtuzaalisurti}{\underline{github.com/murtuzaalisurti}} $|$
+    \href{https://www.linkedin.com/in/murtuzaali-surti/}{\underline{linkedin.com/in/murtuzaali-surti}} \\
     \textbf{Open to Relocation / Eligible for EU Blue Card Sponsorship}
 \end{center}
 
@@ -155,12 +156,34 @@
 
 %-----------PROJECTS-----------
 \section{Projects}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\href{https://github.com/murtuzaalisurti/better}{\underline{\textbf{Better}}} $|$ \emph{Node.js, GitHub Actions, OpenAI/Anthropic SDKs, LangChain, Zod}}{\small 30+ GitHub stars}
+      \resumeItemListStart
+        \resumeItem{AI code reviewer GitHub Action supporting \textbf{5 LLM providers}. Featured on Product Hunt.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\href{https://syntackle.com}{\underline{\textbf{Syntackle}}} $|$ \emph{11ty, EJS, Nunjucks, Rollup, Gulp, Node.js, Vercel}}{\small 5M+ impressions}
+      \resumeItemListStart
+        \resumeItem{Programming blog built from scratch with a custom 11ty build pipeline (Gulp, Rollup), deployed on Vercel.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\href{https://rssed.murtuzaalisurti.com/}{\underline{\textbf{rssed}}} $|$ \emph{Astro, TypeScript, Netlify Functions, Pagefind, GitHub Actions}}{\small 320+ feeds}
+      \resumeItemListStart
+        \resumeItem{Searchable aggregator of \textbf{320+ developer RSS feeds}, rebuilt daily; feed submissions validated via GitHub Actions.}
+      \resumeItemListEnd
+
+    \resumeProjectHeading
+      {\small Also: \href{https://www.npmjs.com/package/@murtuzaalisurti/back-to-top}{\underline{back-to-top}} (npm web component), \href{https://mbuffs.app/}{\underline{mbuffs}} (AI-powered collaborative movie recommendations)}{}
+  \resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
   \resumeItemListStart
-    \resumeItem{\href{https://github.com/murtuzaalisurti/better}{\underline{Better}} -- An \textbf{AI code reviewer GitHub Action}}
-    \resumeItem{\href{https://syntackle.com}{\underline{Syntackle}} -- A blog made from scratch using \textbf{11ty, Gulp, Rollup} on which I love to write about programming.}
-    \resumeItem{\href{https://www.npmjs.com/package/@murtuzaalisurti/back-to-top}{\underline{back-to-top}} -- A web component}
-    \resumeItem{\href{https://rssed.murtuzaalisurti.com/}{\underline{rssed}} -- \textbf{RSS feeds} from hundreds of independent developers and publications, updated every day}
-    \resumeItem{\href{https://mbuffs.murtuzaalisurti.com/}{\underline{mbuffs}} -- A collaborative movie recommendation web app built with \textbf{AI}}
+    \resumeItem{\href{https://www.credly.com/badges/3d5ccd15-bd46-400d-a533-a42c5456f8b8}{\underline{AWS Certified Cloud Practitioner}}}
+    \resumeItem{\href{https://www.credly.com/badges/614caabc-c8ff-4529-bcb2-ebefd1af01e4/public_url}{\underline{Claude Certified Architect - Foundations}} by Anthropic}
   \resumeItemListEnd
 
 %-----------ACHIEVEMENTS-----------
@@ -178,11 +201,10 @@
 \section{Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Computer Languages}{: JavaScript/TypeScript, HTML/CSS, YAML, Markdown, SQL (PostgreSQL, MSSQL), Bash } \\
-     \textbf{Frameworks/Tools/Libraries/Database}{: React, Next.js, NestJS, Node.js, Express, Docker, DynamoDB, MongoDB, Neon, Cosmos DB, Terraform, Bicep, .NET, Astro, EJS, Git} \\
-     \textbf{Cloud Platforms}{: Azure, AWS} \\
+     \textbf{Computer Languages}{: JavaScript/TypeScript, HTML, CSS, SQL, Bash, Java, C, C++, C\#, Python } \\
+     \textbf{Frameworks/Tools/Libraries/Database/Cloud}{: React, Next.js, NestJS, Node.js, Express, Docker, DynamoDB, MongoDB, PostgreSQL, MySQL, MSSQL, Neon, Cosmos DB, Terraform, Bicep, .NET, Astro, EJS, Git, Azure, AWS} \\
      \textbf{Human Languages}{: English (Fluent)} \\
-     \textbf{Writing}{: Technical writing (syntackle.com)}
+     \textbf{Core Concepts}{: System Design, Multi-tenant Architecture, Micro-frontends (MFE), Agentic Workflows, CI/CD, Infrastructure as Code (IaC), REST APIs, GraphQL APIs, Data Structures \& Algorithms (DSA), Object-Oriented Programming (OOP), MVC, Microservices, Operating Systems (OS), Computer Networks}
     }}
  \end{itemize}
 
@@ -193,13 +215,6 @@
       {Bachelor of Computer Applications - Navrachana University}{July, 2020 -- May, 2023}
       {Grade: 8.99/10 (CGPA) $\approx$ top decile}{}
   \resumeSubHeadingListEnd
-
-%-----------CERTIFICATIONS-----------
-\section{Certifications}
-  \resumeItemListStart
-    \resumeItem{\href{https://www.credly.com/badges/3d5ccd15-bd46-400d-a533-a42c5456f8b8}{\underline{AWS Certified Cloud Practitioner}}}
-    \resumeItem{\href{https://www.credly.com/badges/614caabc-c8ff-4529-bcb2-ebefd1af01e4/public_url}{\underline{Claude Certified Architect - Foundations}} by Anthropic}
-  \resumeItemListEnd
 
 %-------------------------------------------
 \end{document}
