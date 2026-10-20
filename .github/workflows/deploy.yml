@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v6
@@ -30,6 +30,13 @@ jobs:
             texlive-fonts-recommended \
             texlive-fonts-extra \
             poppler-utils
+      - name: Check TeX Live version (pinned to 2025 to match local builds)
+        run: |
+          pdflatex --version | head -1
+          pdflatex --version | head -1 | grep -q "TeX Live 2025" || {
+            echo "::error::Expected TeX Live 2025. Update the runner or the pinned version in scripts/build-resume.mjs."
+            exit 1
+          }
       - name: Creating an .env file
         run: |
           touch .env
@@ -45,7 +52,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

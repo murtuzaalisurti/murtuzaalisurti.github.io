@@ -12,7 +12,7 @@ permissions: # necessary permissions
 
 jobs:
     code-review:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-26.04
         name: Code Review
         steps:
             - name: Run @murtuzaalisurti/better

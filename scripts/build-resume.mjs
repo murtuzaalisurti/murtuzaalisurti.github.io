@@ -5,6 +5,8 @@
 //   - The /resume viewer page embeds it in the browser
 //
 // Engine: prefers `pdflatex` (used in CI via TeX Live), falls back to `tectonic`.
+// CI pins TeX Live 2025 (Ubuntu 26.04); install the same year locally so the
+// PDF matches CI. A different TeX Live year or tectonic only produces a warning.
 // If neither engine is installed (e.g. a local machine without TeX), the script
 // warns and keeps the already-committed PDF so `npm run build` still succeeds.
 
@@ -19,10 +21,22 @@ const TEX_FILE = path.join(TEX_DIR, "resume.tex");
 const OUT_DIR = path.join(ROOT, "public");
 const JOBNAME = "resume-murtuzaali-surti";
 const OUT_PDF = path.join(OUT_DIR, `${JOBNAME}.pdf`);
+const TEXLIVE_YEAR = "2025";
 
 function has(cmd) {
     const probe = spawnSync(cmd, ["--version"], { stdio: "ignore" });
     return !probe.error;
+}
+
+function warnIfNotPinnedTexLive() {
+    const res = spawnSync("pdflatex", ["--version"], { encoding: "utf8" });
+    const banner = (res.stdout || "").split("\n")[0];
+    if (!banner.includes(`TeX Live ${TEXLIVE_YEAR}`)) {
+        console.warn(
+            `[build-resume] Expected TeX Live ${TEXLIVE_YEAR} (same as CI), found: ${banner || "unknown"}. ` +
+                "The local PDF may differ from the deployed one."
+        );
+    }
 }
 
 function cleanAux() {
@@ -75,9 +89,12 @@ function main() {
     let ok = false;
     if (has("pdflatex")) {
         console.log("[build-resume] Compiling with pdflatex...");
+        warnIfNotPinnedTexLive();
         ok = compileWithPdflatex();
     } else if (has("tectonic")) {
-        console.log("[build-resume] pdflatex not found, using tectonic...");
+        console.log(
+            `[build-resume] pdflatex not found, using tectonic. Output will differ from CI (pdflatex, TeX Live ${TEXLIVE_YEAR}).`
+        );
         ok = compileWithTectonic();
     } else {
         if (existsSync(OUT_PDF)) {
