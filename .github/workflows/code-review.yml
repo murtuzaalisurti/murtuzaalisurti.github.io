@@ -3,7 +3,7 @@ on:
     pull_request:
         types: [opened, reopened, synchronize, ready_for_review]
         branches:
-            - revamp # change this to your target branch
+            - main # change this to your target branch
     workflow_dispatch: # Allows you to run the workflow manually from the Actions tab
 
 permissions: # necessary permissions
