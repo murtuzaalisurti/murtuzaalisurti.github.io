@@ -1,0 +1,40 @@
+---
+import type { Milestone } from "../lib/types";
+
+interface Props {
+    list: Milestone[];
+}
+
+const { list } = Astro.props;
+---
+
+<ol class="milestones">
+    {
+        list.map((milestone, i) => {
+            // show each year once, on its first (most recent) milestone
+            const repeat = list[i - 1]?.year === milestone.year;
+            return (
+                <li class="milestone">
+                    <span class="milestone-year">
+                        {repeat ? (
+                            <span class="sr-only">{milestone.year}</span>
+                        ) : (
+                            milestone.year
+                        )}
+                    </span>
+                    <span class="milestone-text">
+                        {milestone.parts.map((part) =>
+                            typeof part === "string" ? (
+                                part
+                            ) : (
+                                <a href={part.href} rel="noreferrer">
+                                    {part.text}
+                                </a>
+                            )
+                        )}
+                    </span>
+                </li>
+            );
+        })
+    }
+</ol>

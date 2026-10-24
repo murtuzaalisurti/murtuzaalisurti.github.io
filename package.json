@@ -9,7 +9,8 @@
     "verify:resume": "node scripts/verify-resume.mjs",
     "build": "npm run build:resume && npm run verify:resume && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:featured": "node scripts/build-featured.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -35,6 +36,10 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.11",
+    "playwright-core": "^1.64.1",
+    "three": "^0.186.1",
+    "three-gpu-pathtracer": "^0.0.27",
+    "three-mesh-bvh": "^0.9.16",
     "typescript": "^5.9.3"
   },
   "allowScripts": {

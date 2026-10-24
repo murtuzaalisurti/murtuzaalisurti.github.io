@@ -21,20 +21,10 @@ export interface TSocialList {
     }[]
 }
 
-export interface Experiences {
-    list: {
-        id: string;
-        title: string;
-        link: string;
-        startDate: string;
-        endDate: string;
-        role: string[];
-        company: string;
-        showcase?: {
-            id: string;
-            link: string;
-            image?: string[];
-            title?: string;
-        }[];
-    }[];
+// a milestone line: plain text with optional inline links
+export type MilestonePart = string | { text: string; href: string };
+
+export interface Milestone {
+    year: number;
+    parts: MilestonePart[];
 }

@@ -6,11 +6,12 @@ import dayjs from "dayjs";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import LinkTable from "../components/LinkTable.astro";
-import Experience from "../components/Experience.astro";
+import Milestones from "../components/Milestones.astro";
 import Featured from "../components/Featured.astro";
 import SocialList from "../components/SocialList.astro";
 
-import { CONSTANTS } from "../lib/utils/common";
+import { featured } from "../data/featured";
+
 
 const nanoid = customAlphabet(
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -151,132 +152,74 @@ const postItems = items.map((post) => ({
         </section>
 
         <section class="section" id="experience">
-            <span class="section-label">Experience</span>
-            <Experience
+            <Milestones
                 list={[
                     {
-                        id: nanoid(),
-                        title: "Senior Software Engineer - Imriel (Allata)",
-                        role: [
-                            "Working in the infra team of an AI Accelerator which is designed equally for business users, development teams that need coding assistance, and advanced document analysis.",
-                        ],
-                        company: "allata",
-                        link: "https://allata.com",
-                        startDate: "08/26",
-                        endDate: CONSTANTS.PRESENT,
-                    },
-                    {
-                        id: nanoid(),
-                        title: "Software Engineer - Imriel (Allata)",
-                        role: [
-                            "Delivered an e-commerce application built using React + Vite + Node + MSSQL for an AV event experience company. The main purpose was to automate a lot of manual processes and integrate tightly with their orders and payments platform.",
-                            "Worked on an enterprise application related to the management of legal entities of a business. Mainly working with React, Node, NestJS, PostgreSQL and Docker leaning more towards the backend side.",
-                            "Re-designed the backend architecture to support storing multiple client data into a single PostgreSQL database instance in a multitenant architecture. Tackled massive performance issues and improved scalability to support 5000 clients on a single database instance.",
-                            "Worked on a micro-frontend (MFE) built in React of the same application and improved it in terms of usability. Implemented AG Grid virtualization to allow asynchronous data exports of 20K+ records using the AG Grid excel export API.",
-                            "Worked with Azure functions by replacing an in-house job scheduler with Azure functions and successfully migrated multiple jobs. It was a part of the move of replacing AWS with Azure.",
-                            "Migrated a lot of vulnerable and outdated packages including the upgrade of react-router from v5 to v6 which was a fairly big change considering the amount of legacy APIs used in the project, and the migration of the logging architecture from Bunyan to Winston for application-wide logging. Ensured application stability and maintainability by migrating vulnerable packages.",
-                        ],
-                        company: "allata",
-                        link: "https://allata.com",
-                        startDate: "05/23",
-                        endDate: "08/26",
-                    },
-                    {
-                        id: nanoid(),
-                        title: "SWE Intern - Imriel (Allata)",
-                        role: [
-                            "Worked on an Applicant Tracking System (ATS) built with React, Typescript, MUI and Jest as a Frontend Software Engineer. Developed an understanding of the Agile methodology in software development.",
-                        ],
-                        company: "allata",
-                        link: "https://allata.com",
-                        startDate: "01/23",
-                        endDate: "05/23",
-                    },
-                    {
-                        id: nanoid(),
-                        title: "Creator - Syntackle",
-                        role: [
-                            "Built a blog from scratch using 11ty with some progressive JS and vanilla CSS with PostCSS as a post-processor. Gulp and Rollup are also a part of the build process.",
-                            "It's mainly a software development blog covering news, topics & tutorials related to the web, javascript, jamstack, serverless, developer tools, AI and much more. It encourages community engagement by allowing users to contribute content, thus fostering a collaborative environment for knowledge sharing.",
-                        ],
-                        company: "syntackle",
-                        link: "https://syntackle.com",
-                        startDate: "02/22",
-                        endDate: CONSTANTS.PRESENT,
-                        showcase: [
-                            {
-                                id: nanoid(),
-                                link: "https://syntackle.com/author/murtuzaalisurti/",
-                            },
-                            {
-                                id: nanoid(),
-                                link: "https://syntackle.com/blog/vibe-coding/",
-                            },
-                            {
-                                id: nanoid(),
-                                link: "https://syntackle.com/blog/best-places-to-learn-react/",
-                            },
-                            {
-                                id: nanoid(),
-                                link: "https://syntackle.com/blog/the-problem-with-ai-generated-code/",
-                            },
+                        year: 2026,
+                        parts: [
+                            "senior software engineer at ",
+                            { text: "allata", href: "https://allata.com" },
                         ],
                     },
                     {
-                        id: nanoid(),
-                        title: "Content Creator - Aviyel",
-                        role: [
-                            "Gave a virtual talk and got featured in Coffee & Code event organized by Aviyel.",
-                        ],
-                        company: "aviyel",
-                        link: "https://aviyel.com/@murtuzaalisurti",
-                        startDate: "10/21",
-                        endDate: "01/23",
-                        showcase: [
+                        year: 2024,
+                        parts: [
+                            "won the ",
                             {
-                                id: nanoid(),
-                                link: "https://www.youtube.com/watch?v=CFoJ5dpAZRc",
-                                title: "Chatbot for websites using Chatwoot | Murtuzaali Surti",
+                                text: "ai hackathon",
+                                href: "https://www.linkedin.com/posts/imriel-technology-solutions-private-limited_imriel-allata-aihackathon-activity-7249290910922924032-Mqgj",
                             },
+                            " at imriel (allata)",
                         ],
                     },
                     {
-                        id: nanoid(),
-                        title: "Author - CSS Tricks",
-                        role: [
-                            "Wrote articles related to Web Design and Development.",
-                        ],
-                        company: "css tricks",
-                        link: "https://css-tricks.com/author/murtuzaalisurti/",
-                        startDate: "07/21",
-                        endDate: "06/23",
-                        showcase: [
-                            {
-                                id: nanoid(),
-                                link: "https://css-tricks.com/typewriter-animation-that-handles-anything-you-throw-at-it/",
-                            },
-                            {
-                                id: nanoid(),
-                                link: "https://css-tricks.com/author/murtuzaalisurti/",
-                            },
+                        year: 2023,
+                        parts: [
+                            "software engineer at ",
+                            { text: "allata", href: "https://allata.com" },
                         ],
                     },
                     {
-                        id: nanoid(),
-                        title: "Technical Writer - Draft",
-                        role: ["Freelance Content Writer."],
-                        company: "draft",
-                        link: "https://draft.dev",
-                        startDate: "09/21",
-                        endDate: "06/22",
-                        showcase: [
+                        year: 2023,
+                        parts: ["graduated in computer applications (bca)"],
+                    },
+                    {
+                        year: 2023,
+                        parts: ["joined allata as an intern"],
+                    },
+                    {
+                        year: 2022,
+                        parts: [
+                            "started ",
+                            { text: "syntackle", href: "https://syntackle.com" },
+                            ", a developer blog",
+                        ],
+                    },
+                    {
+                        year: 2021,
+                        parts: [
+                            "spoke at ",
                             {
-                                id: nanoid(),
-                                link: "https://fingerprint.com/blog/browser-fingerprinting-react/",
+                                text: "hacktoberfest",
+                                href: "https://www.linkedin.com/posts/murtuzaali-surti_hacktoberfest2021-activity-6857932326245023744-7M9_",
                             },
+                            ", navrachana university",
+                        ],
+                    },
+                    {
+                        year: 2021,
+                        parts: [
+                            "technical writer for ",
+                            { text: "draft.dev", href: "https://draft.dev" },
+                        ],
+                    },
+                    {
+                        year: 2021,
+                        parts: [
+                            "started writing for ",
                             {
-                                id: nanoid(),
-                                link: "https://rewind.com/blog/how-to-restore-deleted-branch-commit-git-reflog/",
+                                text: "css-tricks",
+                                href: "https://css-tricks.com/author/murtuzaalisurti/",
                             },
                         ],
                     },
@@ -284,25 +227,10 @@ const postItems = items.map((post) => ({
             />
         </section>
 
+        <hr class="separator" />
+
         <section class="section" id="featured">
-            <span class="section-label">Featured</span>
-            <Featured
-                list={[
-                    {
-                        id: nanoid(),
-                        link: "https://www.youtube.com/watch?v=2Oxu4y-RLrs",
-                    },
-                    {
-                        id: nanoid(),
-                        link: "https://www.youtube.com/watch?v=7nG-x3Fs3oY",
-                    },
-                    {
-                        id: nanoid(),
-                        customTitle: "AI Hackathon Winner at Imriel (Allata)",
-                        link: "https://www.linkedin.com/posts/imriel-technology-solutions-private-limited_imriel-allata-aihackathon-activity-7249290910922924032-Mqgj?utm_source=share&utm_medium=member_desktop",
-                    },
-                ]}
-            />
+            <Featured list={featured.map((item) => ({ id: nanoid(), ...item }))} />
         </section>
 
         <section class="section" id="posts">

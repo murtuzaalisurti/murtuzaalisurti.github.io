@@ -3,11 +3,16 @@ import { URL } from "node:url";
 import { google } from "googleapis";
 import ogs from "open-graph-scraper";
 import type { SuccessResult } from "open-graph-scraper/types";
+import "@fontsource-variable/montserrat";
+import { pickImage } from "../data/featured";
+import computer from "../data/featured-screen.json";
 
 type BaseItem = {
     id: string;
     link: string;
     customTitle?: string;
+    customImage?: string;
+    screen: { title: string; subtitle: string; color: string };
 };
 
 type Item = BaseItem & SuccessResult["result"];
@@ -82,60 +87,120 @@ const sourceLabel = (link: string) => {
     return host;
 };
 
-const pickImage = (item: (typeof parsedList)[number]) => {
-    const imgs = item.ogImage;
-    if (!imgs || !imgs.length) return null;
-    // some sites (e.g. LinkedIn) return a brand bug first — prefer a real image
-    const real = imgs.find(
-        (i) => i.url && !i.url.includes("linkedin-bug-color")
-    );
-    return (real || imgs[imgs.length - 1] || imgs[0]).url;
-};
-
 const cards = parsedList.map((item) => ({
     link: item.link,
     title: (item.customTitle || item.ogTitle) as string,
-    image: pickImage(item),
+    image: item.customImage || pickImage(item.ogImage),
     source: sourceLabel(item.link),
+    screen: item.screen,
 }));
 
-// duplicate the list so the marquee can loop seamlessly
-const loop = [...cards, ...cards];
+const caption = (card: (typeof cards)[number]) =>
+    `${card.title} · ${card.source}`;
+
+// place the slider under the CRT glass of the rendered computer (npm run build:featured)
+const { screen } = computer;
+const stageStyle = [
+    `--stage-ratio: ${computer.width} / ${computer.height}`,
+    `--screen-left: ${screen.left}%`,
+    `--screen-top: ${screen.top}%`,
+    `--screen-width: ${screen.width}%`,
+    `--screen-height: ${screen.height}%`,
+].join("; ");
+// the picture's corners within the screen area, for the shader's perspective
+const quad = computer.quad.map(([x, y]) => [
+    (x - screen.left) / screen.width,
+    (y - screen.top) / screen.height,
+]);
 ---
 
-<div class="featured-marquee" data-featured>
-    <div class="featured-track">
-        {
-            loop.map((card, i) => {
-                const isClone = i >= cards.length;
-                return (
+<div
+    class="featured"
+    data-featured
+    role="region"
+    aria-roledescription="carousel"
+    aria-label="Featured"
+>
+    <div class="featured-stage" style={stageStyle}>
+        <canvas
+            class="featured-crt"
+            aria-hidden="true"
+            data-quad={JSON.stringify(quad)}
+            data-aspect={computer.aspect}
+        ></canvas>
+        <div class="featured-viewport" tabindex="0">
+            {
+                cards.map((card, i) => (
                     <a
-                        class="featured-item"
+                        class="featured-slide"
                         href={card.link}
                         rel="noreferrer"
-                        aria-hidden={isClone ? "true" : undefined}
-                        tabindex={isClone ? -1 : undefined}
+                        role="group"
+                        aria-roledescription="slide"
+                        aria-label={`${i + 1} of ${cards.length}: ${card.title}`}
+                        data-caption={caption(card)}
+                        data-screen-title={card.screen.title}
+                        data-screen-subtitle={card.screen.subtitle}
+                        data-screen-color={card.screen.color}
+                        data-source={card.source}
                     >
-                        <div class="featured-card">
-                            <img
-                                class="featured-thumb"
-                                src={card.image || "/assets/featured.png"}
-                                alt={card.title}
-                                loading="lazy"
-                                onerror="this.src='/assets/featured.png';this.onerror=null;"
-                            />
-                            <div class="featured-overlay">
-                                <span class="featured-card-title">
-                                    {card.title}
-                                </span>
-                            </div>
-                        </div>
-                        <span class="featured-card-source">{card.source}</span>
+                        <img
+                            src={card.image || "/assets/featured.png"}
+                            alt=""
+                            loading={i === 0 ? "eager" : "lazy"}
+                            onerror="this.src='/assets/featured.png';this.onerror=null;"
+                        />
                     </a>
-                );
-            })
-        }
+                ))
+            }
+        </div>
+        <!-- the computer sits on top; its CRT glass is see-through, carrying only reflections -->
+        <img
+            class="featured-computer"
+            src="/assets/featured/computer.webp"
+            width={computer.width}
+            height={computer.height}
+            alt=""
+        />
     </div>
+    {
+        cards.length > 1 && (
+            <div class="featured-controls">
+                <button type="button" data-prev aria-label="Previous">
+                    ←
+                </button>
+                <button type="button" data-next aria-label="Next">
+                    →
+                </button>
+                <button type="button" data-toggle aria-label="Pause">
+                    <svg
+                        class="icon-pause"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <rect x="3.5" y="2.5" width="3" height="11" rx="0.75" />
+                        <rect x="9.5" y="2.5" width="3" height="11" rx="0.75" />
+                    </svg>
+                    <svg
+                        class="icon-play"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path d="M4.5 2.9v10.2a.9.9 0 0 0 1.37.77l8.2-5.1a.9.9 0 0 0 0-1.54l-8.2-5.1A.9.9 0 0 0 4.5 2.9Z" />
+                    </svg>
+                </button>
+            </div>
+        )
+    }
+    {
+        cards[0] && (
+            <a class="featured-caption" href={cards[0].link} rel="noreferrer">
+                {caption(cards[0])}
+            </a>
+        )
+    }
 </div>
 
 <script>
@@ -143,94 +208,581 @@ const loop = [...cards, ...cards];
         "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    document
-        .querySelectorAll<HTMLElement>("[data-featured]")
-        .forEach((marquee) => {
-            const track = marquee.querySelector<HTMLElement>(".featured-track");
-            if (!track || track.children.length < 2) return;
+    const hold = 4500; // ms each slide rests before switching
+    const duration = 700; // ms of the slide transition
+    const ease = (t: number) =>
+        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-            const speed = 0.5; // px per frame (~30px/s)
-            const resumeDelay = 2600; // ms of inactivity before auto resumes
-            const dupIndex = Math.floor(track.children.length / 2);
+    document.querySelectorAll<HTMLElement>("[data-featured]").forEach((root) => {
+        const viewport = root.querySelector<HTMLElement>(".featured-viewport");
+        const caption = root.querySelector<HTMLAnchorElement>(".featured-caption");
+        const toggle = root.querySelector<HTMLButtonElement>("[data-toggle]");
+        if (!viewport) return;
+        const slides = Array.from(
+            viewport.querySelectorAll<HTMLElement>(".featured-slide")
+        );
+        const count = slides.length;
+        if (count < 2) return;
 
-            let auto = !reduceMotion;
-            let hovering = false;
-            let resumeTimer: number | undefined;
-            // keep our own position so we never depend on the (rounded) scrollLeft getter
-            let pos = marquee.scrollLeft;
+        // a copy of the first slide at the end lets the loop keep moving forward
+        const clone = slides[0].cloneNode(true) as HTMLElement;
+        clone.setAttribute("aria-hidden", "true");
+        clone.removeAttribute("role");
+        clone.removeAttribute("aria-label");
+        clone.tabIndex = -1;
+        viewport.appendChild(clone);
 
-            // exact loop distance = distance from the first real card to its clone
-            const first = track.children[0] as HTMLElement;
-            const wrapAt = () =>
-                (track.children[dupIndex] as HTMLElement).offsetLeft -
-                first.offsetLeft;
+        let idx = 0;
+        // user-chosen pause; reduced motion starts paused
+        let paused = reduceMotion;
+        let hovering = false;
+        let focused = false;
+        let visible = false;
+        let animating = false;
+        let timer: number | undefined;
+        let raf = 0;
 
-            const tick = () => {
-                const w = wrapAt();
-                if (auto && !hovering) {
-                    pos += speed;
-                    if (pos >= w) pos -= w;
-                    marquee.scrollLeft = pos;
+        // slides are full width, so slide i sits at i * width; use the exact
+        // (fractional) width, as clientWidth rounds and drifts slide by slide
+        const width = () => viewport.getBoundingClientRect().width;
+
+        // set the position instantly, without snap pulling it elsewhere
+        const jump = (left: number) => {
+            viewport.style.scrollSnapType = "none";
+            viewport.scrollLeft = left;
+            viewport.style.scrollSnapType = "";
+        };
+
+        const settle = () => {
+            if (animating) return;
+            let i = Math.round(viewport.scrollLeft / width());
+            if (i >= count) {
+                jump(0);
+                i = 0;
+            }
+            idx = i;
+            if (caption) {
+                caption.textContent = slides[idx].dataset.caption || "";
+                caption.href = (slides[idx] as HTMLAnchorElement).href;
+            }
+            // restart the countdown after any move, manual or automatic
+            schedule();
+        };
+
+        const cancel = () => {
+            if (!animating) return;
+            cancelAnimationFrame(raf);
+            animating = false;
+            viewport.style.scrollSnapType = "";
+        };
+
+        const slideTo = (to: number) => {
+            cancel();
+            if (reduceMotion) {
+                jump(to);
+                return settle();
+            }
+            const from = viewport.scrollLeft;
+            const start = performance.now();
+            animating = true;
+            viewport.style.scrollSnapType = "none";
+            const step = (now: number) => {
+                const t = Math.min(1, (now - start) / duration);
+                viewport.scrollLeft = from + (to - from) * ease(t);
+                if (t < 1) {
+                    raf = requestAnimationFrame(step);
                 } else {
-                    // while paused, follow the user's manual scroll position
-                    pos = marquee.scrollLeft;
+                    animating = false;
+                    viewport.style.scrollSnapType = "";
+                    settle();
                 }
-                requestAnimationFrame(tick);
             };
+            raf = requestAnimationFrame(step);
+        };
 
-            const pauseForUser = () => {
-                auto = false;
-                if (resumeTimer) clearTimeout(resumeTimer);
-                resumeTimer = window.setTimeout(() => {
-                    auto = !reduceMotion;
-                }, resumeDelay);
-            };
+        const go = (n: number) => {
+            if (n < 0) {
+                // step back from the first slide via the clone at the end
+                jump(count * width());
+                n = count - 1;
+            }
+            idx = n % count;
+            slideTo(Math.min(n, count) * width());
+        };
 
-            marquee.addEventListener("mouseenter", () => (hovering = true));
-            marquee.addEventListener("mouseleave", () => (hovering = false));
+        // advance only while nobody is looking at or interacting with it
+        const schedule = () => {
+            clearTimeout(timer);
+            timer = window.setTimeout(() => {
+                if (!paused && !hovering && !focused && visible && !document.hidden)
+                    go(idx + 1);
+                else schedule();
+            }, hold);
+        };
 
-            // only react to horizontal wheel intent — ignore vertical page scroll
-            marquee.addEventListener(
-                "wheel",
-                (e) => {
-                    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) pauseForUser();
-                },
-                { passive: true }
-            );
+        const setPaused = (value: boolean) => {
+            paused = value;
+            if (toggle) {
+                toggle.dataset.paused = String(paused);
+                toggle.setAttribute("aria-label", paused ? "Play" : "Pause");
+            }
+            caption?.setAttribute("aria-live", paused ? "polite" : "off");
+            schedule();
+        };
 
-            // track touch direction so vertical swipes don't pause the marquee
-            let touchX = 0;
-            let touchY = 0;
-            marquee.addEventListener(
-                "touchstart",
-                (e) => {
-                    touchX = e.touches[0].clientX;
-                    touchY = e.touches[0].clientY;
-                },
-                { passive: true }
-            );
-            marquee.addEventListener(
-                "touchmove",
-                (e) => {
-                    const dx = Math.abs(e.touches[0].clientX - touchX);
-                    const dy = Math.abs(e.touches[0].clientY - touchY);
-                    if (dx > dy && dx > 6) pauseForUser();
-                },
-                { passive: true }
-            );
+        // any manual switch hands control to the user until they press play
+        const takeOver = () => {
+            if (!paused) setPaused(true);
+        };
 
-            // keep the infinite feel while the user scrolls manually
-            marquee.addEventListener(
-                "scroll",
-                () => {
-                    if (auto) return; // auto wrapping handled in tick
-                    const w = wrapAt();
-                    if (marquee.scrollLeft >= w) marquee.scrollLeft -= w;
-                    else if (marquee.scrollLeft <= 0) marquee.scrollLeft += w;
-                },
-                { passive: true }
-            );
-
-            if (!reduceMotion) requestAnimationFrame(tick);
+        root.querySelector("[data-prev]")?.addEventListener("click", () => {
+            takeOver();
+            go(idx - 1);
         });
+        root.querySelector("[data-next]")?.addEventListener("click", () => {
+            takeOver();
+            go(idx + 1);
+        });
+        toggle?.addEventListener("click", () => setPaused(!paused));
+
+        root.addEventListener("mouseenter", () => (hovering = true));
+        root.addEventListener("mouseleave", () => (hovering = false));
+        // hold for keyboard focus only; a clicked button keeps focus but shouldn't block play
+        root.addEventListener(
+            "focusin",
+            (e) => (focused = (e.target as HTMLElement).matches(":focus-visible"))
+        );
+        root.addEventListener("focusout", (e) => {
+            if (!root.contains(e.relatedTarget as Node)) focused = false;
+        });
+
+        viewport.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+                e.preventDefault();
+                takeOver();
+                go(idx + (e.key === "ArrowRight" ? 1 : -1));
+            }
+        });
+
+        // a horizontal swipe or wheel takes over; vertical page scrolling doesn't
+        const swipe = () => {
+            cancel();
+            takeOver();
+        };
+        viewport.addEventListener(
+            "wheel",
+            (e) => {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) swipe();
+            },
+            { passive: true }
+        );
+        let touchX = 0;
+        let touchY = 0;
+        viewport.addEventListener(
+            "touchstart",
+            (e) => {
+                touchX = e.touches[0].clientX;
+                touchY = e.touches[0].clientY;
+            },
+            { passive: true }
+        );
+        viewport.addEventListener(
+            "touchmove",
+            (e) => {
+                const dx = Math.abs(e.touches[0].clientX - touchX);
+                const dy = Math.abs(e.touches[0].clientY - touchY);
+                if (dx > dy && dx > 6) swipe();
+            },
+            { passive: true }
+        );
+
+        let settling: number | undefined;
+        viewport.addEventListener(
+            "scroll",
+            () => {
+                if (animating) return;
+                clearTimeout(settling);
+                settling = window.setTimeout(settle, 80);
+            },
+            { passive: true }
+        );
+
+        new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+        }).observe(root);
+
+        setPaused(paused);
+    });
+</script>
+
+<script>
+    // plays each slide on the Macintosh's screen as a "channel card" (big
+    // title, small monospace labels, a dotted orbit) drawn in a canvas, then
+    // through a CRT shader: perspective-mapped onto the angled tube, with a
+    // slight bulge, phosphor glow and fine scanlines. follows the slider's
+    // scroll position, so swipes, buttons and autoplay move the picture.
+    // without WebGL the plain thumbnails stay.
+    const vertex = `
+        attribute vec2 position;
+        varying vec2 vUv;
+        void main() {
+            vUv = position * 0.5 + 0.5;
+            gl_Position = vec4(position, 0.0, 1.0);
+        }
+    `;
+    const fragment = `
+        precision mediump float;
+        uniform sampler2D current;
+        uniform sampler2D next;
+        uniform float offset;
+        uniform mat3 toPicture;
+        uniform vec2 texel;
+        uniform float scanlines;
+        varying vec2 vUv;
+
+        // a gentle bulge: lines bow outward like on convex glass, while the
+        // middle of each edge still reaches the picture's edge
+        const float bulge = 0.03;
+        vec2 curve(vec2 uv) {
+            vec2 c = uv * 2.0 - 1.0;
+            vec2 b = c * (1.0 - bulge * (1.0 - c.yx * c.yx)) / (1.0 - bulge);
+            return b * 0.5 + 0.5;
+        }
+
+        // two cards side by side, shifted by the scroll position; samples
+        // that overshoot the tube's edges stay on their own card
+        vec3 picture(vec2 uv) {
+            uv = clamp(uv, 0.0, 0.999);
+            float x = uv.x + offset;
+            return x < 1.0
+                ? texture2D(current, vec2(x, 1.0 - uv.y)).rgb
+                : texture2D(next, vec2(x - 1.0, 1.0 - uv.y)).rgb;
+        }
+
+        float hash(vec2 p) {
+            return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+        }
+
+        void main() {
+            // canvas pixel -> point on the tube, undoing the camera's perspective
+            vec3 q = toPicture * vec3(vUv.x, 1.0 - vUv.y, 1.0);
+            vec2 uv = curve(q.xy / q.z);
+
+            // a hint of convergence error between the guns
+            float shift = 0.6 * texel.x;
+            vec3 col = vec3(
+                picture(uv + vec2(shift, 0.0)).r,
+                picture(uv).g,
+                picture(uv - vec2(shift, 0.0)).b
+            );
+
+            // phosphor bloom, so light type glows into the field around it
+            vec3 glow = vec3(0.0);
+            for (int i = 0; i < 8; i++) {
+                float a = float(i) * 0.7853981;
+                glow += picture(uv + vec2(cos(a), sin(a)) * texel * 3.5);
+            }
+            glow /= 8.0;
+            col = mix(col, glow, 0.12) + glow * 0.16;
+
+            // fine scanlines (about three device pixels apart, so they never
+            // alias into moire), a soft falloff towards the edges, and grain
+            col *= 0.93 + 0.07 * sin(uv.y * scanlines * 6.2831853);
+            float edge = 16.0 * uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
+            col *= mix(0.62, 1.0, pow(clamp(edge, 0.0, 1.0), 0.35));
+            col += (hash(gl_FragCoord.xy) - 0.5) * 0.035;
+
+            gl_FragColor = vec4(col, 1.0);
+        }
+    `;
+
+    type Card = {
+        title: string;
+        subtitle: string;
+        color: string;
+        source: string;
+        channel: number;
+    };
+
+    const SANS = '"Montserrat Variable", "Plus Jakarta Sans Variable", sans-serif';
+    const MONO = '"SF Mono", ui-monospace, Menlo, Consolas, monospace';
+    const INK = "#eef1fb";
+
+    // break words into lines no wider than max
+    const wrap = (ctx: CanvasRenderingContext2D, text: string, max: number) => {
+        const lines: string[] = [];
+        let line = "";
+        for (const word of text.split(" ")) {
+            const next = line ? `${line} ${word}` : word;
+            if (line && ctx.measureText(next).width > max) {
+                lines.push(line);
+                line = word;
+            } else line = next;
+        }
+        if (line) lines.push(line);
+        return lines;
+    };
+
+    const drawCard = (card: Card, paused: boolean, w: number, h: number) => {
+        const canvas = document.createElement("canvas");
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext("2d")!;
+        const pad = w * 0.075;
+
+        // phosphor field, a touch brighter in the middle, with speckle
+        ctx.fillStyle = card.color;
+        ctx.fillRect(0, 0, w, h);
+        const lift = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.5, w * 0.7);
+        lift.addColorStop(0, "rgba(255,255,255,0.12)");
+        lift.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = lift;
+        ctx.fillRect(0, 0, w, h);
+        for (let i = 0; i < 2400; i++) {
+            ctx.fillStyle = `rgba(255,255,255,${Math.random() * 0.16})`;
+            ctx.fillRect(Math.random() * w, Math.random() * h, 1.6, 1.6);
+        }
+
+        // a faint ring and a dotted orbit behind the title
+        ctx.strokeStyle = "rgba(255,255,255,0.08)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(w * 0.62, h * 0.48, h * 0.4, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.save();
+        ctx.translate(w * 0.58, h * 0.6);
+        ctx.rotate(-0.22);
+        ctx.setLineDash([2, 10]);
+        ctx.lineCap = "round";
+        ctx.lineWidth = 3.5;
+        ctx.strokeStyle = "rgba(255,255,255,0.8)";
+        ctx.beginPath();
+        ctx.ellipse(0, 0, w * 0.38, h * 0.15, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+
+        // top labels: transport state on the left, channel on the right
+        ctx.fillStyle = INK;
+        ctx.textBaseline = "middle";
+        const labelSize = h * 0.042;
+        const top = pad + labelSize / 2;
+        const icon = labelSize * 0.62;
+        if (paused) ctx.fillRect(pad, top - icon / 2, icon, icon);
+        else {
+            ctx.beginPath();
+            ctx.moveTo(pad, top - icon / 2);
+            ctx.lineTo(pad + icon, top);
+            ctx.lineTo(pad, top + icon / 2);
+            ctx.fill();
+        }
+        ctx.font = `600 ${labelSize}px ${MONO}`;
+        ctx.fillText(paused ? "STOP" : "PLAY", pad + icon * 1.7, top);
+        const channel = `CH ${String(card.channel).padStart(2, "0")}`;
+        ctx.textAlign = "right";
+        ctx.fillText(channel, w - pad, top);
+        ctx.textAlign = "left";
+
+        // a four-point sparkle beside the channel, clear of the title
+        const sx = w - pad - labelSize * 4.6;
+        const sy = top;
+        const r = labelSize * 0.8;
+        ctx.beginPath();
+        for (let i = 0; i < 8; i++) {
+            const a = (i * Math.PI) / 4 - Math.PI / 2;
+            const len = i % 2 === 0 ? r : r * 0.18;
+            ctx.lineTo(sx + Math.cos(a) * len, sy + Math.sin(a) * len);
+        }
+        ctx.fill();
+
+        // the title, as large as fits in three lines and still leaves room
+        // for the subtitle above the call to action at the bottom
+        const titleText = card.title.toUpperCase();
+        const titleTop = pad + h * 0.15;
+        const titleBottom = h - pad - h * 0.25;
+        let size = h * 0.17;
+        let lines: string[] = [];
+        for (; size > h * 0.06; size *= 0.94) {
+            ctx.font = `800 ${size}px ${SANS}`;
+            lines = wrap(ctx, titleText, w - pad * 2);
+            const fits = lines.every((l) => ctx.measureText(l).width <= w - pad * 2);
+            if (lines.length <= 3 && fits && lines.length * size * 0.96 <= titleBottom - titleTop) break;
+        }
+        ctx.textBaseline = "alphabetic";
+        ctx.shadowColor = "rgba(255,255,255,0.35)";
+        ctx.shadowBlur = size * 0.12;
+        let y = titleTop + size * 0.8;
+        for (const line of lines) {
+            ctx.fillText(line, pad - size * 0.03, y);
+            y += size * 0.96;
+        }
+        ctx.shadowBlur = 0;
+
+        // subtitle under the title, and a call to action at the bottom
+        ctx.font = `500 ${h * 0.036}px ${MONO}`;
+        ctx.globalAlpha = 0.85;
+        ctx.fillText(`${card.subtitle.toUpperCase()}  ·  ${channel}`, pad, y + h * 0.02);
+        ctx.globalAlpha = 1;
+        ctx.font = `600 ${h * 0.04}px ${MONO}`;
+        ctx.textAlign = "center";
+        const verb = card.source === "YouTube" ? "WATCH" : "VIEW";
+        ctx.fillText(`${verb} ON ${card.source.toUpperCase()}`, w / 2, h - pad);
+        return canvas;
+    };
+
+    // canvas -> tube: the inverse of the homography taking the unit square to
+    // the picture's corners (top left, top right, bottom right, bottom left)
+    const toPictureMatrix = (quad: number[][]) => {
+        const [[x0, y0], [x1, y1], [x2, y2], [x3, y3]] = quad;
+        const sx = x0 - x1 + x2 - x3;
+        const sy = y0 - y1 + y2 - y3;
+        const dx1 = x1 - x2;
+        const dx2 = x3 - x2;
+        const dy1 = y1 - y2;
+        const dy2 = y3 - y2;
+        const den = dx1 * dy2 - dx2 * dy1;
+        const g = (sx * dy2 - dx2 * sy) / den;
+        const h = (dx1 * sy - sx * dy1) / den;
+        const m = [
+            [x1 - x0 + g * x1, x3 - x0 + h * x3, x0],
+            [y1 - y0 + g * y1, y3 - y0 + h * y3, y0],
+            [g, h, 1],
+        ];
+        const [[a, b, c], [d, e, f], [k, l, n]] = m;
+        // adjugate is enough: the overall scale cancels in the divide
+        const inv = [
+            [e * n - f * l, c * l - b * n, b * f - c * e],
+            [f * k - d * n, a * n - c * k, c * d - a * f],
+            [d * l - e * k, b * k - a * l, a * e - b * d],
+        ];
+        // column-major for WebGL
+        return new Float32Array([
+            inv[0][0], inv[1][0], inv[2][0],
+            inv[0][1], inv[1][1], inv[2][1],
+            inv[0][2], inv[1][2], inv[2][2],
+        ]);
+    };
+
+    document.querySelectorAll<HTMLElement>(".featured-stage").forEach(async (stage) => {
+        const canvas = stage.querySelector<HTMLCanvasElement>(".featured-crt");
+        const viewport = stage.querySelector<HTMLElement>(".featured-viewport");
+        const toggle = stage
+            .closest("[data-featured]")
+            ?.querySelector<HTMLElement>("[data-toggle]");
+        const gl = canvas?.getContext("webgl", { premultipliedAlpha: false });
+        if (!canvas || !viewport || !gl) return;
+        const cards: Card[] = Array.from(
+            viewport.querySelectorAll<HTMLElement>(".featured-slide:not([aria-hidden])")
+        ).map((slide, i) => ({
+            title: slide.dataset.screenTitle || "",
+            subtitle: slide.dataset.screenSubtitle || "",
+            color: slide.dataset.screenColor || "#2f55d4",
+            source: slide.dataset.source || "",
+            channel: i + 1,
+        }));
+        if (!cards.length) return;
+
+        const compile = (type: number, source: string) => {
+            const shader = gl.createShader(type)!;
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            return shader;
+        };
+        const program = gl.createProgram()!;
+        gl.attachShader(program, compile(gl.VERTEX_SHADER, vertex));
+        gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragment));
+        gl.linkProgram(program);
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
+        gl.useProgram(program);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+        gl.bufferData(
+            gl.ARRAY_BUFFER,
+            new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]),
+            gl.STATIC_DRAW
+        );
+        const position = gl.getAttribLocation(program, "position");
+        gl.enableVertexAttribArray(position);
+        gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+        const uniform = (name: string) => gl.getUniformLocation(program, name);
+        gl.uniform1i(uniform("current"), 0);
+        gl.uniform1i(uniform("next"), 1);
+        gl.uniformMatrix3fv(
+            uniform("toPicture"),
+            false,
+            toPictureMatrix(JSON.parse(canvas.dataset.quad || "[[0,0],[1,0],[1,1],[0,1]]"))
+        );
+
+        // cards are drawn at the tube's 4:3, then resampled into a
+        // power-of-two texture so WebGL 1 can mipmap them for clean type
+        const aspect = Number(canvas.dataset.aspect) || 4 / 3;
+        const cardW = 1024;
+        const cardH = Math.round(cardW / aspect);
+        const textures = cards.map(() => gl.createTexture()!);
+        const upload = () => {
+            const paused = toggle?.dataset.paused === "true";
+            const pot = document.createElement("canvas");
+            pot.width = pot.height = 1024;
+            const ctx = pot.getContext("2d")!;
+            ctx.imageSmoothingQuality = "high";
+            cards.forEach((card, i) => {
+                ctx.drawImage(drawCard(card, paused, cardW, cardH), 0, 0, 1024, 1024);
+                gl.bindTexture(gl.TEXTURE_2D, textures[i]);
+                gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, pot);
+                gl.generateMipmap(gl.TEXTURE_2D);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+            });
+        };
+
+        let queued = false;
+        const draw = () => {
+            queued = false;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            const w = Math.round(canvas.clientWidth * dpr);
+            const h = Math.round(canvas.clientHeight * dpr);
+            if (canvas.width !== w || canvas.height !== h) {
+                canvas.width = w;
+                canvas.height = h;
+            }
+            gl.viewport(0, 0, w, h);
+
+            // exact slide width (clientWidth rounds), and snap sub-pixel
+            // leftovers at rest so no sliver of the next card shows
+            const slideWidth = viewport.getBoundingClientRect().width;
+            let pos = viewport.scrollLeft / slideWidth;
+            const nearest = Math.round(pos);
+            if (Math.abs(pos - nearest) * slideWidth < 1) pos = nearest;
+            const index = Math.floor(pos);
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D, textures[index % cards.length]);
+            gl.activeTexture(gl.TEXTURE1);
+            gl.bindTexture(gl.TEXTURE_2D, textures[(index + 1) % cards.length]);
+            gl.uniform1f(uniform("offset"), pos - index);
+            gl.uniform2f(uniform("texel"), 1 / w, 1 / h);
+            gl.uniform1f(uniform("scanlines"), h / 3);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        };
+        const request = () => {
+            if (queued) return;
+            queued = true;
+            requestAnimationFrame(draw);
+        };
+
+        // the title face must be loaded before it's drawn into a canvas
+        await document.fonts.load(`800 100px "Montserrat Variable"`).catch(() => {});
+        upload();
+        viewport.addEventListener("scroll", request, { passive: true });
+        new ResizeObserver(request).observe(canvas);
+        // redraw the cards' PLAY / STOP label when the slider pauses or plays
+        if (toggle)
+            new MutationObserver(() => {
+                upload();
+                request();
+            }).observe(toggle, { attributes: true, attributeFilter: ["data-paused"] });
+        draw();
+        stage.classList.add("is-crt");
+    });
 </script>
