@@ -209,9 +209,13 @@ const quad = computer.quad.map(([x, y]) => [
     ).matches;
 
     const hold = 4500; // ms each slide rests before switching
-    const duration = 700; // ms of the slide transition
-    const ease = (t: number) =>
-        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const duration = 1000; // ms of the slide transition
+    // ease-out: the roll (and its glitch) kicks in on the very first frame,
+    // like a tube slipping out of hold, then slows as the new card catches.
+    // plenty of linear motion is mixed in so it still lands with speed:
+    // a pure ease-out crawls through the last few pixels, leaving a sliver
+    // of the old card hanging at the top of the tube
+    const ease = (t: number) => 0.45 * (1 - Math.pow(1 - t, 3)) + 0.55 * t;
 
     document.querySelectorAll<HTMLElement>("[data-featured]").forEach((root) => {
         const viewport = root.querySelector<HTMLElement>(".featured-viewport");
@@ -419,7 +423,8 @@ const quad = computer.quad.map(([x, y]) => [
     // plays each slide on the Macintosh's screen as a "channel card" (big
     // title, small monospace labels, a dotted orbit) drawn in a canvas, then
     // through a CRT shader: perspective-mapped onto the angled tube, with a
-    // slight bulge, phosphor glow and fine scanlines. follows the slider's
+    // slight bulge, phosphor glow and fine scanlines. switching rolls the
+    // picture vertically with a slight glitch. follows the slider's
     // scroll position, so swipes, buttons and autoplay move the picture.
     // without WebGL the plain thumbnails stay.
     const vertex = `
@@ -449,14 +454,23 @@ const quad = computer.quad.map(([x, y]) => [
             return b * 0.5 + 0.5;
         }
 
-        // two cards side by side, shifted by the scroll position; samples
-        // that overshoot the tube's edges stay on their own card
+        // two cards stacked, the next one below; the switch rolls the picture
+        // up like a tube losing vertical hold. samples that overshoot the
+        // tube's edges stay on their own card
         vec3 picture(vec2 uv) {
-            uv = clamp(uv, 0.0, 0.999);
-            float x = uv.x + offset;
-            return x < 1.0
-                ? texture2D(current, vec2(x, 1.0 - uv.y)).rgb
-                : texture2D(next, vec2(x - 1.0, 1.0 - uv.y)).rgb;
+            // the slivers of glass past the picture's top and bottom edges
+            // (under the bezel's shadow) mirror the rows just inside, but
+            // stay on whichever card is at that edge, so their colour
+            // changes in step with it. mid-roll the next card already
+            // continues past the bottom edge
+            uv.x = clamp(uv.x, 0.0, 0.999);
+            float y;
+            if (uv.y < 0.0) y = min(offset - uv.y, 0.999);
+            else if (offset == 0.0) y = uv.y > 0.999 ? 1.998 - uv.y : uv.y;
+            else y = min(uv.y + offset, 1.999);
+            return y < 1.0
+                ? texture2D(current, vec2(uv.x, 1.0 - y)).rgb
+                : texture2D(next, vec2(uv.x, 2.0 - y)).rgb;
         }
 
         float hash(vec2 p) {
@@ -468,8 +482,21 @@ const quad = computer.quad.map(([x, y]) => [
             vec3 q = toPicture * vec3(vUv.x, 1.0 - vUv.y, 1.0);
             vec2 uv = curve(q.xy / q.z);
 
-            // a hint of convergence error between the guns
-            float shift = 0.6 * texel.x;
+            // the glitch is an overlay on the tube itself, not on either
+            // card: it switches on with the first frame of a switch, covers
+            // the whole screen while the cards roll beneath it, and eases off
+            // as the new card locks in. horizontal bands, fixed to the glass
+            // rather than the picture, tear sideways and jump about as the
+            // roll moves on
+            float glitch = offset > 0.0 ? 1.0 - smoothstep(0.93, 1.0, offset) : 0.0;
+            float seed = floor(offset * 24.0);
+            float band = floor(uv.y * 28.0 + hash(vec2(seed, 7.0)) * 4.0);
+            float torn = step(0.6, hash(vec2(band, seed)));
+            uv.x += (hash(vec2(seed, band)) - 0.5) * 0.12 * glitch * torn;
+
+            // a hint of convergence error between the guns, much worse
+            // while the glitch is on
+            float shift = (0.6 + 10.0 * glitch) * texel.x;
             vec3 col = vec3(
                 picture(uv + vec2(shift, 0.0)).r,
                 picture(uv).g,
@@ -491,6 +518,21 @@ const quad = computer.quad.map(([x, y]) => [
             float edge = 16.0 * uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
             col *= mix(0.62, 1.0, pow(clamp(edge, 0.0, 1.0), 0.35));
             col += (hash(gl_FragCoord.xy) - 0.5) * 0.035;
+
+            // a faint bright roll band where the two frames meet
+            float seam = abs(uv.y + offset - 1.0);
+            col += glitch * 0.07 * exp(-seam * 14.0);
+
+            // the overlay: snow over the whole tube, torn bands flashing a
+            // little brighter like a signal dropout, and two thin
+            // interference lines that hop to a new height every few frames
+            col += glitch * (hash(gl_FragCoord.xy + seed) - 0.5) * 0.14;
+            col *= 1.0 + glitch * torn * 0.12;
+            for (int i = 0; i < 2; i++) {
+                float at = hash(vec2(seed, float(i) + 3.0));
+                float line = 1.0 - smoothstep(0.0, 0.006, abs(uv.y - at));
+                col += glitch * line * 0.22;
+            }
 
             gl_FragColor = vec4(col, 1.0);
         }
