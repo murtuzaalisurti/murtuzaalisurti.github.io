@@ -420,8 +420,8 @@ main {
  * ------------------------------------------------------------------ */
 .featured {
     display: grid;
-    grid-template-columns: auto 1fr;
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
     gap: 0.75rem 1rem;
 }
 
@@ -552,9 +552,10 @@ main {
 
 .featured-caption {
     min-width: 0;
+    max-width: 100%;
     font-size: var(--small-size);
     color: var(--text-muted);
-    text-align: right;
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
